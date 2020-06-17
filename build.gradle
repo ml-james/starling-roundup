@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.2.7.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+}
+
+configurations {
+    driver
+    liquibase
+}
+
+group 'org.matthew.james'
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+
+    def lombokVersion = '1.18.12'
+    def mssqlJdbcVersion = '7.4.1.jre8'
+
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+    implementation 'org.springframework.ws:spring-ws-core'
+    implementation("org.liquibase:liquibase-core")
+
+    runtimeOnly("com.h2database:h2")
+
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    driver "com.microsoft.sqlserver:mssql-jdbc:${mssqlJdbcVersion}"
+
+    liquibase 'org.liquibase:liquibase-core:3.5.3',
+            "com.microsoft.sqlserver:mssql-jdbc:${mssqlJdbcVersion}"
+}
