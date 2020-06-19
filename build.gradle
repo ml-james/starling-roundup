@@ -19,6 +19,15 @@ test {
     useJUnitPlatform()
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDir 'db'
+        }
+    }
+}
+
+
 dependencies {
 
     def lombokVersion = '1.18.12'

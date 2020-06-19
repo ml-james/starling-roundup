@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+  <changeSet id="1" author="m.james">
+    <createTable tableName="roundup_account" schemaName="dbo">
+      <column name="account_uid" type="varchar(128)">
+        <constraints nullable="false" />
+      </column>
+      <column name="default_category_uid" type="varchar(128)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="savings_goal_uid" type="varchar(128)">
+        <constraints nullable="false" />
+      </column>
+      <column name="maximum_roundup" type="int">
+        <constraints nullable="false" />
+      </column>
+      <column name="roundup_factor" type="int">
+        <constraints nullable="false" />
+      </column>
+      <column name="created_time" type="string">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+  </changeSet>
+</databaseChangeLog>
