@@ -9,7 +9,7 @@ configurations {
     liquibase
 }
 
-group 'org.matthew.james'
+group 'org.matthewjames'
 
 repositories {
     mavenCentral()
@@ -27,13 +27,20 @@ sourceSets {
     }
 }
 
-
 dependencies {
+
+    implementation project(":starlingroundup-client")
 
     def lombokVersion = '1.18.12'
     def mssqlJdbcVersion = '7.4.1.jre8'
 
+    compile group: 'joda-time', name: 'joda-time', version: '2.10.6'
+
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation ('org.springframework.boot:spring-boot-starter-web-services') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    }
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     implementation 'org.springframework.ws:spring-ws-core'
     implementation("org.liquibase:liquibase-core")

@@ -10,9 +10,6 @@
       <column name="roundup_uid" type="varchar(128)">
         <constraints nullable="false"/>
       </column>
-      <column name="account_uid" type="varchar(128)">
-        <constraints nullable="false"/>
-      </column>
       <column name="roundup_value" type="varchar(128)">
         <constraints nullable="false"/>
       </column>

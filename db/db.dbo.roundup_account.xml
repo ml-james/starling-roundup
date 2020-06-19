@@ -8,7 +8,7 @@
   <changeSet id="1" author="m.james">
     <createTable tableName="roundup_account" schemaName="dbo">
       <column name="account_uid" type="varchar(128)">
-        <constraints nullable="false" />
+        <constraints nullable="false" primaryKey="true"/>
       </column>
       <column name="default_category_uid" type="varchar(128)">
         <constraints nullable="false"/>
