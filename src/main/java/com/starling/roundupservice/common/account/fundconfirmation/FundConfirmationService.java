@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.accounts.fundconfirmation;
+package com.starling.roundupservice.common.account.fundconfirmation;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

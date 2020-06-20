@@ -1,5 +1,5 @@
 package com.starling.roundupservice.action;
 
-public enum Status {
+public enum State {
   INSUFFICIENT_FUNDS, SUCCESSFUL
 }

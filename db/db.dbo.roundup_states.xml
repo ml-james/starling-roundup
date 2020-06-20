@@ -6,14 +6,17 @@
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
   <changeSet id="1" author="m.james">
-    <createTable tableName="roundup_states" schemaName="dbo">
+    <createTable tableName="roundup_state" schemaName="dbo">
       <column name="roundup_uid" type="varchar(128)">
         <constraints nullable="false"/>
+      </column>
+      <column name="transfer_uid" type="varchar(128)">
+        <constraints nullable="true"/>
       </column>
       <column name="state" type="varchar(16)">
         <constraints nullable="false"/>
       </column>
-      <column name="created_time" type="varchar(32)">
+      <column name="completed_time" type="varchar(32)">
         <constraints nullable="false"/>
       </column>
     </createTable>

@@ -1,6 +1,5 @@
-package com.starling.roundupservice.common.accounts.roundup;
+package com.starling.roundupservice.common.account.roundup;
 
-import com.starling.roundupservice.common.accounts.retrieval.Account;
 import com.starling.roundupservice.common.savingsgoal.create.SavingsGoalCreationResponse;
 import com.starling.roundupservice.creation.RoundupCreationRequest;
 import java.util.Optional;
@@ -18,12 +17,12 @@ public class RoundupAccountService {
     return roundupAccountRepository.findById(accountUid);
   }
 
-  public void saveRoundupAccount(final RoundupCreationRequest creationRequest, final Account accountInformation, final SavingsGoalCreationResponse savingsGoalCreationResponse) {
+  public void saveRoundupAccount(final RoundupCreationRequest creationRequest, final SavingsGoalCreationResponse creationResponse, final String categoryUid) {
 
     var roundupAccountMapping = RoundupAccountMapping.builder()
         .accountUid(creationRequest.getAccountUid())
-        .defaultCategoryUid(accountInformation.getDefaultCategoryUid())
-        .savingsGoalUid(savingsGoalCreationResponse.getSavingsGoalUid())
+        .categoryUid(categoryUid)
+        .savingsGoalUid(creationResponse.getSavingsGoalUid())
         .maximumRoundup(creationRequest.getRoundupMaximum())
         .roundupFactor(creationRequest.getRoundupFactor())
         .build();

@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.accounts.retrieval;
+package com.starling.roundupservice.common.account.retrieval;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ public class AccountRetrievalService {
 
   private final AccountRetrievalProvider accountRetrievalProvider;
 
-  public Account getAccountInformation(String accountUid) {
+  public Account getAccountMetadata(String accountUid) {
 
     var allAccounts = accountRetrievalProvider.retrieveAccounts();
 

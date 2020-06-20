@@ -1,11 +1,13 @@
-package com.starling.roundupservice.common.transactions.domain;
+package com.starling.roundupservice.common.transactions;
 
 import com.starling.roundupservice.common.savingsgoal.deposit.Money;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Builder(toBuilder = true)
 @RequiredArgsConstructor
+@Getter
 public class FeedItem {
 
   private final String feedItemUid;

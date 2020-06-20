@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.transactions.domain;
+package com.starling.roundupservice.common.transactions;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.accounts.retrieval;
+package com.starling.roundupservice.common.account.retrieval;
 
 import lombok.Builder;
 import lombok.Getter;

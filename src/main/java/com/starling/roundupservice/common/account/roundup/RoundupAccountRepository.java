@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.accounts.roundup;
+package com.starling.roundupservice.common.account.roundup;
 
 import java.util.Optional;
 import org.springframework.data.jdbc.repository.query.Query;

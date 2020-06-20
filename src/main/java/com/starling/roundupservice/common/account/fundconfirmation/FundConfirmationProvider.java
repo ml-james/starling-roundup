@@ -1,6 +1,5 @@
-package com.starling.roundupservice.common.transactions;
+package com.starling.roundupservice.common.account.fundconfirmation;
 
-import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
 import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.exception.GeneralException;
 import com.starling.roundupservice.common.exception.ServerException;
@@ -17,37 +16,32 @@ import reactor.netty.http.client.HttpClient;
 
 @Component
 @Slf4j
-public class TransactionProvider {
+public class FundConfirmationProvider {
 
   private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(15);
 
   private final WebClient apiClient;
 
-  public TransactionProvider() {
+  public FundConfirmationProvider() {
     this.apiClient = WebClient.builder()
         .clientConnector(new ReactorClientHttpConnector(HttpClient.create().wiretap(true)))
         .build();
   }
 
-  public FeedItems retrieveTransactionsInWindow(final RoundupAccountMapping account, final TransactionTimestamps transactionTimestamps) {
+  public FundConfirmationResponse retrieveFundConfirmation(final String accountUid, final int amount) {
 
     return apiClient.post()
-        .uri(String.format(
-            "http://localhost:8080/api/v2/account/%s/category/%s/category/transactions-between?minTransactionTimestamp=%s&?maxTransactionTimestamp=%s",
-            account.getAccountUid(), account.getCategoryUid(), transactionTimestamps.getMinTransactionTimestamp(),
-            transactionTimestamps.getMaxTransactionTimestamp()))
+        .uri(String.format("http://localhost:8080/api/v2/accounts/%s/confirmation-of-funds?=targetAmountInMinorUnits=%s", accountUid, amount))
         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
         .retrieve()
         .onStatus(HttpStatus::is4xxClientError, clientResponse ->
             Mono.error(new ClientException()))
         .onStatus(HttpStatus::is5xxServerError, clientResponse ->
             Mono.error(new ServerException()))
-        .bodyToMono(FeedItems.class)
+        .bodyToMono(FundConfirmationResponse.class)
         .timeout(DEFAULT_TIMEOUT)
         .blockOptional()
         .orElseThrow(GeneralException::new);
 
-
   }
-
 }

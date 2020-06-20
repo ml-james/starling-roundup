@@ -7,10 +7,14 @@
 
   <changeSet id="1" author="m.james">
     <createTable tableName="roundup_account" schemaName="dbo">
+      <column name="roundup_uid" type="int" autoIncrement="true"/>
       <column name="account_uid" type="varchar(128)">
         <constraints nullable="false" primaryKey="true"/>
       </column>
-      <column name="default_category_uid" type="varchar(128)">
+      <column name="category_uid" type="varchar(128)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="account_uid_currency" type="varchar(3)">
         <constraints nullable="false"/>
       </column>
       <column name="savings_goal_uid" type="varchar(128)">

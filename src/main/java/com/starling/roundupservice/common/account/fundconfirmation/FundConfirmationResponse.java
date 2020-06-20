@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.accounts.fundconfirmation;
+package com.starling.roundupservice.common.account.fundconfirmation;
 
 import lombok.Builder;
 import lombok.Getter;

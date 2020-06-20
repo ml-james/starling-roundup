@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.accounts.roundup;
+package com.starling.roundupservice.common.account.roundup;
 
 import lombok.Builder;
 import lombok.Data;
@@ -11,9 +11,11 @@ import org.springframework.data.relational.core.mapping.Table;
 public class RoundupAccountMapping {
 
   @Id
+  int roundupUid;
   String accountUid;
-  String defaultCategoryUid;
+  String categoryUid;
   String savingsGoalUid;
+  String currency;
   int maximumRoundup;
   int roundupFactor;
   String createdTime;

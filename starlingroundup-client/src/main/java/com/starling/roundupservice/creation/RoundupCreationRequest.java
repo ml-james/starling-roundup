@@ -16,8 +16,16 @@ public class RoundupCreationRequest {
 
   @JsonProperty("accountUid")
   String accountUid;
+  @JsonProperty("goalName")
+  String goalName;
+  @JsonProperty("currency")
+  String currency;
+  @JsonProperty("goal")
+  int goal;
   @JsonProperty("roundupMaximum")
   int roundupMaximum;
   @JsonProperty("roundupFactor")
   int roundupFactor;
+  @JsonProperty("base64EncodedPhoto")
+  String base64EncodedPhoto;
 }

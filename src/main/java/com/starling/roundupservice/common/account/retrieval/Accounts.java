@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.transactions.domain;
+package com.starling.roundupservice.common.account.retrieval;
 
 import java.util.List;
 import lombok.Builder;
@@ -8,8 +8,8 @@ import lombok.RequiredArgsConstructor;
 @Builder(toBuilder = true)
 @RequiredArgsConstructor
 @Getter
-public class FeedItems {
+public class Accounts {
 
-  List<FeedItem> feedItems;
+  private final List<Account> accounts;
 
 }
