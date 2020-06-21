@@ -1,6 +1,8 @@
 package com.starling.roundupservice.common.transactions;
 
 import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
+import com.starling.roundupservice.common.account.roundup.RoundupStateService;
+import com.starling.roundupservice.common.exception.ClientException;
 import lombok.RequiredArgsConstructor;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Component;
@@ -13,23 +15,31 @@ public class TransactionService {
   private static final String STATUS_SETTLED = "SETTLED";
 
   private final TransactionProvider transactionProvider;
+  private final RoundupStateService roundupStateService;
 
-  public int getLatestRoundup(RoundupAccountMapping roundUpAccount) {
+  public Roundup getLatestRoundup(RoundupAccountMapping roundUpAccount) {
 
     var transactionWindow = getTransactionWindow();
+
+    if (!roundupStateService.isRoundupDue(roundUpAccount.getRoundupUid(), transactionWindow.maxTransactionTimestamp)) {
+      throw new ClientException("Roundup requirability: ", String
+          .format("a roundup is not required at this time, we have already rounded up the transactions for the account %s, week end %s",
+              roundUpAccount.getAccountUid(), transactionWindow.maxTransactionTimestamp));
+    }
+
     var transactions = transactionProvider.retrieveTransactionsInWindow(roundUpAccount, transactionWindow);
-    return calculateRoundup(transactions, roundUpAccount);
+    return calculateRoundup(transactions, roundUpAccount, transactionWindow.maxTransactionTimestamp);
   }
 
   private TransactionTimestamps getTransactionWindow() {
 
     return TransactionTimestamps.builder()
-        .minTransactionTimestamp(new DateTime().minusWeeks(1).withDayOfWeek(0).toString())
-        .maxTransactionTimestamp(new DateTime().minusWeeks(1).withDayOfWeek(7).toString())
+        .minTransactionTimestamp(new DateTime().minusWeeks(1).withDayOfWeek(1).withTimeAtStartOfDay().toString())
+        .maxTransactionTimestamp(new DateTime().withDayOfWeek(1).withTimeAtStartOfDay().toString())
         .build();
   }
 
-  private int calculateRoundup(final FeedItems feedItems, final RoundupAccountMapping roundupAccountMapping) {
+  private Roundup calculateRoundup(final FeedItems feedItems, final RoundupAccountMapping roundupAccountMapping, final String weekEnd) {
 
     var feedSum = feedItems.getFeedItems().stream()
         .filter(x -> x.getDirection().equals(DIRECTION_OUT))
@@ -39,7 +49,11 @@ public class TransactionService {
         .mapToInt(Integer::intValue)
         .sum();
 
-    return Math.min(feedSum * roundupAccountMapping.getRoundupFactor(), roundupAccountMapping.getMaximumRoundup());
+    var roundupAmount = Math.min(feedSum * roundupAccountMapping.getRoundupFactor(), roundupAccountMapping.getMaximumRoundup());
 
+    return Roundup.builder()
+        .roundupAmount(roundupAmount)
+        .weekEnd(weekEnd)
+        .build();
   }
 }

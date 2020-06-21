@@ -1,6 +1,5 @@
-package com.starling.roundupservice.common.account.retrieval;
+package com.starling.roundupservice.common.transactions;
 
-import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -8,8 +7,9 @@ import lombok.RequiredArgsConstructor;
 @Builder(toBuilder = true)
 @RequiredArgsConstructor
 @Getter
-public class Accounts {
+public class Roundup {
 
-  private final List<Account> accounts;
+  int roundupAmount;
+  String weekEnd;
 
 }

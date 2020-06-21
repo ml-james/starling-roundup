@@ -7,6 +7,7 @@ import com.starling.roundupservice.common.account.roundup.RoundupAccountService;
 import com.starling.roundupservice.common.account.roundup.RoundupResponseTransformer;
 import com.starling.roundupservice.common.account.roundup.RoundupStateService;
 import com.starling.roundupservice.action.State;
+import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.savingsgoal.deposit.SavingsGoalDepositService;
 import com.starling.roundupservice.common.transactions.TransactionService;
 import lombok.RequiredArgsConstructor;
@@ -25,19 +26,14 @@ public class ActionService {
   public RoundupActionResponse performRoundup(final String accountUid) {
 
     var roundupAccount = getRoundupAccount(accountUid);
-
-    if (!roundupStateService.isRoundupDue(roundupAccount.getRoundupUid())) {
-      throw new NoRoundupRequiredException();
-    }
-
     var roundUp = transactionService.getLatestRoundup(roundupAccount);
 
-    if (fundConfirmationService.sufficientFunds(accountUid, roundUp)) {
-      var transferUid = savingsGoalDepositService.deposit(roundupAccount, roundUp);
-      roundupStateService.insertState(roundupAccount.getRoundupUid(), State.SUCCESSFUL, transferUid);
-      return RoundupResponseTransformer.transform(State.SUCCESSFUL, transferUid, roundUp);
+    if (fundConfirmationService.sufficientFunds(accountUid, roundUp.getRoundupAmount())) {
+      var transferUid = savingsGoalDepositService.deposit(roundupAccount, roundUp.getRoundupAmount());
+      roundupStateService.insertState(roundupAccount.getRoundupUid(), State.SUCCESSFUL, transferUid, roundUp.getWeekEnd());
+      return RoundupResponseTransformer.transform(State.SUCCESSFUL, transferUid, roundUp.getRoundupAmount());
     } else {
-      roundupStateService.insertState(roundupAccount.getRoundupUid(), State.INSUFFICIENT_FUNDS, null);
+      roundupStateService.insertState(roundupAccount.getRoundupUid(), State.INSUFFICIENT_FUNDS, null, roundUp.getWeekEnd());
       return RoundupResponseTransformer.transform(State.INSUFFICIENT_FUNDS);
     }
   }
@@ -45,7 +41,7 @@ public class ActionService {
   private RoundupAccountMapping getRoundupAccount(final String accountUid) {
     var roundupAccount = roundupAccountService.retrieveRoundupAccount(accountUid);
     if (roundupAccount.isEmpty()) {
-      throw new NoRoundupGoalFoundException();
+      throw new ClientException("Retrieve roundup account error: ", String.format("no roundup account exists for account %s", accountUid));
     }
     return roundupAccount.get();
   }

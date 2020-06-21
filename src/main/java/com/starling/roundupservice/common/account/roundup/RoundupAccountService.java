@@ -17,12 +17,13 @@ public class RoundupAccountService {
     return roundupAccountRepository.findById(accountUid);
   }
 
-  public void saveRoundupAccount(final RoundupCreationRequest creationRequest, final SavingsGoalCreationResponse creationResponse, final String categoryUid) {
+  public void saveRoundupAccount(final RoundupCreationRequest creationRequest, final String accountUid, final String savingsGoalUid,
+      final String categoryUid) {
 
     var roundupAccountMapping = RoundupAccountMapping.builder()
-        .accountUid(creationRequest.getAccountUid())
+        .accountUid(accountUid)
         .categoryUid(categoryUid)
-        .savingsGoalUid(creationResponse.getSavingsGoalUid())
+        .savingsGoalUid(savingsGoalUid)
         .maximumRoundup(creationRequest.getRoundupMaximum())
         .roundupFactor(creationRequest.getRoundupFactor())
         .build();

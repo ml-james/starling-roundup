@@ -39,15 +39,12 @@ public class TransactionProvider {
         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
         .retrieve()
         .onStatus(HttpStatus::is4xxClientError, clientResponse ->
-            Mono.error(new ClientException()))
+            Mono.error(new ClientException("Transaction provider: ", "client error")))
         .onStatus(HttpStatus::is5xxServerError, clientResponse ->
-            Mono.error(new ServerException()))
+            Mono.error(new ServerException("Transaction provider: ", "server error")))
         .bodyToMono(FeedItems.class)
         .timeout(DEFAULT_TIMEOUT)
         .blockOptional()
         .orElseThrow(GeneralException::new);
-
-
   }
-
 }

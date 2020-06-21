@@ -1,6 +1,5 @@
 package com.starling.roundupservice.features.roundupcreation;
 
-import com.starling.roundupservice.common.account.retrieval.AccountRetrievalService;
 import com.starling.roundupservice.common.account.roundup.RoundupAccountService;
 import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.savingsgoal.create.SavingsGoalCreationService;
@@ -12,19 +11,18 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class CreationService {
 
-  private final AccountRetrievalService accountRetrievalService;
   private final SavingsGoalCreationService savingsGoalCreationService;
   private final RoundupAccountService roundupAccountService;
 
-  public String createRoundupGoal(final RoundupCreationRequest creationRequest) {
+  public String createRoundupGoal(final RoundupCreationRequest creationRequest, final String accountUid, final String defaultCategoryUid,
+      final String currency) {
 
-    if (roundupAccountService.retrieveRoundupAccount(creationRequest.getAccountUid()).isPresent()) {
-      throw new ClientException();
+    if (roundupAccountService.retrieveRoundupAccount(accountUid).isPresent()) {
+      throw new ClientException("Create roundup account error: ", "roundup account already exists");
     }
 
-    var account = accountRetrievalService.getAccountMetadata(creationRequest.getAccountUid());
-    var savingsGoal = savingsGoalCreationService.createSavingsGoal(creationRequest, account.getCurrency());
-    roundupAccountService.saveRoundupAccount(creationRequest, savingsGoal, account.getDefaultCategoryUid());
+    var savingsGoal = savingsGoalCreationService.createSavingsGoal(creationRequest, currency);
+    roundupAccountService.saveRoundupAccount(creationRequest, accountUid, savingsGoal.getSavingsGoalUid(), defaultCategoryUid);
 
     return savingsGoal.getSavingsGoalUid();
   }

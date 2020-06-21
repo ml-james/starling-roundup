@@ -14,6 +14,6 @@ public class RoundupStateMapping {
   int roundupId;
   String transferUid;
   String state;
-  String completedTime;
+  String weekEnd;
 
 }

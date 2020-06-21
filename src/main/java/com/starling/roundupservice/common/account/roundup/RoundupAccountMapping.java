@@ -14,8 +14,8 @@ public class RoundupAccountMapping {
   int roundupUid;
   String accountUid;
   String categoryUid;
+  String accountUidCurrency;
   String savingsGoalUid;
-  String currency;
   int maximumRoundup;
   int roundupFactor;
   String createdTime;

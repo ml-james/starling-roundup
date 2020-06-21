@@ -6,5 +6,6 @@
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
   <include file="db.dbo.roundup_account.xml" relativeToChangelogFile="true"/>
+  <include file="db.dbo.roundup_state.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

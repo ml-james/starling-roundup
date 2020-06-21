@@ -5,16 +5,20 @@ import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.exception.GeneralException;
 import com.starling.roundupservice.common.exception.ServerException;
 import java.time.Duration;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 
+@Component
+@Slf4j
 public class SavingsGoalDepositProvider {
 
   private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(15);
@@ -31,7 +35,7 @@ public class SavingsGoalDepositProvider {
 
     var transferId = generateTransferId();
     var money = Money.builder()
-        .currency(roundupAccount.getCurrency())
+        .currency(roundupAccount.getAccountUidCurrency())
         .minorUnits(roundupAmount)
         .build();
 
@@ -42,9 +46,9 @@ public class SavingsGoalDepositProvider {
         .body(BodyInserters.fromValue(new SavingsGoalDepositRequest(money)))
         .retrieve()
         .onStatus(HttpStatus::is4xxClientError, clientResponse ->
-            Mono.error(new ClientException()))
+            Mono.error(new ClientException("Savings goal deposit provider: ", "client error")))
         .onStatus(HttpStatus::is5xxServerError, clientResponse ->
-            Mono.error(new ServerException()))
+            Mono.error(new ServerException("Savings goal deposit provider: ", "server error")))
         .bodyToMono(SavingsGoalDepositResponse.class)
         .timeout(DEFAULT_TIMEOUT)
         .blockOptional()

@@ -1,12 +1,12 @@
 package com.starling.roundupservice.common.transactions;
 
 import java.util.List;
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@Builder(toBuilder = true)
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Getter
 public class FeedItems {
 

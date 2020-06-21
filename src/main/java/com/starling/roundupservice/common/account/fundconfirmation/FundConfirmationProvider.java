@@ -35,9 +35,9 @@ public class FundConfirmationProvider {
         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
         .retrieve()
         .onStatus(HttpStatus::is4xxClientError, clientResponse ->
-            Mono.error(new ClientException()))
+            Mono.error(new ClientException("Fund confirmation provider: ", "client error")))
         .onStatus(HttpStatus::is5xxServerError, clientResponse ->
-            Mono.error(new ServerException()))
+            Mono.error(new ServerException("Fund confirmation provider: ", "server error")))
         .bodyToMono(FundConfirmationResponse.class)
         .timeout(DEFAULT_TIMEOUT)
         .blockOptional()
