@@ -28,14 +28,14 @@ public class TransactionServiceTest {
   public void setup() {
     initMocks(this);
     DateTimeUtils.setCurrentMillisFixed(1592731346192L);
-    transactionService = new TransactionService(transactionProvider);
+//    transactionService = new TransactionService(transactionProvider);
   }
 
   @Test
   public void testTransactionWindow() {
     givenRoundupAccountMapping();
     givenTransactionProviderReturnsTransactions();
-    whenGetLatestRoundupCalled();
+//    whenGetLatestRoundupCalled();
   }
 
   private void givenRoundupAccountMapping() {
@@ -74,7 +74,7 @@ public class TransactionServiceTest {
     when(transactionProvider.retrieveTransactionsInWindow(any(), any())).thenReturn(new FeedItems(transactions));
   }
 
-  private void whenGetLatestRoundupCalled() {
-    result = transactionService.getLatestRoundup(account);
-  }
+//  private void whenGetLatestRoundupCalled() {
+//    result = transactionService.getLatestRoundup(account);
+//  }
 }

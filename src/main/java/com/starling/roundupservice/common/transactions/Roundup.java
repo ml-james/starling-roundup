@@ -1,11 +1,11 @@
 package com.starling.roundupservice.common.transactions;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Builder(toBuilder = true)
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Getter
 public class Roundup {
 

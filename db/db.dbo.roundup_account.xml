@@ -7,7 +7,9 @@
 
   <changeSet id="1" author="m.james">
     <createTable tableName="roundup_account" schemaName="dbo">
-      <column name="roundup_uid" type="int" autoIncrement="true"/>
+      <column name="roundup_uid" type="int" autoIncrement="true">
+        <constraints nullable="false"/>
+      </column>
       <column name="account_uid" type="varchar(128)">
         <constraints nullable="false" primaryKey="true"/>
       </column>
@@ -25,9 +27,6 @@
       </column>
       <column name="roundup_factor" type="int">
         <constraints nullable="false" />
-      </column>
-      <column name="created_time" type="varchar(24)">
-        <constraints nullable="false"/>
       </column>
     </createTable>
 

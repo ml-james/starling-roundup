@@ -11,13 +11,11 @@ import org.springframework.data.relational.core.mapping.Table;
 public class RoundupAccountMapping {
 
   @Id
-  int roundupUid;
   String accountUid;
+  int roundupUid;
   String categoryUid;
   String accountUidCurrency;
   String savingsGoalUid;
   int maximumRoundup;
   int roundupFactor;
-  String createdTime;
-
 }

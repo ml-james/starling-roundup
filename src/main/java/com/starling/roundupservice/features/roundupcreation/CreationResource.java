@@ -22,7 +22,7 @@ public class CreationResource {
 
   private final CreationService creationService;
 
-  @PutMapping(path = "/createRoundupGoal/accountUid/{accountUid}/defaultCategoryUid/{defaultCategoryUid/currency/{currency}",
+  @PutMapping(path = "/createRoundupGoal/accountUid/{accountUid}/defaultCategoryUid/{defaultCategoryUid}/currency/{currency}",
       consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RoundupCreationResponse> createRoundupGoal(@PathVariable("accountUid") final String accountUid,
       @PathVariable("defaultCategoryUid") final String defaultCategoryUid, @PathVariable("currency") final String currency,

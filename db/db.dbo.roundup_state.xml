@@ -7,7 +7,7 @@
 
   <changeSet id="1" author="m.james">
     <createTable tableName="roundup_state" schemaName="dbo">
-      <column name="roundup_uid" type="varchar(128)">
+      <column name="roundup_uid" type="int">
         <constraints nullable="false"/>
       </column>
       <column name="transfer_uid" type="varchar(128)">
@@ -20,6 +20,9 @@
         <constraints nullable="false"/>
       </column>
     </createTable>
+
+    <addForeignKeyConstraint baseTableName="roundup_state" baseTableSchemaName="dbo" baseColumnNames="roundup_uid" constraintName="FK_roundup_uid_roundup_state_roundup_account"
+      referencedTableName="roundup_account" referencedColumnNames="roundup_uid" referencedTableSchemaName="dbo"/>
 
   </changeSet>
 </databaseChangeLog>

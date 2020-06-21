@@ -13,6 +13,6 @@ public class ClientException extends RuntimeException {
   }
 
   public Map<String, String> getError() {
-    return error;
+    return this.error;
   }
 }
