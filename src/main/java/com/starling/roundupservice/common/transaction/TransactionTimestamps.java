@@ -1,8 +1,7 @@
-package com.starling.roundupservice.common.transactions;
+package com.starling.roundupservice.common.transaction;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Builder(toBuilder = true)
 @Getter

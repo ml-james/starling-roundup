@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.transactions;
+package com.starling.roundupservice.common.transaction;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

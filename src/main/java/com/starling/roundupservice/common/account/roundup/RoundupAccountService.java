@@ -1,6 +1,5 @@
 package com.starling.roundupservice.common.account.roundup;
 
-import com.starling.roundupservice.common.savingsgoal.create.SavingsGoalCreationResponse;
 import com.starling.roundupservice.creation.RoundupCreationRequest;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;

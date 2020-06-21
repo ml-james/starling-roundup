@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.transactions;
+package com.starling.roundupservice.common.transaction;
 
 import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
 import com.starling.roundupservice.common.account.roundup.RoundupStateService;

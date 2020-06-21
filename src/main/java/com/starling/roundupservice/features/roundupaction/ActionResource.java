@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,7 +20,7 @@ public class ActionResource {
 
   private final ActionService actionService;
 
-  @PutMapping(path = "/roundupAction/account/{accountUid}", produces = APPLICATION_JSON_VALUE)
+  @PostMapping(path = "/roundupAction/accountUid/{accountUid}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RoundupActionResponse> roundupAccount(@PathVariable("accountUid") String accountUid) {
 
     try {

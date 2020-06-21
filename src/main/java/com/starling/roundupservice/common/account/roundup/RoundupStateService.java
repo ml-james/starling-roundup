@@ -18,7 +18,7 @@ public class RoundupStateService {
 
   public void insertState(final int roundupUid, final State state, final String transactionId, final String weekEnd) {
     var roundupStateMapping = RoundupStateMapping.builder()
-        .roundupId(roundupUid)
+        .roundupUid(roundupUid)
         .state(state.toString())
         .transferUid(transactionId)
         .weekEnd(weekEnd)

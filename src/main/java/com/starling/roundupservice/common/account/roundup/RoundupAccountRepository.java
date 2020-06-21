@@ -10,6 +10,4 @@ public interface RoundupAccountRepository extends CrudRepository<RoundupAccountM
   @Query("select * from dbo.roundup_account where account_uid = :accountUid")
   Optional<RoundupAccountMapping> findById(@Param("accountUid") String accountUid);
 
-  @Override
-  <S extends RoundupAccountMapping> S save(S entity);
 }

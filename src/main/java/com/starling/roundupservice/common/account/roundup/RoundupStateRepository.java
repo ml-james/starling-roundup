@@ -9,7 +9,4 @@ public interface RoundupStateRepository extends CrudRepository<RoundupStateMappi
 
   @Query("select * from dbo.roundup_state where roundup_uid = :roundupUid and week_end = :weekEnd")
   Optional<RoundupStateMapping> findByRoundupUidAndWeekEnd(@Param("roundupUid") int roundupUid, @Param("weekEnd") String weekEnd);
-
-  @Override
-  <S extends RoundupStateMapping> S save(S entity);
 }

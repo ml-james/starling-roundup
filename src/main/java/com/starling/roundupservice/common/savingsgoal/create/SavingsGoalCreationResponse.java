@@ -2,10 +2,12 @@ package com.starling.roundupservice.common.savingsgoal.create;
 
 import java.util.List;
 import java.util.Map;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
+@Builder(toBuilder = true)
+@AllArgsConstructor
 @Getter
 public class SavingsGoalCreationResponse {
 

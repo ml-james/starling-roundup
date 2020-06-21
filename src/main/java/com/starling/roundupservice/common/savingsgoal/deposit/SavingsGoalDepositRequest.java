@@ -1,9 +1,8 @@
 package com.starling.roundupservice.common.savingsgoal.deposit;
 
-import lombok.Builder;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class SavingsGoalDepositRequest {
 
   private final Money amount;

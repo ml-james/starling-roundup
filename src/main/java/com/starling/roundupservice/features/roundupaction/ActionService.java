@@ -9,7 +9,7 @@ import com.starling.roundupservice.common.account.roundup.RoundupStateService;
 import com.starling.roundupservice.action.State;
 import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.savingsgoal.deposit.SavingsGoalDepositService;
-import com.starling.roundupservice.common.transactions.TransactionService;
+import com.starling.roundupservice.common.transaction.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -30,8 +30,8 @@ public class ActionService {
 
     if (fundConfirmationService.sufficientFunds(accountUid, roundUp.getRoundupAmount())) {
       var transferUid = savingsGoalDepositService.deposit(roundupAccount, roundUp.getRoundupAmount());
-      roundupStateService.insertState(roundupAccount.getRoundupUid(), State.SUCCESSFUL, transferUid, roundUp.getWeekEnd());
-      return RoundupResponseTransformer.transform(State.SUCCESSFUL, transferUid, roundUp.getRoundupAmount());
+      roundupStateService.insertState(roundupAccount.getRoundupUid(), State.TRANSFERRED, transferUid, roundUp.getWeekEnd());
+      return RoundupResponseTransformer.transform(State.TRANSFERRED, transferUid, roundUp.getRoundupAmount());
     } else {
       roundupStateService.insertState(roundupAccount.getRoundupUid(), State.INSUFFICIENT_FUNDS, null, roundUp.getWeekEnd());
       return RoundupResponseTransformer.transform(State.INSUFFICIENT_FUNDS);

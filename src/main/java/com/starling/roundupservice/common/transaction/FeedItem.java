@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.transactions;
+package com.starling.roundupservice.common.transaction;
 
 import com.starling.roundupservice.common.savingsgoal.deposit.Money;
 import lombok.Builder;
