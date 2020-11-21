@@ -7,9 +7,10 @@ import lombok.RequiredArgsConstructor;
 @Builder(toBuilder = true)
 @RequiredArgsConstructor
 @Getter
-public class FundConfirmationResponse {
+public class FundConfirmationResponse
+{
 
-  private final boolean requestedAmountAvailableToSpend;
-  private final boolean accountWouldBeInOverdraftIfRequestedAmountSpent;
+    private final boolean requestedAmountAvailableToSpend;
+    private final boolean accountWouldBeInOverdraftIfRequestedAmountSpent;
 
 }

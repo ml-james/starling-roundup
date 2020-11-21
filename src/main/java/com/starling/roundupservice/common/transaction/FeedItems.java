@@ -1,6 +1,7 @@
 package com.starling.roundupservice.common.transaction;
 
 import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -8,8 +9,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Getter
-public class FeedItems {
+public class FeedItems
+{
 
-  List<FeedItem> feedItems;
+    List<FeedItem> feedItems;
 
 }

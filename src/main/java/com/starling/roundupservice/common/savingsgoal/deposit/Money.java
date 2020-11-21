@@ -7,9 +7,10 @@ import lombok.RequiredArgsConstructor;
 @Builder(toBuilder = true)
 @RequiredArgsConstructor
 @Getter
-public class Money {
+public class Money
+{
 
-  private final String currency;
-  private final int minorUnits;
+    private final String currency;
+    private final int minorUnits;
 
 }

@@ -22,93 +22,109 @@ import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.savingsgoal.deposit.SavingsGoalDepositService;
 import com.starling.roundupservice.common.transaction.Roundup;
 import com.starling.roundupservice.common.transaction.TransactionService;
+
 import java.util.Optional;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
-public class ActionServiceTest {
+public class ActionServiceTest
+{
 
-  @Mock
-  private RoundupAccountService roundupAccountService;
-  @Mock
-  private TransactionService transactionService;
-  @Mock
-  private FundConfirmationService fundConfirmationService;
-  @Mock
-  private SavingsGoalDepositService savingsGoalDepositService;
-  @Mock
-  private RoundupStateService roundupStateService;
+    @Mock
+    private RoundupAccountService roundupAccountService;
+    @Mock
+    private TransactionService transactionService;
+    @Mock
+    private FundConfirmationService fundConfirmationService;
+    @Mock
+    private SavingsGoalDepositService savingsGoalDepositService;
+    @Mock
+    private RoundupStateService roundupStateService;
 
-  private RoundupActionResponse result;
-  private ActionService actionService;
+    private RoundupActionResponse result;
+    private ActionService actionService;
 
-  @Before
-  public void setup() {
-    initMocks(this);
-    actionService = new ActionService(roundupAccountService, transactionService, fundConfirmationService, savingsGoalDepositService, roundupStateService);
-  }
+    @Before
+    public void setup()
+    {
+        initMocks(this);
+        actionService = new ActionService(roundupAccountService, transactionService, fundConfirmationService, savingsGoalDepositService, roundupStateService);
+    }
 
-  @Test(expected = ClientException.class)
-  public void roundupAccountNotFound() {
-    givenAccountDoesNotExist();
-    whenPerformRoundupCalled();
-  }
+    @Test(expected = ClientException.class)
+    public void roundupAccountNotFound()
+    {
+        givenAccountDoesNotExist();
+        whenPerformRoundupCalled();
+    }
 
-  @Test
-  public void roundupTransferred() {
-    givenAccountExists();
-    givenTransactionServiceReturnsRoundup();
-    givenSufficientFunds();
-    givenSavingsGoalDepositSuccessful();
-    whenPerformRoundupCalled();
-    thenSufficientFunds();
-  }
+    @Test
+    public void roundupTransferred()
+    {
+        givenAccountExists();
+        givenTransactionServiceReturnsRoundup();
+        givenSufficientFunds();
+        givenSavingsGoalDepositSuccessful();
+        whenPerformRoundupCalled();
+        thenSufficientFunds();
+    }
 
-  @Test
-  public void roundupInsufficientFunds() {
-    givenAccountExists();
-    givenTransactionServiceReturnsRoundup();
-    givenInsufficientFunds();
-    whenPerformRoundupCalled();
-    thenInsufficientFunds();
-  }
+    @Test
+    public void roundupInsufficientFunds()
+    {
+        givenAccountExists();
+        givenTransactionServiceReturnsRoundup();
+        givenInsufficientFunds();
+        whenPerformRoundupCalled();
+        thenInsufficientFunds();
+    }
 
-  private void givenAccountExists() {
-    when(roundupAccountService.retrieveRoundupAccount(anyString())).thenReturn(
-        Optional.of(RoundupAccountMapping.builder().roundupUid(DEFAULT_ROUNDUP_UID).build()));
-  }
+    private void givenAccountExists()
+    {
+        when(roundupAccountService.retrieveRoundupAccount(anyString())).thenReturn(
+                Optional.of(RoundupAccountMapping.builder().roundupUid(DEFAULT_ROUNDUP_UID).build()));
+    }
 
-  private void givenAccountDoesNotExist() {
-    when(roundupAccountService.retrieveRoundupAccount(anyString())).thenReturn(
-        Optional.empty());
-  }
+    private void givenAccountDoesNotExist()
+    {
+        when(roundupAccountService.retrieveRoundupAccount(anyString())).thenReturn(
+                Optional.empty());
+    }
 
-  private void givenTransactionServiceReturnsRoundup() {
-    when(transactionService.getLatestRoundup(any())).thenReturn(Roundup.builder().roundupAmount(DEFAULT_ROUNDUP).weekEnd(DEFAULT_WEEK_END).build());
-  }
+    private void givenTransactionServiceReturnsRoundup()
+    {
+        when(transactionService.getLatestRoundup(any())).thenReturn(Roundup.builder().roundupAmount(DEFAULT_ROUNDUP).weekEnd(DEFAULT_WEEK_END).build());
+    }
 
-  private void givenSufficientFunds() {
-    when(fundConfirmationService.sufficientFunds(anyString(), anyInt())).thenReturn(true);
-  }
+    private void givenSufficientFunds()
+    {
+        when(fundConfirmationService.sufficientFunds(anyString(), anyInt())).thenReturn(true);
+    }
 
-  private void givenInsufficientFunds() {
-    when(fundConfirmationService.sufficientFunds(anyString(), anyInt())).thenReturn(false);
-  }
+    private void givenInsufficientFunds()
+    {
+        when(fundConfirmationService.sufficientFunds(anyString(), anyInt())).thenReturn(false);
+    }
 
-  private void givenSavingsGoalDepositSuccessful() {
-    when(savingsGoalDepositService.deposit(any(), anyInt())).thenReturn(DEFAULT_TRANSFER_UID);
-  }
+    private void givenSavingsGoalDepositSuccessful()
+    {
+        when(savingsGoalDepositService.deposit(any(), anyInt())).thenReturn(DEFAULT_TRANSFER_UID);
+    }
 
-  private void whenPerformRoundupCalled() {
-    result = actionService.performRoundup(DEFAULT_ACCOUNT_UID);
-  }
+    private void whenPerformRoundupCalled()
+    {
+        result = actionService.performRoundup(DEFAULT_ACCOUNT_UID);
+    }
 
-  private void thenSufficientFunds() {
-    assertEquals(State.TRANSFERRED, result.getRoundUpState());
-  }
+    private void thenSufficientFunds()
+    {
+        assertEquals(State.TRANSFERRED, result.getRoundUpState());
+    }
 
-  private void thenInsufficientFunds() {
-    assertEquals(State.INSUFFICIENT_FUNDS, result.getRoundUpState());
-  }
+    private void thenInsufficientFunds()
+    {
+        assertEquals(State.INSUFFICIENT_FUNDS, result.getRoundUpState());
+    }
 }

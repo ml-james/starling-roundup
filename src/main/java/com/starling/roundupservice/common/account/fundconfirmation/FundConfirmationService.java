@@ -5,16 +5,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class FundConfirmationService {
+public class FundConfirmationService
+{
 
-  private final FundConfirmationProvider fundConfirmationProvider;
+    private final FundConfirmationProvider fundConfirmationProvider;
 
-  public boolean sufficientFunds(final String accountUid, final int amount) {
+    public boolean sufficientFunds(final String accountUid, final int amount)
+    {
 
-    var fundConfirmationResponse = fundConfirmationProvider.retrieveFundConfirmation(accountUid, amount);
+        var fundConfirmationResponse = fundConfirmationProvider.retrieveFundConfirmation(accountUid, amount);
 
-    return fundConfirmationResponse.isRequestedAmountAvailableToSpend() &&
-        !fundConfirmationResponse.isAccountWouldBeInOverdraftIfRequestedAmountSpent();
+        return fundConfirmationResponse.isRequestedAmountAvailableToSpend() &&
+                !fundConfirmationResponse.isAccountWouldBeInOverdraftIfRequestedAmountSpent();
 
-  }
+    }
 }

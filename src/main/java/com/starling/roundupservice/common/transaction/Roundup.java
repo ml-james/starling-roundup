@@ -7,9 +7,10 @@ import lombok.Getter;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @Getter
-public class Roundup {
+public class Roundup
+{
 
-  int roundupAmount;
-  String weekEnd;
+    int roundupAmount;
+    String weekEnd;
 
 }

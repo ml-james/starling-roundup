@@ -8,12 +8,13 @@ import org.springframework.data.relational.core.mapping.Table;
 @Builder
 @Data
 @Table("dbo.roundup_state")
-public class RoundupStateMapping {
+public class RoundupStateMapping
+{
 
-  @Id
-  int roundupUid;
-  String transferUid;
-  String state;
-  String weekEnd;
+    @Id
+    int roundupUid;
+    String transferUid;
+    String state;
+    String weekEnd;
 
 }

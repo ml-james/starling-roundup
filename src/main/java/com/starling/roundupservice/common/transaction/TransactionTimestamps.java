@@ -5,9 +5,10 @@ import lombok.Getter;
 
 @Builder(toBuilder = true)
 @Getter
-public class TransactionTimestamps {
+public class TransactionTimestamps
+{
 
-  String minTransactionTimestamp;
-  String maxTransactionTimestamp;
+    String minTransactionTimestamp;
+    String maxTransactionTimestamp;
 
 }

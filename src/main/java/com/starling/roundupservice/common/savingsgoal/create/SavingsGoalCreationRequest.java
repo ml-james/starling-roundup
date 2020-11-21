@@ -6,11 +6,12 @@ import lombok.Getter;
 
 @Builder(toBuilder = true)
 @Getter
-public class SavingsGoalCreationRequest {
+public class SavingsGoalCreationRequest
+{
 
-  String name;
-  String currency;
-  Money target;
-  String base64EncodedPhoto;
+    String name;
+    String currency;
+    Money target;
+    String base64EncodedPhoto;
 
 }

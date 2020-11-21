@@ -7,7 +7,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import com.starling.roundupservice.action.State;
+
 import java.util.Optional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,40 +21,46 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RoundupAccountRepositoryTest {
+public class RoundupAccountRepositoryTest
+{
 
-  private static final int ALTERNATIVE_ROUNDUP_UID = 2;
+    private static final int ALTERNATIVE_ROUNDUP_UID = 2;
 
-  @Autowired
-  private RoundupStateRepository roundupStateRepository;
+    @Autowired
+    private RoundupStateRepository roundupStateRepository;
 
-  private Optional<RoundupStateMapping> result;
+    private Optional<RoundupStateMapping> result;
 
-  @Test
-  public void retrieveFromRepository() {
-    whenRetrieveFromRepository(DEFAULT_ROUNDUP_UID);
-    thenResultPresent();
-  }
+    @Test
+    public void retrieveFromRepository()
+    {
+        whenRetrieveFromRepository(DEFAULT_ROUNDUP_UID);
+        thenResultPresent();
+    }
 
-  @Test
-  public void retrieveFromRepositoryEmpty() {
-    whenRetrieveFromRepository(ALTERNATIVE_ROUNDUP_UID);
-    thenResultEmpty();
-  }
+    @Test
+    public void retrieveFromRepositoryEmpty()
+    {
+        whenRetrieveFromRepository(ALTERNATIVE_ROUNDUP_UID);
+        thenResultEmpty();
+    }
 
-  private void whenRetrieveFromRepository(int roundupUid) {
-    result = roundupStateRepository.findByRoundupUidAndWeekEnd(roundupUid, DEFAULT_WEEK_END);
-  }
+    private void whenRetrieveFromRepository(int roundupUid)
+    {
+        result = roundupStateRepository.findByRoundupUidAndWeekEnd(roundupUid, DEFAULT_WEEK_END);
+    }
 
-  private void thenResultPresent() {
-    assertTrue(result.isPresent());
-    assertEquals(DEFAULT_ROUNDUP_UID, result.get().roundupUid);
-    assertEquals(DEFAULT_WEEK_END, result.get().weekEnd);
-    assertEquals(DEFAULT_TRANSFER_UID, result.get().transferUid);
-    assertEquals(State.TRANSFERRED.toString(), result.get().state);
-  }
+    private void thenResultPresent()
+    {
+        assertTrue(result.isPresent());
+        assertEquals(DEFAULT_ROUNDUP_UID, result.get().roundupUid);
+        assertEquals(DEFAULT_WEEK_END, result.get().weekEnd);
+        assertEquals(DEFAULT_TRANSFER_UID, result.get().transferUid);
+        assertEquals(State.TRANSFERRED.toString(), result.get().state);
+    }
 
-  private void thenResultEmpty() {
-    assertTrue(result.isEmpty());
-  }
+    private void thenResultEmpty()
+    {
+        assertTrue(result.isEmpty());
+    }
 }

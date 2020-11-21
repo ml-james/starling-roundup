@@ -9,21 +9,26 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class CreationService {
+public class CreationService
+{
 
-  private final SavingsGoalCreationService savingsGoalCreationService;
-  private final RoundupAccountService roundupAccountService;
+    private final SavingsGoalCreationService savingsGoalCreationService;
+    private final RoundupAccountService roundupAccountService;
 
-  public String createRoundupGoal(final RoundupCreationRequest creationRequest, final String accountUid, final String defaultCategoryUid,
-      final String currency) {
+    public String createRoundupGoal(final RoundupCreationRequest creationRequest,
+                                    final String accountUid,
+                                    final String defaultCategoryUid,
+                                    final String currency)
+    {
 
-    if (roundupAccountService.retrieveRoundupAccount(accountUid).isPresent()) {
-      throw new ClientException("Create roundup account error: ", "roundup account already exists");
+        if (roundupAccountService.retrieveRoundupAccount(accountUid).isPresent())
+        {
+            throw new ClientException("Create roundup account error: ", "roundup account already exists");
+        }
+
+        var savingsGoal = savingsGoalCreationService.createSavingsGoal(creationRequest, currency);
+        roundupAccountService.saveRoundupAccount(creationRequest, accountUid, savingsGoal.getSavingsGoalUid(), defaultCategoryUid);
+
+        return savingsGoal.getSavingsGoalUid();
     }
-
-    var savingsGoal = savingsGoalCreationService.createSavingsGoal(creationRequest, currency);
-    roundupAccountService.saveRoundupAccount(creationRequest, accountUid, savingsGoal.getSavingsGoalUid(), defaultCategoryUid);
-
-    return savingsGoal.getSavingsGoalUid();
-  }
 }

@@ -1,33 +1,40 @@
 package com.starling.roundupservice.common.account.roundup;
 
 import com.starling.roundupservice.creation.RoundupCreationRequest;
+
 import java.util.Optional;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class RoundupAccountService {
+public class RoundupAccountService
+{
 
-  private final RoundupAccountRepository roundupAccountRepository;
+    private final RoundupAccountRepository roundupAccountRepository;
 
-  public Optional<RoundupAccountMapping> retrieveRoundupAccount(final String accountUid) {
+    public Optional<RoundupAccountMapping> retrieveRoundupAccount(final String accountUid)
+    {
 
-    return roundupAccountRepository.findById(accountUid);
-  }
+        return roundupAccountRepository.findById(accountUid);
+    }
 
-  public void saveRoundupAccount(final RoundupCreationRequest creationRequest, final String accountUid, final String savingsGoalUid,
-      final String categoryUid) {
+    public void saveRoundupAccount(final RoundupCreationRequest creationRequest,
+                                   final String accountUid,
+                                   final String savingsGoalUid,
+                                   final String categoryUid)
+    {
 
-    var roundupAccountMapping = RoundupAccountMapping.builder()
-        .accountUid(accountUid)
-        .categoryUid(categoryUid)
-        .savingsGoalUid(savingsGoalUid)
-        .maximumRoundup(creationRequest.getRoundupMaximum())
-        .roundupFactor(creationRequest.getRoundupFactor())
-        .build();
+        var roundupAccountMapping = RoundupAccountMapping.builder()
+                .accountUid(accountUid)
+                .categoryUid(categoryUid)
+                .savingsGoalUid(savingsGoalUid)
+                .maximumRoundup(creationRequest.getRoundupMaximum())
+                .roundupFactor(creationRequest.getRoundupFactor())
+                .build();
 
-    roundupAccountRepository.save(roundupAccountMapping);
+        roundupAccountRepository.save(roundupAccountMapping);
 
-  }
+    }
 }

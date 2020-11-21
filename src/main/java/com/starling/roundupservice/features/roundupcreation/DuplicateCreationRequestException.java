@@ -1,7 +1,10 @@
 package com.starling.roundupservice.features.roundupcreation;
 
-public class DuplicateCreationRequestException extends RuntimeException {
+public class DuplicateCreationRequestException extends RuntimeException
+{
 
-  public DuplicateCreationRequestException() { super();
-  }
+    public DuplicateCreationRequestException()
+    {
+        super();
+    }
 }
