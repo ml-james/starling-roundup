@@ -11,14 +11,13 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class TransactionService
 {
-
     private static final String DIRECTION_OUT = "OUT";
     private static final String STATUS_SETTLED = "SETTLED";
 
     private final TransactionProvider transactionProvider;
     private final RoundupStateService roundupStateService;
 
-    public Roundup getLatestRoundup(RoundupAccountMapping roundUpAccount)
+    public Roundup getLatestRoundup(final RoundupAccountMapping roundUpAccount, final String bearerToken)
     {
 
         var transactionWindow = getTransactionWindow();
@@ -30,7 +29,7 @@ public class TransactionService
                             roundUpAccount.getAccountUid(), transactionWindow.maxTransactionTimestamp));
         }
 
-        var transactions = transactionProvider.retrieveTransactionsInWindow(roundUpAccount, transactionWindow);
+        var transactions = transactionProvider.retrieveTransactionsInWindow(roundUpAccount, transactionWindow, bearerToken);
         return calculateRoundup(transactions, roundUpAccount, transactionWindow.maxTransactionTimestamp);
     }
 

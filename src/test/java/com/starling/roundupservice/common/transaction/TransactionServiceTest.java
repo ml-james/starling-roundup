@@ -114,12 +114,12 @@ public class TransactionServiceTest
                 .amount(Money.builder().minorUnits(10043).build())
                 .build();
         var transactions = Arrays.asList(transactionOne, transactionTwo, transactionThree, transactionFour);
-        when(transactionProvider.retrieveTransactionsInWindow(any(), any())).thenReturn(new FeedItems(transactions));
+        when(transactionProvider.retrieveTransactionsInWindow(any(), any(), anyString())).thenReturn(new FeedItems(transactions));
     }
 
     private void whenGetLatestRoundupCalled()
     {
-        result = transactionService.getLatestRoundup(account);
+        result = transactionService.getLatestRoundup(account, "");
     }
 
     private void thenRoundupCorrect(int amount)

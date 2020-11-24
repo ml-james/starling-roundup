@@ -1,5 +1,6 @@
 package com.starling.roundupservice.common.transaction;
 
+import com.starling.roundupservice.common.WebClientProvider;
 import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
 import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.exception.GeneralException;
@@ -19,25 +20,16 @@ import reactor.netty.http.client.HttpClient;
 
 @Component
 @Slf4j
-public class TransactionProvider
+public class TransactionProvider extends WebClientProvider
 {
-
     private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(15);
 
-    private final WebClient apiClient;
-
-    public TransactionProvider()
-    {
-        this.apiClient = WebClient.builder()
-                .clientConnector(new ReactorClientHttpConnector(HttpClient.create().wiretap(true)))
-                .build();
-    }
-
     public FeedItems retrieveTransactionsInWindow(final RoundupAccountMapping account,
-                                                  final TransactionTimestamps transactionTimestamps)
+                                                  final TransactionTimestamps transactionTimestamps,
+                                                  final String bearerToken)
     {
 
-        return apiClient.post()
+        return getWebClient(bearerToken).post()
                 .uri(String.format(
                         "http://localhost:8080/api/v2/account/%s/category/%s/category/transactions-between?minTransactionTimestamp=%s&?maxTransactionTimestamp=%s",
                         account.getAccountUid(), account.getCategoryUid(), transactionTimestamps.getMinTransactionTimestamp(),

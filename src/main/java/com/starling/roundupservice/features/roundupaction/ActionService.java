@@ -17,22 +17,20 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class ActionService
 {
-
     private final RoundupAccountService roundupAccountService;
     private final TransactionService transactionService;
     private final FundConfirmationService fundConfirmationService;
     private final SavingsGoalDepositService savingsGoalDepositService;
     private final RoundupStateService roundupStateService;
 
-    public RoundupActionResponse performRoundup(final String accountUid)
+    public RoundupActionResponse performRoundup(final String accountUid, final String bearerToken)
     {
-
         var roundupAccount = getRoundupAccount(accountUid);
-        var roundUp = transactionService.getLatestRoundup(roundupAccount);
+        var roundUp = transactionService.getLatestRoundup(roundupAccount, bearerToken);
 
-        if (fundConfirmationService.sufficientFunds(accountUid, roundUp.getRoundupAmount()))
+        if (fundConfirmationService.sufficientFunds(accountUid, roundUp.getRoundupAmount(), bearerToken))
         {
-            var transferUid = savingsGoalDepositService.deposit(roundupAccount, roundUp.getRoundupAmount());
+            var transferUid = savingsGoalDepositService.deposit(roundupAccount, roundUp.getRoundupAmount(), bearerToken);
             roundupStateService.insertState(roundupAccount.getRoundupUid(), State.TRANSFERRED, transferUid, roundUp.getWeekEnd());
             return RoundupResponseTransformer.transform(State.TRANSFERRED, transferUid, roundUp.getRoundupAmount());
         }

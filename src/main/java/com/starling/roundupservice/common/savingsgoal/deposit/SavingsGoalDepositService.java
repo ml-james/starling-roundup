@@ -9,13 +9,11 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class SavingsGoalDepositService
 {
-
     private final SavingsGoalDepositProvider savingsGoalDepositProvider;
 
-    public String deposit(final RoundupAccountMapping roundupAccount, final int roundupAmount)
+    public String deposit(final RoundupAccountMapping roundupAccount, final int roundupAmount, final String bearerToken)
     {
-
-        var depositResponse = savingsGoalDepositProvider.depositToSavingsGoal(roundupAccount, roundupAmount);
+        var depositResponse = savingsGoalDepositProvider.depositToSavingsGoal(roundupAccount, roundupAmount, bearerToken);
 
         if (!depositResponse.success)
         {

@@ -7,13 +7,11 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class FundConfirmationService
 {
-
     private final FundConfirmationProvider fundConfirmationProvider;
 
-    public boolean sufficientFunds(final String accountUid, final int amount)
+    public boolean sufficientFunds(final String accountUid, final int amount, final String bearerToken)
     {
-
-        var fundConfirmationResponse = fundConfirmationProvider.retrieveFundConfirmation(accountUid, amount);
+        var fundConfirmationResponse = fundConfirmationProvider.retrieveFundConfirmation(accountUid, amount, bearerToken);
 
         return fundConfirmationResponse.isRequestedAmountAvailableToSpend() &&
                 !fundConfirmationResponse.isAccountWouldBeInOverdraftIfRequestedAmountSpent();

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,16 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class ActionResource
 {
-
     private final ActionService actionService;
 
     @PostMapping(path = "/roundupAction/accountUid/{accountUid}", produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<RoundupActionResponse> roundupAccount(@PathVariable("accountUid") String accountUid)
+    public ResponseEntity<RoundupActionResponse> roundupAccount(@PathVariable("accountUid") String accountUid,
+                                                                @RequestHeader("Authorization") String bearerToken)
     {
-
         try
         {
-            var roundupActionResponse = actionService.performRoundup(accountUid);
+            var roundupActionResponse = actionService.performRoundup(accountUid, bearerToken);
             return ResponseEntity.ok(roundupActionResponse);
         }
         catch (ClientException e)

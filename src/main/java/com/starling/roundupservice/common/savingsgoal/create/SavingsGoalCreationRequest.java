@@ -8,10 +8,8 @@ import lombok.Getter;
 @Getter
 public class SavingsGoalCreationRequest
 {
-
     String name;
     String currency;
     Money target;
     String base64EncodedPhoto;
-
 }

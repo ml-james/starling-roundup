@@ -9,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public class Money
 {
-
     private final String currency;
     private final int minorUnits;
-
 }

@@ -63,7 +63,7 @@ public class CreationServiceTest
 
     private void givenSavingsGoalCreated()
     {
-        when(savingsGoalCreationService.createSavingsGoal(creationRequest, DEFAULT_CURRENCY)).thenReturn(SavingsGoalCreationResponse.builder().savingsGoalUid(DEFAULT_SAVINGS_GOAL_UID).build());
+        when(savingsGoalCreationService.createSavingsGoal(creationRequest, "",  DEFAULT_CURRENCY, "")).thenReturn(SavingsGoalCreationResponse.builder().savingsGoalUid(DEFAULT_SAVINGS_GOAL_UID).build());
     }
 
     private void givenRoundupAccount()
@@ -73,7 +73,7 @@ public class CreationServiceTest
 
     private void whenCreateRoundupGoalCalled()
     {
-        result = creationService.createRoundupGoal(creationRequest, DEFAULT_ACCOUNT_UID, DEFAULT_CATEGORY_UID, DEFAULT_CURRENCY);
+        result = creationService.createRoundupGoal(creationRequest, DEFAULT_ACCOUNT_UID, DEFAULT_CATEGORY_UID, DEFAULT_CURRENCY, "");
     }
 
     private void thenSavingsGoalUidReturned()

@@ -11,12 +11,10 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class RoundupAccountService
 {
-
     private final RoundupAccountRepository roundupAccountRepository;
 
     public Optional<RoundupAccountMapping> retrieveRoundupAccount(final String accountUid)
     {
-
         return roundupAccountRepository.findById(accountUid);
     }
 
@@ -25,7 +23,6 @@ public class RoundupAccountService
                                    final String savingsGoalUid,
                                    final String categoryUid)
     {
-
         var roundupAccountMapping = RoundupAccountMapping.builder()
                 .accountUid(accountUid)
                 .categoryUid(categoryUid)
@@ -35,6 +32,5 @@ public class RoundupAccountService
                 .build();
 
         roundupAccountRepository.save(roundupAccountMapping);
-
     }
 }

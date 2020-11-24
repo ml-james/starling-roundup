@@ -95,27 +95,27 @@ public class ActionServiceTest
 
     private void givenTransactionServiceReturnsRoundup()
     {
-        when(transactionService.getLatestRoundup(any())).thenReturn(Roundup.builder().roundupAmount(DEFAULT_ROUNDUP).weekEnd(DEFAULT_WEEK_END).build());
+        when(transactionService.getLatestRoundup(any(), anyString())).thenReturn(Roundup.builder().roundupAmount(DEFAULT_ROUNDUP).weekEnd(DEFAULT_WEEK_END).build());
     }
 
     private void givenSufficientFunds()
     {
-        when(fundConfirmationService.sufficientFunds(anyString(), anyInt())).thenReturn(true);
+        when(fundConfirmationService.sufficientFunds(anyString(), anyInt(), "")).thenReturn(true);
     }
 
     private void givenInsufficientFunds()
     {
-        when(fundConfirmationService.sufficientFunds(anyString(), anyInt())).thenReturn(false);
+        when(fundConfirmationService.sufficientFunds(anyString(), anyInt(), "")).thenReturn(false);
     }
 
     private void givenSavingsGoalDepositSuccessful()
     {
-        when(savingsGoalDepositService.deposit(any(), anyInt())).thenReturn(DEFAULT_TRANSFER_UID);
+        when(savingsGoalDepositService.deposit(any(), anyInt(), "")).thenReturn(DEFAULT_TRANSFER_UID);
     }
 
     private void whenPerformRoundupCalled()
     {
-        result = actionService.performRoundup(DEFAULT_ACCOUNT_UID);
+        result = actionService.performRoundup(DEFAULT_ACCOUNT_UID, "");
     }
 
     private void thenSufficientFunds()

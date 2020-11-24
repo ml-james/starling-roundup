@@ -1,43 +1,31 @@
 package com.starling.roundupservice.common.savingsgoal.create;
 
+import com.starling.roundupservice.common.WebClientProvider;
 import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.exception.GeneralException;
 import com.starling.roundupservice.common.exception.ServerException;
-
-import java.time.Duration;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
-import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
-import reactor.netty.http.client.HttpClient;
+
+import java.time.Duration;
 
 @Component
 @Slf4j
-public class SavingsGoalCreationProvider
+public class SavingsGoalCreationProvider extends WebClientProvider
 {
-
     private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(15);
 
-    private final WebClient apiClient;
-
-    public SavingsGoalCreationProvider()
+    public SavingsGoalCreationResponse createSavingsGoal(final SavingsGoalCreationRequest savingsGoalRequest,
+                                                         final String accountUid,
+                                                         final String bearerToken)
     {
-        this.apiClient = WebClient.builder()
-                .clientConnector(new ReactorClientHttpConnector(HttpClient.create().wiretap(true)))
-                .build();
-    }
-
-    public SavingsGoalCreationResponse createSavingsGoal(final SavingsGoalCreationRequest savingsGoalRequest)
-    {
-
-        return apiClient.post()
-                .uri("http://localhost:8080/api/v2/account/%s/savings-goals")
+        return getWebClient(bearerToken).put()
+                .uri(String.format("https://api-sandbox.starlingbank.com/api/v2/account/%s/savings-goals", accountUid))
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(BodyInserters.fromValue(savingsGoalRequest))
                 .retrieve()
