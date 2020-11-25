@@ -25,7 +25,7 @@ public class SavingsGoalCreationProvider extends WebClientProvider
                                                          final String bearerToken)
     {
         return getWebClient(bearerToken).put()
-                .uri(String.format("https://api-sandbox.starlingbank.com/api/v2/account/%s/savings-goals", accountUid))
+                .uri(String.format("account/%s/savings-goals", accountUid))
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(BodyInserters.fromValue(savingsGoalRequest))
                 .retrieve()

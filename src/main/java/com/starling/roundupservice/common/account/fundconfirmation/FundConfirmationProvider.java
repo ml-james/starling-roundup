@@ -22,9 +22,7 @@ public class FundConfirmationProvider extends WebClientProvider
     public FundConfirmationResponse retrieveFundConfirmation(final String accountUid, final int amount, final String bearerToken)
     {
         return getWebClient(bearerToken).post()
-                .uri(String.format("http://localhost:8080/api/v2/accounts/%s/confirmation-of-funds?=targetAmountInMinorUnits=%s",
-                        accountUid,
-                        amount))
+                .uri(String.format("/accounts/%s/confirmation-of-funds?=targetAmountInMinorUnits=%s", accountUid, amount))
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .retrieve()
                 .onStatus(HttpStatus::is4xxClientError, clientResponse ->

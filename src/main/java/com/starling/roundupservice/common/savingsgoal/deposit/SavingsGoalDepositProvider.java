@@ -33,7 +33,7 @@ public class SavingsGoalDepositProvider extends WebClientProvider
                 .build();
 
         return getWebClient(bearerToken).post()
-                .uri(String.format("http://localhost:8080/api/v2/account/%s/savings-goals/%s/add-money/%s",
+                .uri(String.format("/account/%s/savings-goals/%s/add-money/%s",
                         roundupAccount.getAccountUid(),
                         roundupAccount.getSavingsGoalUid(),
                         transferId))

@@ -28,11 +28,11 @@ public class TransactionProvider extends WebClientProvider
                                                   final TransactionTimestamps transactionTimestamps,
                                                   final String bearerToken)
     {
-
         return getWebClient(bearerToken).post()
-                .uri(String.format(
-                        "http://localhost:8080/api/v2/account/%s/category/%s/category/transactions-between?minTransactionTimestamp=%s&?maxTransactionTimestamp=%s",
-                        account.getAccountUid(), account.getCategoryUid(), transactionTimestamps.getMinTransactionTimestamp(),
+                .uri(String.format("/account/%s/category/%s/category/transactions-between?minTransactionTimestamp=%s&?maxTransactionTimestamp=%s",
+                        account.getAccountUid(),
+                        account.getCategoryUid(),
+                        transactionTimestamps.getMinTransactionTimestamp(),
                         transactionTimestamps.getMaxTransactionTimestamp()))
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .retrieve()

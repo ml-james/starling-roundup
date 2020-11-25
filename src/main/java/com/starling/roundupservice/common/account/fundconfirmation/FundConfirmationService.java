@@ -15,6 +15,5 @@ public class FundConfirmationService
 
         return fundConfirmationResponse.isRequestedAmountAvailableToSpend() &&
                 !fundConfirmationResponse.isAccountWouldBeInOverdraftIfRequestedAmountSpent();
-
     }
 }

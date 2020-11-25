@@ -1,5 +1,6 @@
 package com.starling.roundupservice.common;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
@@ -13,6 +14,8 @@ public class WebClientProvider
 
     private WebClient webClient;
     private String bearerToken;
+    @Value("${starling.baseurl}")
+    private String baseUrl;
 
     public WebClient getWebClient(final String bearerToken)
     {
@@ -23,6 +26,7 @@ public class WebClientProvider
                 this.bearerToken = bearerToken.replace(BEARER_TOKEN, "");
                 this.webClient = WebClient.builder()
                         .clientConnector(new ReactorClientHttpConnector(HttpClient.create().wiretap(true)))
+                        .baseUrl(baseUrl)
                         .defaultHeaders(header -> header.setBearerAuth(this.bearerToken))
                         .build();
             }
