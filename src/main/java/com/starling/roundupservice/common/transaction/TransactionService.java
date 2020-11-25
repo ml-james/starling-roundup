@@ -26,7 +26,10 @@ public class TransactionService
 
     public Roundup getLatestRoundup(final RoundupAccountMapping roundUpAccount, final String bearerToken)
     {
-        var transactionWindow = getTransactionWindow();
+        var transactionWindow = TransactionTimestamps.builder()
+                .minTransactionTimestamp(new DateTime().minusWeeks(1).withDayOfWeek(1).withTimeAtStartOfDay().toString())
+                .maxTransactionTimestamp(new DateTime().withDayOfWeek(1).withTimeAtStartOfDay().toString())
+                .build();;
 
         if (!roundupStateService.isRoundupDue(roundUpAccount.getRoundupUid(), transactionWindow.maxTransactionTimestamp))
         {
@@ -35,24 +38,16 @@ public class TransactionService
                             transactionWindow.maxTransactionTimestamp));
         }
 
-        String uri = UriBuilder.createTransactionFeedUri(roundUpAccount.getAccountUid(), roundUpAccount.getCategoryUid(), transactionWindow.getMinTransactionTimestamp(),
-                transactionWindow.getMaxTransactionTimestamp());
+        String uri = UriBuilder.createTransactionFeedUri(roundUpAccount.getAccountUid(), roundUpAccount.getCategoryUid(), transactionWindow.minTransactionTimestamp, transactionWindow.maxTransactionTimestamp);
         var transactions = starlingAPIProvider.queryStarlingAPI(uri, bearerToken, HttpMethod.POST, new Object(), FeedItems.class);
 
-        return calculateRoundup(transactions, roundUpAccount, transactionWindow.maxTransactionTimestamp);
-    }
-
-    private TransactionTimestamps getTransactionWindow()
-    {
-        return TransactionTimestamps.builder()
-                .minTransactionTimestamp(new DateTime().minusWeeks(1).withDayOfWeek(1).withTimeAtStartOfDay().toString())
-                .maxTransactionTimestamp(new DateTime().withDayOfWeek(1).withTimeAtStartOfDay().toString())
+        return Roundup.builder()
+                .roundupAmount(calculateRoundup(transactions, roundUpAccount))
+                .weekEnd(transactionWindow.maxTransactionTimestamp)
                 .build();
     }
 
-    private Roundup calculateRoundup(final FeedItems feedItems,
-                                     final RoundupAccountMapping roundupAccountMapping,
-                                     final String weekEnd)
+    private int calculateRoundup(final FeedItems feedItems, final RoundupAccountMapping roundupAccountMapping)
     {
         var feedSum = feedItems.getFeedItems().stream()
                 .filter(x -> x.getDirection().equals(DIRECTION_OUT))
@@ -62,11 +57,6 @@ public class TransactionService
                 .mapToInt(Integer::intValue)
                 .sum();
 
-        var roundupAmount = Math.min(feedSum * roundupAccountMapping.getRoundupFactor(), roundupAccountMapping.getMaximumRoundup());
-
-        return Roundup.builder()
-                .roundupAmount(roundupAmount)
-                .weekEnd(weekEnd)
-                .build();
+        return Math.min(feedSum * roundupAccountMapping.getRoundupFactor(), roundupAccountMapping.getMaximumRoundup());
     }
 }

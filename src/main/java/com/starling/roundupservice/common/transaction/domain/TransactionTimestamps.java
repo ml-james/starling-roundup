@@ -7,6 +7,6 @@ import lombok.Getter;
 @Getter
 public class TransactionTimestamps
 {
-    String minTransactionTimestamp;
+    public String minTransactionTimestamp;
     public String maxTransactionTimestamp;
 }
