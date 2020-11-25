@@ -9,6 +9,6 @@ import lombok.Getter;
 @Getter
 public class Roundup
 {
-    int roundupAmount;
-    String weekEnd;
+    public int roundupAmount;
+    public String weekEnd;
 }
