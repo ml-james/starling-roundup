@@ -18,7 +18,7 @@ public class SavingsGoalDepositService
 
     public String deposit(final RoundupAccountMapping roundupAccount, final int roundupAmount, final String bearerToken)
     {
-        var uri = UriBuilder.createSavingsDepositUri(roundupAccount.getAccountUid(), roundupAccount.getSavingsGoalUid());
+        var uri = UriBuilder.buildSavingsDepositUri(roundupAccount.getAccountUid(), roundupAccount.getSavingsGoalUid());
         var savingsGoalDepositRequest = RequestBuilder.createRequest(roundupAccount.getAccountUidCurrency(), roundupAmount);
 
         var depositResponse = starlingAPIProvider.queryStarlingAPI(uri, bearerToken, HttpMethod.POST, savingsGoalDepositRequest, SavingsGoalDepositResponse.class);
@@ -29,6 +29,7 @@ public class SavingsGoalDepositService
                     "depositing to roundup goal %s for account %s was unsuccessful, failed with the following errors: %s", roundupAccount.getSavingsGoalUid(),
                     roundupAccount.getAccountUid(), depositResponse.getErrors()));
         }
+
         return depositResponse.transferUid;
     }
 }

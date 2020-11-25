@@ -38,7 +38,7 @@ public class TransactionService
                             transactionWindow.maxTransactionTimestamp));
         }
 
-        var uri = UriBuilder.createTransactionFeedUri(roundUpAccount.getAccountUid(), roundUpAccount.getCategoryUid(), transactionWindow.minTransactionTimestamp, transactionWindow.maxTransactionTimestamp);
+        var uri = UriBuilder.buildTransactionFeedUri(roundUpAccount.getAccountUid(), roundUpAccount.getCategoryUid(), transactionWindow.minTransactionTimestamp, transactionWindow.maxTransactionTimestamp);
         var transactions = starlingAPIProvider.queryStarlingAPI(uri, bearerToken, HttpMethod.POST, new Object(), FeedItems.class);
 
         return Roundup.builder()

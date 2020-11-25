@@ -19,17 +19,15 @@ public class CreationResource
 {
     private final CreationService creationService;
 
-    @PutMapping(path = "/createRoundupGoal/accountUid/{accountUid}/defaultCategoryUid/{defaultCategoryUid}/currency/{currency}",
+    @PutMapping(path = "/createRoundupGoal/accountUid/{accountUid}/",
             consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<RoundupCreationResponse> createRoundupGoal(@PathVariable("accountUid") final String accountUid,
-                                                                     @PathVariable("defaultCategoryUid") final String defaultCategoryUid,
-                                                                     @PathVariable("currency") final String currency,
                                                                      @RequestBody final RoundupCreationRequest creationRequest,
                                                                      @RequestHeader("Authorization") String bearerToken)
     {
         try
         {
-            var savingsGoalUid = creationService.createRoundupGoal(creationRequest, accountUid, defaultCategoryUid, currency, bearerToken.replace("Bearer ", ""));
+            var savingsGoalUid = creationService.createRoundupGoal(creationRequest, accountUid, bearerToken);
             return ResponseEntity.ok(RoundupCreationResponse.builder().roundupSavingsGoalUid(savingsGoalUid).build());
         }
         catch (ClientException e)

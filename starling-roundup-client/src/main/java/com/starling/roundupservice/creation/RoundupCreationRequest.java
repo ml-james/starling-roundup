@@ -13,18 +13,12 @@ import lombok.Value;
 @RequiredArgsConstructor
 @JsonInclude(Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RoundupCreationRequest {
-
-  @JsonProperty("goalName")
-  String goalName;
-  @JsonProperty("currency")
-  String currency;
+public class RoundupCreationRequest
+{
   @JsonProperty("goal")
   int goal;
   @JsonProperty("roundupMaximum")
   int roundupMaximum;
   @JsonProperty("roundupFactor")
   int roundupFactor;
-  @JsonProperty("base64EncodedPhoto")
-  String base64EncodedPhoto;
 }

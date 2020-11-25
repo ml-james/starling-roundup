@@ -14,7 +14,7 @@ public class FundConfirmationService
 
     public boolean sufficientFunds(final String accountUid, final int amount, final String bearerToken)
     {
-        var uri = UriBuilder.createFundConfirmationUri(accountUid, amount);
+        var uri = UriBuilder.buildFundConfirmationUri(accountUid, amount);
 
         var fundConfirmationResponse = starlingAPIProvider.queryStarlingAPI(uri, bearerToken, HttpMethod.POST, new Object(), FundConfirmationResponse.class);
 

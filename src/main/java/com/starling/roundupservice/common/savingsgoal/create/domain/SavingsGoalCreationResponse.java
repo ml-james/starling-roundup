@@ -13,6 +13,6 @@ import lombok.Getter;
 public class SavingsGoalCreationResponse
 {
     String savingsGoalUid;
-    boolean success;
+    public boolean success;
     List<Map<String, String>> errors;
 }
