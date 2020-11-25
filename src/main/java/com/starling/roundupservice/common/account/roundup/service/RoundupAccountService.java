@@ -1,5 +1,7 @@
-package com.starling.roundupservice.common.account.roundup;
+package com.starling.roundupservice.common.account.roundup.service;
 
+import com.starling.roundupservice.common.account.roundup.repository.RoundupAccountRepository;
+import com.starling.roundupservice.common.account.roundup.domain.RoundupAccountMapping;
 import com.starling.roundupservice.creation.RoundupCreationRequest;
 
 import java.util.Optional;

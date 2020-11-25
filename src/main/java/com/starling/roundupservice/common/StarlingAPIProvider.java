@@ -1,33 +1,34 @@
-package com.starling.roundupservice.common.account.fundconfirmation;
+package com.starling.roundupservice.common;
 
-import com.starling.roundupservice.common.WebClientProvider;
 import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.exception.GeneralException;
 import com.starling.roundupservice.common.exception.ServerException;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.BodyInserters;
 import reactor.core.publisher.Mono;
 
-import java.time.Duration;
-
-@Component
-@Slf4j
-public class FundConfirmationProvider extends WebClientProvider
+public class StarlingAPIProvider extends BaseWebClient
 {
-    public FundConfirmationResponse retrieveFundConfirmation(final String accountUid, final int amount, final String bearerToken)
+    public <T> T queryStarlingAPI(final String uri,
+                                  final String bearerToken,
+                                  final HttpMethod method,
+                                  final Object requestObject,
+                                  final Class<T> returnType)
     {
-        return getWebClient(bearerToken).post()
-                .uri(String.format("/accounts/%s/confirmation-of-funds?=targetAmountInMinorUnits=%s", accountUid, amount))
+        return getWebClient(bearerToken)
+                .method(method)
+                .uri(uri)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .body(BodyInserters.fromValue(requestObject))
                 .retrieve()
                 .onStatus(HttpStatus::is4xxClientError, clientResponse ->
                         Mono.error(new ClientException("Fund confirmation provider: ", "client error")))
                 .onStatus(HttpStatus::is5xxServerError, clientResponse ->
                         Mono.error(new ServerException("Fund confirmation provider: ", "server error")))
-                .bodyToMono(FundConfirmationResponse.class)
+                .bodyToMono(returnType)
                 .timeout(DEFAULT_TIMEOUT)
                 .blockOptional()
                 .orElseThrow(GeneralException::new);

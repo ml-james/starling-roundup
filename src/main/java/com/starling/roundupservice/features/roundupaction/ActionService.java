@@ -2,10 +2,9 @@ package com.starling.roundupservice.features.roundupaction;
 
 import com.starling.roundupservice.action.RoundupActionResponse;
 import com.starling.roundupservice.common.account.fundconfirmation.FundConfirmationService;
-import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
-import com.starling.roundupservice.common.account.roundup.RoundupAccountService;
-import com.starling.roundupservice.common.account.roundup.RoundupResponseTransformer;
-import com.starling.roundupservice.common.account.roundup.RoundupStateService;
+import com.starling.roundupservice.common.account.roundup.domain.RoundupAccountMapping;
+import com.starling.roundupservice.common.account.roundup.service.RoundupAccountService;
+import com.starling.roundupservice.common.account.roundup.service.RoundupStateService;
 import com.starling.roundupservice.action.State;
 import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.savingsgoal.deposit.SavingsGoalDepositService;

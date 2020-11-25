@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.transaction;
+package com.starling.roundupservice.common.transaction.domain;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -7,8 +7,6 @@ import lombok.Getter;
 @Getter
 public class TransactionTimestamps
 {
-
     String minTransactionTimestamp;
-    String maxTransactionTimestamp;
-
+    public String maxTransactionTimestamp;
 }

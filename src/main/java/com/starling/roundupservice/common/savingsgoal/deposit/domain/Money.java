@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.savingsgoal.deposit;
+package com.starling.roundupservice.common.savingsgoal.deposit.domain;
 
 import lombok.Builder;
 import lombok.Getter;

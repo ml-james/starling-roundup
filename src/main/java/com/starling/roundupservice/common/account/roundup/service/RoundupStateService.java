@@ -1,6 +1,8 @@
-package com.starling.roundupservice.common.account.roundup;
+package com.starling.roundupservice.common.account.roundup.service;
 
 import com.starling.roundupservice.action.State;
+import com.starling.roundupservice.common.account.roundup.repository.RoundupStateRepository;
+import com.starling.roundupservice.common.account.roundup.domain.RoundupStateMapping;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -8,7 +10,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class RoundupStateService
 {
-
     private final RoundupStateRepository roundupStateRepository;
 
     public boolean isRoundupDue(final int roundupUid, final String weekEnd)

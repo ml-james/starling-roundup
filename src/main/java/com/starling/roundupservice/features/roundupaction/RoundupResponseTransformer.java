@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.account.roundup;
+package com.starling.roundupservice.features.roundupaction;
 
 import com.starling.roundupservice.action.RoundupActionResponse;
 import com.starling.roundupservice.action.State;

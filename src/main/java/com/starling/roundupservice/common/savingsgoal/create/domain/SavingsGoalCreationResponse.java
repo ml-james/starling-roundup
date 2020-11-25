@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.savingsgoal.create;
+package com.starling.roundupservice.common.savingsgoal.create.domain;
 
 import java.util.List;
 import java.util.Map;
@@ -12,9 +12,7 @@ import lombok.Getter;
 @Getter
 public class SavingsGoalCreationResponse
 {
-
     String savingsGoalUid;
     boolean success;
     List<Map<String, String>> errors;
-
 }

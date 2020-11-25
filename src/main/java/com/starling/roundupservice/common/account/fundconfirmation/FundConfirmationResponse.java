@@ -11,5 +11,4 @@ public class FundConfirmationResponse
 {
     private final boolean requestedAmountAvailableToSpend;
     private final boolean accountWouldBeInOverdraftIfRequestedAmountSpent;
-
 }

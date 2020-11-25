@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.account.roundup;
+package com.starling.roundupservice.common.account.roundup.domain;
 
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +10,6 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("dbo.roundup_account")
 public class RoundupAccountMapping
 {
-
     @Id
     String accountUid;
     int roundupUid;

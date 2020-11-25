@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.transaction;
+package com.starling.roundupservice.common.transaction.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,6 @@ import lombok.Getter;
 @Getter
 public class Roundup
 {
-
     int roundupAmount;
     String weekEnd;
-
 }

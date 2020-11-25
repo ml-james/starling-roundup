@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.account.roundup;
+package com.starling.roundupservice.common.account.roundup.domain;
 
 import lombok.Builder;
 import lombok.Data;
@@ -10,11 +10,9 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("dbo.roundup_state")
 public class RoundupStateMapping
 {
-
     @Id
     int roundupUid;
     String transferUid;
     String state;
     String weekEnd;
-
 }

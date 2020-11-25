@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.savingsgoal.deposit;
+package com.starling.roundupservice.common.savingsgoal.deposit.domain;
 
 import java.util.List;
 import java.util.Map;
@@ -11,9 +11,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public class SavingsGoalDepositResponse
 {
-
-    String transferUid;
-    boolean success;
+    public String transferUid;
+    public boolean success;
     List<Map<String, String>> errors;
-
 }
