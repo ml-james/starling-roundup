@@ -19,8 +19,7 @@ public class CreationResource
 {
     private final CreationService creationService;
 
-    @PutMapping(path = "/createRoundupGoal/accountUid/{accountUid}/",
-            consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PutMapping(path = "/createRoundupGoal/accountUid/{accountUid}/", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<RoundupCreationResponse> createRoundupGoal(@PathVariable("accountUid") final String accountUid,
                                                                      @RequestBody final RoundupCreationRequest creationRequest,
                                                                      @RequestHeader("Authorization") String bearerToken)

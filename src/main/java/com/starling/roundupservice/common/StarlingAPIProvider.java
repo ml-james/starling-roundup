@@ -25,9 +25,9 @@ public class StarlingAPIProvider extends BaseWebClient
                 .body(BodyInserters.fromValue(requestObject))
                 .retrieve()
                 .onStatus(HttpStatus::is4xxClientError, clientResponse ->
-                        Mono.error(new ClientException("Fund confirmation provider: ", "client error")))
+                        Mono.error(new ClientException("Client error: ", String.format("there was an error returning %s", returnType.getName()))))
                 .onStatus(HttpStatus::is5xxServerError, clientResponse ->
-                        Mono.error(new ServerException("Fund confirmation provider: ", "server error")))
+                        Mono.error(new ServerException("Server error: ", String.format("there was an error returning %s", returnType.getName()))))
                 .bodyToMono(returnType)
                 .timeout(DEFAULT_TIMEOUT)
                 .blockOptional()
