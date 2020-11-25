@@ -12,7 +12,7 @@ public class RoundupAccountMapping
 {
     @Id
     String accountUid;
-    int roundupUid;
+    String roundupUid;
     String categoryUid;
     String accountUidCurrency;
     String savingsGoalUid;

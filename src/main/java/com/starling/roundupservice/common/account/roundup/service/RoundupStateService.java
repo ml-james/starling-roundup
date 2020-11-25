@@ -12,21 +12,15 @@ public class RoundupStateService
 {
     private final RoundupStateRepository roundupStateRepository;
 
-    public boolean isRoundupDue(final int roundupUid, final String weekEnd)
+    public boolean isRoundupDue(final String roundupUid, final String weekEnd)
     {
         var roundupStateMapping = roundupStateRepository.findByRoundupUidAndWeekEnd(roundupUid, weekEnd);
 
         return roundupStateMapping.isEmpty();
     }
 
-    public void insertState(final int roundupUid, final State state, final String transactionId, final String weekEnd)
+    public void insertState(final String roundupUid, final State state, final String transactionId, final String weekEnd)
     {
-        var roundupStateMapping = RoundupStateMapping.builder()
-                .roundupUid(roundupUid)
-                .state(state.toString())
-                .transferUid(transactionId)
-                .weekEnd(weekEnd)
-                .build();
-        roundupStateRepository.save(roundupStateMapping);
+        roundupStateRepository.save(roundupUid, state.toString(), transactionId, weekEnd);
     }
 }

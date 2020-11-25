@@ -7,7 +7,7 @@
 
   <changeSet id="1" author="m.james">
     <createTable tableName="roundup_state" schemaName="dbo">
-      <column name="roundup_uid" type="int">
+      <column name="roundup_uid" type="varchar(128)">
         <constraints nullable="false"/>
       </column>
       <column name="transfer_uid" type="varchar(128)">

@@ -5,6 +5,7 @@ import com.starling.roundupservice.common.account.roundup.domain.RoundupAccountM
 import com.starling.roundupservice.creation.RoundupCreationRequest;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -22,17 +23,11 @@ public class RoundupAccountService
 
     public void saveRoundupAccount(final RoundupCreationRequest creationRequest,
                                    final String accountUid,
-                                   final String savingsGoalUid,
-                                   final String categoryUid)
+                                   final String accountUidCurrency,
+                                   final String categoryUid,
+                                   final String savingsGoalUid)
     {
-        var roundupAccountMapping = RoundupAccountMapping.builder()
-                .accountUid(accountUid)
-                .categoryUid(categoryUid)
-                .savingsGoalUid(savingsGoalUid)
-                .maximumRoundup(creationRequest.getRoundupMaximum())
-                .roundupFactor(creationRequest.getRoundupFactor())
-                .build();
-
-        roundupAccountRepository.save(roundupAccountMapping);
+        var roundupUid = UUID.randomUUID();
+        roundupAccountRepository.save(roundupUid.toString(), accountUid, categoryUid, accountUidCurrency, savingsGoalUid, creationRequest.getRoundupMaximum(), creationRequest.getRoundupFactor());
     }
 }

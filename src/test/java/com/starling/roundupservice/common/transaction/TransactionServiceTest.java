@@ -87,12 +87,12 @@ public class TransactionServiceTest
 
     private void givenRoundupDue()
     {
-        when(roundupStateService.isRoundupDue(anyInt(), anyString())).thenReturn(true);
+        when(roundupStateService.isRoundupDue(anyString(), anyString())).thenReturn(true);
     }
 
     private void givenRoundupNotDue()
     {
-        when(roundupStateService.isRoundupDue(anyInt(), anyString())).thenReturn(false);
+        when(roundupStateService.isRoundupDue(anyString(), anyString())).thenReturn(false);
     }
 
     private void givenTransactionProviderReturnsTransactions()

@@ -35,7 +35,7 @@ public class CreationService
                     "creating round up savings goal for account %s was unsuccessful, failed with the following errors: %s", accountUid, savingsGoal.getErrors()));
         }
 
-        roundupAccountService.saveRoundupAccount(creationRequest, accountUid, savingsGoal.getSavingsGoalUid(), account.getDefaultCategoryId());
+        roundupAccountService.saveRoundupAccount(creationRequest, accountUid, account.getDefaultCategoryId(), account.getCurrency(), savingsGoal.getSavingsGoalUid());
 
         return savingsGoal.getSavingsGoalUid();
     }

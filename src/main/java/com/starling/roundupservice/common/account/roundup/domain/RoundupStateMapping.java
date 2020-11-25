@@ -11,7 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 public class RoundupStateMapping
 {
     @Id
-    int roundupUid;
+    String roundupUid;
     String transferUid;
     String state;
     String weekEnd;
