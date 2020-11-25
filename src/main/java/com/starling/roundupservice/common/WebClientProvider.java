@@ -5,11 +5,13 @@ import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 
+import java.time.Duration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WebClientProvider
 {
+    public static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(15);
     private static final String BEARER_TOKEN = "Bearer ";
 
     private WebClient webClient;

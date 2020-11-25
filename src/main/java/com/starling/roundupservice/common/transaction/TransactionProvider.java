@@ -22,8 +22,6 @@ import reactor.netty.http.client.HttpClient;
 @Slf4j
 public class TransactionProvider extends WebClientProvider
 {
-    private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(15);
-
     public FeedItems retrieveTransactionsInWindow(final RoundupAccountMapping account,
                                                   final TransactionTimestamps transactionTimestamps,
                                                   final String bearerToken)

@@ -17,8 +17,6 @@ import java.time.Duration;
 @Slf4j
 public class FundConfirmationProvider extends WebClientProvider
 {
-    private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(15);
-
     public FundConfirmationResponse retrieveFundConfirmation(final String accountUid, final int amount, final String bearerToken)
     {
         return getWebClient(bearerToken).post()
@@ -33,6 +31,5 @@ public class FundConfirmationProvider extends WebClientProvider
                 .timeout(DEFAULT_TIMEOUT)
                 .blockOptional()
                 .orElseThrow(GeneralException::new);
-
     }
 }

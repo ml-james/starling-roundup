@@ -15,18 +15,16 @@ import org.springframework.web.reactive.function.BodyInserters;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
+import java.util.UUID;
 
 @Component
 @Slf4j
 public class SavingsGoalDepositProvider extends WebClientProvider
 {
-    private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(15);
-
     public SavingsGoalDepositResponse depositToSavingsGoal(final RoundupAccountMapping roundupAccount,
                                                            final int roundupAmount,
                                                            final String bearerToken)
     {
-        var transferId = generateTransferId();
         var money = Money.builder()
                 .currency(roundupAccount.getAccountUidCurrency())
                 .minorUnits(roundupAmount)
@@ -36,7 +34,7 @@ public class SavingsGoalDepositProvider extends WebClientProvider
                 .uri(String.format("/account/%s/savings-goals/%s/add-money/%s",
                         roundupAccount.getAccountUid(),
                         roundupAccount.getSavingsGoalUid(),
-                        transferId))
+                        UUID.randomUUID().toString()))
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(BodyInserters.fromValue(new SavingsGoalDepositRequest(money)))
                 .retrieve()
@@ -48,10 +46,5 @@ public class SavingsGoalDepositProvider extends WebClientProvider
                 .timeout(DEFAULT_TIMEOUT)
                 .blockOptional()
                 .orElseThrow(GeneralException::new);
-    }
-
-    private String generateTransferId()
-    {
-        return RandomStringUtils.random(32, true, true);
     }
 }

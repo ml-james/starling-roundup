@@ -1,5 +1,5 @@
 ###TODO:
-* Deal with UUID using Java library
+* Create URI builder class and squash all of the providers in to one
 * Improve error handling
 * Fix broken DB writes and reads + write DAO tests to prove it...
 * General refactor - can we simply the API, e.g. default category id required, round up goal name, photo...?

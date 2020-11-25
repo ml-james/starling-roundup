@@ -29,7 +29,6 @@ public class CreationResource
     {
         try
         {
-            System.out.println(bearerToken.replace("Bearer ", ""));
             var savingsGoalUid = creationService.createRoundupGoal(creationRequest, accountUid, defaultCategoryUid, currency, bearerToken.replace("Bearer ", ""));
             return ResponseEntity.ok(RoundupCreationResponse.builder().roundupSavingsGoalUid(savingsGoalUid).build());
         }

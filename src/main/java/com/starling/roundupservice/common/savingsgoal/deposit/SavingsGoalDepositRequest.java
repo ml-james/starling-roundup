@@ -5,7 +5,5 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class SavingsGoalDepositRequest
 {
-
     private final Money amount;
-
 }
