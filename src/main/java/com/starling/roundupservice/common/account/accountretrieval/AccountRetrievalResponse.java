@@ -11,5 +11,5 @@ import java.util.List;
 @Getter
 public class AccountRetrievalResponse
 {
-    private final List<Account> accounts;
+    final List<Account> accounts;
 }

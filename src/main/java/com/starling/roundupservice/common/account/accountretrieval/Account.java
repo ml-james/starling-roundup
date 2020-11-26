@@ -9,10 +9,10 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public class Account
 {
-    private final String accountUid;
-    private final String accountType;
-    private final String defaultCategoryId;
-    private final String currency;
-    private final String createdAt;
-    private final String name;
+    final String accountUid;
+    final String accountType;
+    final String defaultCategoryId;
+    final String currency;
+    final String createdAt;
+    final String name;
 }
