@@ -19,7 +19,7 @@ public class RoundupCreationResponse {
 
   @JsonProperty("roundupSavingsGoalUid")
   String roundupSavingsGoalUid;
-  @JsonProperty
-  Map<String, String> error;
+  @JsonProperty("errors")
+  Map<String, String> errors;
 
 }

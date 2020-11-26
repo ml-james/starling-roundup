@@ -1,21 +1,10 @@
 package com.starling.roundupservice.common.transaction;
 
-import static com.starling.roundupservice.TestConstants.DEFAULT_WEEK_END;
-import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
-
 import com.starling.roundupservice.common.StarlingAPIProvider;
 import com.starling.roundupservice.common.account.roundup.domain.RoundupAccountMapping;
 import com.starling.roundupservice.common.account.roundup.service.RoundupStateService;
 import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.savingsgoal.deposit.domain.Money;
-
-import java.util.Arrays;
-
 import com.starling.roundupservice.common.transaction.domain.FeedItem;
 import com.starling.roundupservice.common.transaction.domain.FeedItems;
 import com.starling.roundupservice.common.transaction.domain.Roundup;
@@ -23,6 +12,15 @@ import org.joda.time.DateTimeUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
+
+import java.util.Arrays;
+
+import static com.starling.roundupservice.TestConstants.DEFAULT_WEEK_END;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 public class TransactionServiceTest
 {

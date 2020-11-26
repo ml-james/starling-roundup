@@ -32,12 +32,12 @@ public class CreationResource
         catch (ClientException e)
         {
             log.error("There was an error in your request for {}", accountUid, e);
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(RoundupCreationResponse.builder().error(e.getError()).build());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(RoundupCreationResponse.builder().errors(e.getError()).build());
         }
         catch (ServerException e)
         {
             log.error("There was an error on our side processing your request for account {}", accountUid, e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(RoundupCreationResponse.builder().error(e.getError()).build());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(RoundupCreationResponse.builder().errors(e.getError()).build());
         }
         catch (Exception e)
         {

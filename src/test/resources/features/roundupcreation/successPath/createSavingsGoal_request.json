@@ -1,0 +1,10 @@
+{
+  "name":"Round-me-up!",
+  "currency":"GBP",
+  "target":
+  {
+    "currency":"GBP",
+    "minorUnits":1000
+  },
+  "base64EncodedPhoto":"aHR0cHM6Ly95b3V0dS5iZS9kUXc0dzlXZ1hjUQ=="
+}

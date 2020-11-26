@@ -1,4 +1,4 @@
-package com.starling.roundupservice.dao;
+package com.starling.roundupservice.common.roundup;
 
 import com.starling.roundupservice.common.account.roundup.repository.RoundupAccountRepository;
 import org.junit.jupiter.api.Test;
