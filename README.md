@@ -1,6 +1,5 @@
 ###TODO:
 
-* Fix broken DB writes and reads + write DAO tests to prove it...
 * Add ITs
-* Add more unit tests - are they necessary?
+* Add more unit tests - are they even necessary..?
 * Documentation ... e.g. postman collections and setting up with Starling API ...
