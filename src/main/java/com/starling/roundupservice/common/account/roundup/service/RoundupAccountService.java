@@ -23,8 +23,8 @@ public class RoundupAccountService
 
     public void saveRoundupAccount(final RoundupCreationRequest creationRequest,
                                    final String accountUid,
-                                   final String accountUidCurrency,
                                    final String categoryUid,
+                                   final String accountUidCurrency,
                                    final String savingsGoalUid)
     {
         var roundupUid = UUID.randomUUID();

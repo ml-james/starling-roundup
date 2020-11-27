@@ -39,7 +39,7 @@ public class TransactionService
         }
 
         var uri = UriBuilder.buildTransactionFeedUri(roundUpAccount.getAccountUid(), roundUpAccount.getCategoryUid(), transactionWindow.minTransactionTimestamp, transactionWindow.maxTransactionTimestamp);
-        var transactions = starlingAPIProvider.queryStarlingAPI(uri, bearerToken, HttpMethod.POST, new Object(), FeedItems.class);
+        var transactions = starlingAPIProvider.queryStarlingAPI(uri, bearerToken, HttpMethod.POST, null, FeedItems.class);
 
         return Roundup.builder()
                 .roundupAmount(calculateRoundup(transactions, roundUpAccount))

@@ -20,7 +20,7 @@ public class AccountRetrievalService
                 uri,
                 bearerToken,
                 HttpMethod.GET,
-                new Object(),
+                null,
                 AccountRetrievalResponse.class);
 
         return accounts.getAccounts().stream()

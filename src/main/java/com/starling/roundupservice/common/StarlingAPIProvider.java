@@ -24,7 +24,7 @@ public class StarlingAPIProvider extends BaseWebClient
                 .method(method)
                 .uri(uri)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .body(BodyInserters.fromValue(requestObject))
+                .body(requestObject == null ? BodyInserters.empty() : BodyInserters.fromValue(requestObject))
                 .retrieve()
                 .onStatus(HttpStatus::is4xxClientError, clientResponse ->
                         Mono.error(new ClientException("Client error: ", String.format("there was an error returning %s", returnType.getName()))))

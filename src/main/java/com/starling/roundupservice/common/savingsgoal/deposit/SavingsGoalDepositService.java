@@ -21,7 +21,11 @@ public class SavingsGoalDepositService
         var uri = UriBuilder.buildSavingsDepositUri(roundupAccount.getAccountUid(), roundupAccount.getSavingsGoalUid());
         var savingsGoalDepositRequest = RequestBuilder.createRequest(roundupAccount.getAccountUidCurrency(), roundupAmount);
 
-        var depositResponse = starlingAPIProvider.queryStarlingAPI(uri, bearerToken, HttpMethod.POST, savingsGoalDepositRequest, SavingsGoalDepositResponse.class);
+        var depositResponse = starlingAPIProvider.queryStarlingAPI(uri,
+                bearerToken,
+                HttpMethod.POST,
+                savingsGoalDepositRequest,
+                SavingsGoalDepositResponse.class);
 
         if (!depositResponse.success)
         {

@@ -16,7 +16,11 @@ public class FundConfirmationService
     {
         var uri = UriBuilder.buildFundConfirmationUri(accountUid, amount);
 
-        var fundConfirmationResponse = starlingAPIProvider.queryStarlingAPI(uri, bearerToken, HttpMethod.POST, new Object(), FundConfirmationResponse.class);
+        var fundConfirmationResponse = starlingAPIProvider.queryStarlingAPI(uri,
+                bearerToken,
+                HttpMethod.POST,
+                null,
+                FundConfirmationResponse.class);
 
         return fundConfirmationResponse.isRequestedAmountAvailableToSpend() &&
                 !fundConfirmationResponse.isAccountWouldBeInOverdraftIfRequestedAmountSpent();

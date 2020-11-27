@@ -7,19 +7,21 @@ import com.starling.roundupservice.creation.RoundupCreationRequest;
 import com.starling.roundupservice.creation.RoundupCreationResponse;
 import lombok.SneakyThrows;
 import okhttp3.mockwebserver.MockResponse;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 public class RoundupCreationIT extends BaseTestIT
 {
-    //@ParameterizedTest(name = "{index}: {0}")
+    @ParameterizedTest(name = "{index}: {0}")
     @ArgumentsSource(RoundupCreationProvider.class)
     void createRoundupGoal(final String testName, final MockedParameters mockedParameters)
     {
@@ -28,7 +30,7 @@ public class RoundupCreationIT extends BaseTestIT
         givenResponseForAccountRetrieval();
         givenResponseForSavingsGoalDeposit();
 
-        thenRoundupGoalCreationRequestedAndResponseVerified("accountUid");
+        thenRoundupGoalCreationRequestedAndResponseVerified("55198b91-fd4c-45d4-b509-1d6fbbdaf777");
         thenVerifyRequestToAccountRetrieval();
         thenVerifyRequestToSavingsGoalCreation();
     }
@@ -53,8 +55,9 @@ public class RoundupCreationIT extends BaseTestIT
 
     private void thenRoundupGoalCreationRequestedAndResponseVerified(final String accountUid)
     {
-        webTestClient.post().uri(String.format(contextPath + PATH_ROUNDUP_CREATION, accountUid))
+        webTestClient.put().uri(String.format(contextPath + PATH_ROUNDUP_CREATION, accountUid))
                 .contentType(APPLICATION_JSON)
+                .header("Authorization", "Bearer eyJhbGciOiJQUzI1NiIsInpp")
                 .accept(APPLICATION_JSON)
                 .body(BodyInserters.fromValue(loadResourceAsObject(mockedParameters.getRequestToStarlingRoundup(), RoundupCreationRequest.class)))
                 .exchange()
@@ -71,11 +74,7 @@ public class RoundupCreationIT extends BaseTestIT
         JsonNode actual = jsonMapper.readTree(actualRequest.getBody().readUtf8());
         JsonNode expected = jsonMapper.readTree(loadResourceAsString(mockedParameters.getExpectedRequestToAccountRetrieval()));
 
-        assertEquals(
-                jsonMapper.writerWithDefaultPrettyPrinter().writeValueAsString(expected),
-                jsonMapper.writerWithDefaultPrettyPrinter().writeValueAsString(actual),
-                false
-        );
+        Assertions.assertEquals(expected, actual);
     }
 
     @SneakyThrows

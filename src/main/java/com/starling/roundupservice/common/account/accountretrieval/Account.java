@@ -11,7 +11,7 @@ public class Account
 {
     final String accountUid;
     final String accountType;
-    final String defaultCategoryId;
+    final String defaultCategory;
     final String currency;
     final String createdAt;
     final String name;
