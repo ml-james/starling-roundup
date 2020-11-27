@@ -31,7 +31,7 @@ public class CreationService
 
         if (!savingsGoal.success)
         {
-            throw new ServerException("Savings goal creation error: ", String.format(
+            throw new ClientException("Savings goal creation error: ", String.format(
                     "creating round up savings goal for account %s was unsuccessful, failed with the following errors: %s", accountUid, savingsGoal.getErrors()));
         }
 

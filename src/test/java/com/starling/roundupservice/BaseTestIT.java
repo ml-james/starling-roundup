@@ -1,5 +1,7 @@
 package com.starling.roundupservice;
 
+import com.starling.roundupservice.common.account.roundup.repository.RoundupAccountRepository;
+import com.starling.roundupservice.common.account.roundup.repository.RoundupStateRepository;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,6 +25,11 @@ public class BaseTestIT extends BaseTest
     @Autowired
     protected WebTestClient webTestClient;
 
+    @Autowired
+    protected RoundupAccountRepository roundupAccountRepository;
+    @Autowired
+    protected RoundupStateRepository roundupStateRepository;
+
     protected MockedParameters mockedParameters;
 
     @Value("${mock.server.port}")
@@ -39,5 +46,8 @@ public class BaseTestIT extends BaseTest
     void tearDown() throws IOException
     {
         server.shutdown();
+        // foreign key constraints == delete from state first
+        roundupStateRepository.deleteAll();
+        roundupAccountRepository.deleteAll();
     }
 }

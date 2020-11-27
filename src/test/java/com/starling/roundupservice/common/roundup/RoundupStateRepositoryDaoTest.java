@@ -2,14 +2,15 @@ package com.starling.roundupservice.common.roundup;
 
 import com.starling.roundupservice.common.account.roundup.repository.RoundupAccountRepository;
 import com.starling.roundupservice.common.account.roundup.repository.RoundupStateRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Transactional
 public class RoundupStateRepositoryDaoTest
 {
     private static final String ROUNDUP_UID = "roundupUid";
@@ -18,18 +19,6 @@ public class RoundupStateRepositoryDaoTest
     private RoundupStateRepository roundupStateRepository;
     @Autowired
     private RoundupAccountRepository roundupAccountRepository;
-
-    @BeforeEach
-    void setup()
-    {
-        roundupAccountRepository.save(ROUNDUP_UID,
-                "accountUid",
-                "categoryUid",
-                "gbp",
-                "savingsGoalUid",
-                10,
-                2);
-    }
 
     @Test
     void shouldRetrieveRoundupState()
@@ -46,6 +35,14 @@ public class RoundupStateRepositoryDaoTest
     @Test
     void shouldInsertRoundupState()
     {
+        roundupAccountRepository.save(ROUNDUP_UID,
+                "accountUid",
+                "categoryUid",
+                "gbp",
+                "savingsGoalUid",
+                10,
+                2);
+
         var weekEnd = "2020-06-15T00:00:00.000+01:00";
         roundupStateRepository.save(ROUNDUP_UID, "transferUid", "TRANSFERRED", weekEnd);
 

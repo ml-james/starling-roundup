@@ -13,8 +13,6 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.reactive.function.BodyInserters;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -30,7 +28,7 @@ public class RoundupCreationIT extends BaseTestIT
         givenResponseForAccountRetrieval();
         givenResponseForSavingsGoalDeposit();
 
-        thenRoundupGoalCreationRequestedAndResponseVerified("55198b91-fd4c-45d4-b509-1d6fbbdaf777");
+        thenRoundupGoalCreationRequestedAndResponseVerified();
         thenVerifyRequestToAccountRetrieval();
         thenVerifyRequestToSavingsGoalCreation();
     }
@@ -53,9 +51,9 @@ public class RoundupCreationIT extends BaseTestIT
                 .setBody(loadResourceAsString(mockedParameters.getMockedResponseFromSavingsDepositCreation())));
     }
 
-    private void thenRoundupGoalCreationRequestedAndResponseVerified(final String accountUid)
+    private void thenRoundupGoalCreationRequestedAndResponseVerified()
     {
-        webTestClient.put().uri(String.format(contextPath + PATH_ROUNDUP_CREATION, accountUid))
+        webTestClient.put().uri(String.format(contextPath + PATH_ROUNDUP_CREATION, "55198b91-fd4c-45d4-b509-1d6fbbdaf777"))
                 .contentType(APPLICATION_JSON)
                 .header("Authorization", "Bearer eyJhbGciOiJQUzI1NiIsInpp")
                 .accept(APPLICATION_JSON)

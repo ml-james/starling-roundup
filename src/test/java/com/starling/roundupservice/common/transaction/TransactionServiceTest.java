@@ -24,11 +24,11 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 public class TransactionServiceTest
 {
-
     private static final int ROUND_UP_FACTOR_1 = 1;
     private static final int ROUND_UP_FACTOR_2 = 2;
     private static final int ROUND_UP_MAXIMUM_100 = 100;
     private static final int TRANSACTION_ROUND_UP = 81;
+    private static final String ROUNDUP_UID = "roundupUid";
 
     @Mock
     private StarlingAPIProvider transactionProvider;
@@ -78,6 +78,7 @@ public class TransactionServiceTest
     private void givenRoundupAccountMapping(int roundupFactor, int roundupMaximum)
     {
         account = RoundupAccountMapping.builder()
+                .roundupUid(ROUNDUP_UID)
                 .roundupFactor(roundupFactor)
                 .maximumRoundup(roundupMaximum)
                 .build();
