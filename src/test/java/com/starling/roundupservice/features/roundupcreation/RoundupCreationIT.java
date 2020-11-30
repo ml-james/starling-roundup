@@ -7,7 +7,6 @@ import com.starling.roundupservice.creation.RoundupCreationRequest;
 import com.starling.roundupservice.creation.RoundupCreationResponse;
 import lombok.SneakyThrows;
 import okhttp3.mockwebserver.MockResponse;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.springframework.http.HttpHeaders;
@@ -19,41 +18,70 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 public class RoundupCreationIT extends BaseTestIT
 {
+    private boolean requestsAccountRetrieval;
+    private boolean requestsSavingsGoalCreation;
+    private String accountUid;
+
+
     @ParameterizedTest(name = "{index}: {0}")
     @ArgumentsSource(RoundupCreationProvider.class)
     void createRoundupGoal(final String testName, final MockedParameters mockedParameters)
     {
         this.mockedParameters = mockedParameters;
+        if (testName.equals("duplicate_roundup"))
+        {
+            requestsAccountRetrieval = false;
+            requestsSavingsGoalCreation = false;
+            accountUid = "b2191626-c67c-4a4b-aef9-3b1b80b65fdc";
+        }
+        else if (testName.equals("unauthorised"))
+        {
+            requestsSavingsGoalCreation = false;
+            requestsAccountRetrieval = true;
+            accountUid = "55198b91-fd4c-45d4-b509-1d6fbbdaf777";
+        }
+        else
+        {
+            requestsSavingsGoalCreation = true;
+            requestsAccountRetrieval = true;
+            accountUid = "55198b91-fd4c-45d4-b509-1d6fbbdaf777";
+        }
 
         givenResponseForAccountRetrieval();
         givenResponseForSavingsGoalDeposit();
 
         thenRoundupGoalCreationRequestedAndResponseVerified();
-        thenVerifyRequestToAccountRetrieval();
+        thenVerifyEmptyRequestToAccountRetrieval();
         thenVerifyRequestToSavingsGoalCreation();
     }
 
     @SneakyThrows
     private void givenResponseForAccountRetrieval()
     {
-        server.enqueue(new MockResponse()
-                .setHeader(HttpHeaders.CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                .setResponseCode(mockedParameters.getMockedStatusCodeAccountRetrieval().value())
-                .setBody(loadResourceAsString(mockedParameters.getMockedResponseFromAccountRetrieval())));
+        if (requestsAccountRetrieval)
+        {
+            server.enqueue(new MockResponse()
+                    .setHeader(HttpHeaders.CONTENT_TYPE, APPLICATION_JSON_VALUE)
+                    .setResponseCode(mockedParameters.getMockedStatusCodeAccountRetrieval().value())
+                    .setBody(loadResourceAsString(mockedParameters.getMockedResponseFromAccountRetrieval())));
+        }
     }
 
     @SneakyThrows
     private void givenResponseForSavingsGoalDeposit()
     {
-        server.enqueue(new MockResponse()
-                .setHeader(HttpHeaders.CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                .setResponseCode(mockedParameters.getMockedStatusCodeFromSavingsDepositCreation().value())
-                .setBody(loadResourceAsString(mockedParameters.getMockedResponseFromSavingsDepositCreation())));
+        if (requestsSavingsGoalCreation)
+        {
+            server.enqueue(new MockResponse()
+                    .setHeader(HttpHeaders.CONTENT_TYPE, APPLICATION_JSON_VALUE)
+                    .setResponseCode(mockedParameters.getMockedStatusCodeFromSavingsDepositCreation().value())
+                    .setBody(loadResourceAsString(mockedParameters.getMockedResponseFromSavingsDepositCreation())));
+        }
     }
 
     private void thenRoundupGoalCreationRequestedAndResponseVerified()
     {
-        webTestClient.put().uri(String.format(contextPath + PATH_ROUNDUP_CREATION, "55198b91-fd4c-45d4-b509-1d6fbbdaf777"))
+        webTestClient.put().uri(String.format(contextPath + PATH_ROUNDUP_CREATION, accountUid))
                 .contentType(APPLICATION_JSON)
                 .header("Authorization", "Bearer eyJhbGciOiJQUzI1NiIsInpp")
                 .accept(APPLICATION_JSON)
@@ -65,28 +93,30 @@ public class RoundupCreationIT extends BaseTestIT
     }
 
     @SneakyThrows
-    private void thenVerifyRequestToAccountRetrieval()
+    private void thenVerifyEmptyRequestToAccountRetrieval()
     {
-        var actualRequest = server.takeRequest();
-
-        JsonNode actual = jsonMapper.readTree(actualRequest.getBody().readUtf8());
-        JsonNode expected = jsonMapper.readTree(loadResourceAsString(mockedParameters.getExpectedRequestToAccountRetrieval()));
-
-        Assertions.assertEquals(expected, actual);
+        if (requestsAccountRetrieval)
+        {
+            var actualRequest = server.takeRequest();
+            assert (actualRequest.getChunkSizes().isEmpty());
+        }
     }
 
     @SneakyThrows
     private void thenVerifyRequestToSavingsGoalCreation()
     {
-        var actualRequest = server.takeRequest();
+        if (requestsSavingsGoalCreation)
+        {
+            var actualRequest = server.takeRequest();
 
-        JsonNode actual = jsonMapper.readTree(actualRequest.getBody().readUtf8());
-        JsonNode expected = jsonMapper.readTree(loadResourceAsString(mockedParameters.getExpectedRequestToSavingsDepositCreation()));
+            JsonNode actual = jsonMapper.readTree(actualRequest.getBody().readUtf8());
+            JsonNode expected = jsonMapper.readTree(loadResourceAsString(mockedParameters.getExpectedRequestToSavingsDepositCreation()));
 
-        assertEquals(
-                jsonMapper.writerWithDefaultPrettyPrinter().writeValueAsString(expected),
-                jsonMapper.writerWithDefaultPrettyPrinter().writeValueAsString(actual),
-                false
-        );
+            assertEquals(
+                    jsonMapper.writerWithDefaultPrettyPrinter().writeValueAsString(expected),
+                    jsonMapper.writerWithDefaultPrettyPrinter().writeValueAsString(actual),
+                    false
+            );
+        }
     }
 }

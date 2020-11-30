@@ -13,7 +13,6 @@ public class MockedParameters
     private String expectedResponseFromStarlingRoundup;
     private HttpStatus expectedStatusCodeFromStarlingRoundup;
 
-    private String expectedRequestToAccountRetrieval;
     private String mockedResponseFromAccountRetrieval;
     private HttpStatus mockedStatusCodeAccountRetrieval;
     private Headers responseHeaders;

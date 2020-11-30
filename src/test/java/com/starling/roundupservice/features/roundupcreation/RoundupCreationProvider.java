@@ -18,20 +18,20 @@ public class RoundupCreationProvider implements ArgumentsProvider
 
     public Stream<? extends Arguments> provideArguments(ExtensionContext extensioncontext) {
         return Stream.of(
-                Arguments.of("Success Path", getMockedParameters("features/roundupcreation/successPath", HttpStatus.OK, HttpStatus.OK, HttpStatus.OK)),
-                Arguments.of("Bad Request to Starling API", getMockedParameters("features/roundupcreation/failurePath", HttpStatus.BAD_REQUEST, HttpStatus.OK, HttpStatus.BAD_REQUEST))//,
-                //Arguments.of("Failed Authorization Path", getMockedParameters("features/roundupcreation/unauthorisedPath", HttpStatus.BAD_REQUEST, HttpStatus.FORBIDDEN, null))
+                Arguments.of("success", getMockedParameters("features/roundupcreation/successPath", HttpStatus.OK, HttpStatus.OK, HttpStatus.OK)),
+                Arguments.of("bad_request", getMockedParameters("features/roundupcreation/failurePath", HttpStatus.BAD_REQUEST, HttpStatus.OK, HttpStatus.BAD_REQUEST)),
+                Arguments.of("unauthorised", getMockedParameters("features/roundupcreation/unauthorisedPath", HttpStatus.BAD_REQUEST, HttpStatus.FORBIDDEN, null))//,
+                //Arguments.of("duplicate_roundup", getMockedParameters("features/roundupcreation/duplicateRoundup", HttpStatus.BAD_REQUEST, null, null))
                 );
     }
 
-    private MockedParameters getMockedParameters(String path, HttpStatus starlingRoundupStatus, HttpStatus accountRetrievalStatus, HttpStatus savingsGoalCreationStatus)
+    private MockedParameters getMockedParameters(final String path, final HttpStatus starlingRoundupStatus, final HttpStatus accountRetrievalStatus, final HttpStatus savingsGoalCreationStatus)
     {
         return MockedParameters.builder()
                 .expectedStatusCodeFromStarlingRoundup(starlingRoundupStatus)
                 .requestToStarlingRoundup(String.join(delimeter, path, "createRoundup_request.json"))
                 .expectedResponseFromStarlingRoundup(String.join(delimeter, path, "createRoundup_response.json"))
 
-                .expectedRequestToAccountRetrieval(String.join(delimeter, path, "accountRetrieval_request.json"))
                 .mockedResponseFromAccountRetrieval(String.join(delimeter, path, "accountRetrieval_response.json"))
                 .responseHeaders(Headers.of(HttpHeaders.CONTENT_TYPE, APPLICATION_JSON_VALUE))
                 .mockedStatusCodeAccountRetrieval(accountRetrievalStatus)

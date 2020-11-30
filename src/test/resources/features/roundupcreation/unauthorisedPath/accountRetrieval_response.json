@@ -1,0 +1,8 @@
+{
+  "success": false,
+  "errors": [
+    {
+      "message": "There was an error authorising the request, you are forbidden from this resource."
+    }
+  ]
+}
