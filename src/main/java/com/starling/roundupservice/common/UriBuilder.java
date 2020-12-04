@@ -33,4 +33,10 @@ public class UriBuilder
     {
         return String.format("/account/%s/savings-goals/%s/add-money/%s", accountUid, savingsGoalUid, UUID.randomUUID());
     }
+
+    public static String buildSavingsGoalRetrievalUri(final String accountUid,
+                                                      final String savingsGoalUid)
+    {
+        return String.format("/account/%s/savings-goals/%s", accountUid, savingsGoalUid);
+    }
 }

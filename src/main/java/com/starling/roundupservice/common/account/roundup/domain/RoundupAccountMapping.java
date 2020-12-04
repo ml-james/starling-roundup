@@ -1,12 +1,12 @@
 package com.starling.roundupservice.common.account.roundup.domain;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Builder
-@Data
+@Getter
 @Table("dbo.roundup_account")
 public class RoundupAccountMapping
 {

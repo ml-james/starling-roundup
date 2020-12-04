@@ -2,15 +2,14 @@ package com.starling.roundupservice.common.roundup;
 
 import com.starling.roundupservice.common.account.roundup.repository.RoundupAccountRepository;
 import com.starling.roundupservice.common.account.roundup.repository.RoundupStateRepository;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-@Transactional
 public class RoundupStateRepositoryDaoTest
 {
     private static final String ROUNDUP_UID = "roundupUid";

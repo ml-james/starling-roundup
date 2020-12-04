@@ -2,7 +2,7 @@ package com.starling.roundupservice.common;
 
 import com.starling.roundupservice.common.account.accountretrieval.Account;
 import com.starling.roundupservice.common.savingsgoal.create.domain.SavingsGoalCreationRequest;
-import com.starling.roundupservice.common.savingsgoal.deposit.domain.Money;
+import com.starling.roundupservice.common.savingsgoal.Money;
 import com.starling.roundupservice.common.savingsgoal.deposit.domain.SavingsGoalDepositRequest;
 import com.starling.roundupservice.creation.RoundupCreationRequest;
 
