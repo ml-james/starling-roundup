@@ -3,6 +3,7 @@ package com.starling.roundupservice;
 import com.starling.roundupservice.common.account.roundup.repository.RoundupAccountRepository;
 import com.starling.roundupservice.common.account.roundup.repository.RoundupStateRepository;
 import okhttp3.mockwebserver.MockWebServer;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +12,14 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWebTestClient(timeout = "60000")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
+@Transactional
 public class BaseTestIT extends BaseTest
 {
     protected static final String PATH_ROUNDUP_CREATION = "/createRoundupGoal/accountUid/%s/";
@@ -26,9 +29,9 @@ public class BaseTestIT extends BaseTest
     protected WebTestClient webTestClient;
 
     @Autowired
-    protected RoundupAccountRepository roundupAccountRepository;
+    protected static RoundupAccountRepository roundupAccountRepository;
     @Autowired
-    protected RoundupStateRepository roundupStateRepository;
+    protected static RoundupStateRepository roundupStateRepository;
 
     protected MockedParameters mockedParameters;
 
@@ -46,8 +49,5 @@ public class BaseTestIT extends BaseTest
     void tearDown() throws IOException
     {
         server.shutdown();
-        // foreign key constraints == delete from state first
-        roundupStateRepository.deleteAll();
-        roundupAccountRepository.deleteAll();
     }
 }

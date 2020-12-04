@@ -20,8 +20,8 @@ public class RoundupCreationProvider implements ArgumentsProvider
         return Stream.of(
                 Arguments.of("success", getMockedParameters("features/roundupcreation/successPath", HttpStatus.OK, HttpStatus.OK, HttpStatus.OK)),
                 Arguments.of("bad_request", getMockedParameters("features/roundupcreation/failurePath", HttpStatus.BAD_REQUEST, HttpStatus.OK, HttpStatus.BAD_REQUEST)),
-                Arguments.of("unauthorised", getMockedParameters("features/roundupcreation/unauthorisedPath", HttpStatus.BAD_REQUEST, HttpStatus.FORBIDDEN, null))//,
-                //Arguments.of("duplicate_roundup", getMockedParameters("features/roundupcreation/duplicateRoundup", HttpStatus.BAD_REQUEST, null, null))
+                Arguments.of("unauthorised", getMockedParameters("features/roundupcreation/unauthorisedPath", HttpStatus.BAD_REQUEST, HttpStatus.FORBIDDEN, null)),
+                Arguments.of("duplicate_roundup", getMockedParameters("features/roundupcreation/duplicateRoundup", HttpStatus.BAD_REQUEST, null, null))
                 );
     }
 

@@ -10,6 +10,7 @@ import okhttp3.mockwebserver.MockResponse;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.web.reactive.function.BodyInserters;
 
 import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
@@ -22,29 +23,35 @@ public class RoundupCreationIT extends BaseTestIT
     private boolean requestsSavingsGoalCreation;
     private String accountUid;
 
-
     @ParameterizedTest(name = "{index}: {0}")
     @ArgumentsSource(RoundupCreationProvider.class)
+    @Rollback
     void createRoundupGoal(final String testName, final MockedParameters mockedParameters)
     {
         this.mockedParameters = mockedParameters;
-        if (testName.equals("duplicate_roundup"))
+        switch (testName)
         {
-            requestsAccountRetrieval = false;
-            requestsSavingsGoalCreation = false;
-            accountUid = "b2191626-c67c-4a4b-aef9-3b1b80b65fdc";
-        }
-        else if (testName.equals("unauthorised"))
-        {
-            requestsSavingsGoalCreation = false;
-            requestsAccountRetrieval = true;
-            accountUid = "55198b91-fd4c-45d4-b509-1d6fbbdaf777";
-        }
-        else
-        {
-            requestsSavingsGoalCreation = true;
-            requestsAccountRetrieval = true;
-            accountUid = "55198b91-fd4c-45d4-b509-1d6fbbdaf777";
+            case "duplicate_roundup":
+                requestsAccountRetrieval = false;
+                requestsSavingsGoalCreation = false;
+                accountUid = "b2191626-c67c-4a4b-aef9-3b1b80b65fdc";
+                break;
+            case "unauthorised":
+                requestsSavingsGoalCreation = false;
+                requestsAccountRetrieval = true;
+                accountUid = "55198b91-fd4c-45d4-b509-1d6fbbdaf777";
+                break;
+            case "bad_request":
+                requestsSavingsGoalCreation = true;
+                requestsAccountRetrieval = true;
+                accountUid = "11111a11-fd4c-45d4-b509-1d6fbbdaf777";
+                break;
+            case "success":
+            default:
+                requestsSavingsGoalCreation = true;
+                requestsAccountRetrieval = true;
+                accountUid = "22222b22-fd4c-45d4-b509-1d6fbbdaf777";
+                break;
         }
 
         givenResponseForAccountRetrieval();
