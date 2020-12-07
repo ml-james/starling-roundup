@@ -1,8 +1,7 @@
 package com.starling.roundupservice.common.account.roundup.service;
 
-import com.starling.roundupservice.action.State;
+import com.starling.roundupservice.perform.State;
 import com.starling.roundupservice.common.account.roundup.repository.RoundupStateRepository;
-import com.starling.roundupservice.common.account.roundup.domain.RoundupStateMapping;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -2,7 +2,7 @@ package com.starling.roundupservice.common.account.roundup.service;
 
 import com.starling.roundupservice.common.account.roundup.repository.RoundupAccountRepository;
 import com.starling.roundupservice.common.account.roundup.domain.RoundupAccountMapping;
-import com.starling.roundupservice.creation.RoundupCreationRequest;
+import com.starling.roundupservice.save.SaveRoundupRequest;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -21,7 +21,7 @@ public class RoundupAccountService
         return roundupAccountRepository.findById(accountUid);
     }
 
-    public void saveRoundupAccount(final RoundupCreationRequest creationRequest,
+    public void saveRoundupAccount(final SaveRoundupRequest creationRequest,
                                    final String accountUid,
                                    final String categoryUid,
                                    final String accountUidCurrency,

@@ -1,38 +1,36 @@
 package com.starling.roundupservice.common;
 
-import com.starling.roundupservice.common.account.accountretrieval.Account;
-import com.starling.roundupservice.common.savingsgoal.create.domain.SavingsGoalCreationRequest;
-import com.starling.roundupservice.common.savingsgoal.Money;
-import com.starling.roundupservice.common.savingsgoal.deposit.domain.SavingsGoalDepositRequest;
-import com.starling.roundupservice.creation.RoundupCreationRequest;
+import com.starling.roundupservice.common.savingsgoal.deposit.domain.DepositSavingsGoalRequest;
+import com.starling.roundupservice.common.savingsgoal.save.domain.SavingsGoalSaveRequest;
+import com.starling.roundupservice.save.SaveRoundupRequest;
 
 public class RequestBuilder
 {
     private static final String ROUND_UP_GOAL_NAME = "Round-me-up!";
     private static final String BASE_64_ENCODED_PHOTO = "aHR0cHM6Ly95b3V0dS5iZS9kUXc0dzlXZ1hjUQ==";
 
-    public static SavingsGoalCreationRequest createRequest(final RoundupCreationRequest creationRequest, final Account account)
+    public static SavingsGoalSaveRequest saveRequest(final SaveRoundupRequest saveRequest, final String currency)
     {
         var money = Money.builder()
-                .currency(account.getCurrency())
-                .minorUnits(creationRequest.getGoal())
+                .currency(currency)
+                .minorUnits(saveRequest.getGoal())
                 .build();
 
-        return SavingsGoalCreationRequest.builder()
+        return SavingsGoalSaveRequest.builder()
                 .name(ROUND_UP_GOAL_NAME)
-                .currency(account.getCurrency())
+                .currency(currency)
                 .target(money)
                 .base64EncodedPhoto(BASE_64_ENCODED_PHOTO)
                 .build();
     }
 
-    public static SavingsGoalDepositRequest createRequest(final String currency, final int goal)
+    public static DepositSavingsGoalRequest saveRequest(final String currency, final int goal)
     {
         var money = Money.builder()
                 .currency(currency)
                 .minorUnits(goal)
                 .build();
 
-        return new SavingsGoalDepositRequest(money);
+        return new DepositSavingsGoalRequest(money);
     }
 }

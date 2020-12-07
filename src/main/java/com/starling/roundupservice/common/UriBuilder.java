@@ -14,6 +14,11 @@ public class UriBuilder
         return String.format("/account/%s/savings-goals", accountUid);
     }
 
+    public static String buildSavingsGoalUpdateUri(final String accountUid, final String savingsGoalUid)
+    {
+        return String.format("/account/%s/savings-goals/%s", accountUid, savingsGoalUid);
+    }
+
     public static String buildTransactionFeedUri(final String accountUid,
                                                  final String categoryUid,
                                                  final String minTransactionTimestamp,

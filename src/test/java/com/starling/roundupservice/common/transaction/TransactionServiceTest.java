@@ -4,7 +4,7 @@ import com.starling.roundupservice.common.StarlingAPIProvider;
 import com.starling.roundupservice.common.account.roundup.domain.RoundupAccountMapping;
 import com.starling.roundupservice.common.account.roundup.service.RoundupStateService;
 import com.starling.roundupservice.common.exception.ClientException;
-import com.starling.roundupservice.common.savingsgoal.Money;
+import com.starling.roundupservice.common.Money;
 import com.starling.roundupservice.common.transaction.domain.FeedItem;
 import com.starling.roundupservice.common.transaction.domain.FeedItems;
 import com.starling.roundupservice.common.transaction.domain.Roundup;
