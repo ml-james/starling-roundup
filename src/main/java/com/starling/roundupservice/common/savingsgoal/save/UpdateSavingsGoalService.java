@@ -1,8 +1,8 @@
 package com.starling.roundupservice.common.savingsgoal.save;
 
-import com.starling.roundupservice.common.StarlingApiRequestBuilder;
-import com.starling.roundupservice.common.StarlingApiProvider;
-import com.starling.roundupservice.common.UriBuilder;
+import com.starling.roundupservice.common.starlingapi.StarlingApiRequestBuilder;
+import com.starling.roundupservice.common.starlingapi.StarlingApiProvider;
+import com.starling.roundupservice.common.starlingapi.StarlingApiUriBuilder;
 import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
 import com.starling.roundupservice.common.account.roundup.RoundupAccountService;
 import com.starling.roundupservice.save.SaveRoundupRequest;
@@ -21,7 +21,7 @@ public class UpdateSavingsGoalService
     public SaveRoundupResponse updateSavingsGoal(final SaveRoundupRequest saveRequest, final RoundupAccountMapping account, final String bearerToken)
     {
         final var savingsGoalCreationRequest = StarlingApiRequestBuilder.saveRequest(saveRequest, account.getAccountUidCurrency());
-        final var uri = UriBuilder.buildSavingsGoalUpdateUri(account.getAccountUid(), account.getSavingsGoalUid());
+        final var uri = StarlingApiUriBuilder.buildSavingsGoalUpdateUri(account.getAccountUid(), account.getSavingsGoalUid());
 
         starlingAPIProvider.queryStarlingAPI(
                 uri,

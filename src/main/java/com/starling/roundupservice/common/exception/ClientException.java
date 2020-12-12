@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common;
+package com.starling.roundupservice.common.exception;
 
 import java.util.HashMap;
 import java.util.Map;

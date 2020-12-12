@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common;
+package com.starling.roundupservice.common.starlingapi;
 
 import lombok.Builder;
 import lombok.Getter;

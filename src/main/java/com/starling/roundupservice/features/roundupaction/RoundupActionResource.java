@@ -3,8 +3,8 @@ package com.starling.roundupservice.features.roundupaction;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.starling.roundupservice.action.RoundupActionResponse;
-import com.starling.roundupservice.common.ClientException;
-import com.starling.roundupservice.common.ServerException;
+import com.starling.roundupservice.common.exception.ClientException;
+import com.starling.roundupservice.common.exception.ServerException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

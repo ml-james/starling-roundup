@@ -2,7 +2,7 @@ package com.starling.roundupservice.features.saveroundup;
 
 import com.starling.roundupservice.common.account.accountretrieval.RetrieveAccountService;
 import com.starling.roundupservice.common.account.roundup.RoundupAccountService;
-import com.starling.roundupservice.common.ClientException;
+import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.savingsgoal.save.CreateSavingsGoalService;
 import com.starling.roundupservice.common.savingsgoal.save.UpdateSavingsGoalService;
 import com.starling.roundupservice.save.SaveRoundupRequest;

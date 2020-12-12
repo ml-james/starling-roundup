@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common;
+package com.starling.roundupservice.common.starlingapi;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;

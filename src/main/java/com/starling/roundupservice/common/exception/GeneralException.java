@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common;
+package com.starling.roundupservice.common.exception;
 
 public class GeneralException extends RuntimeException
 {

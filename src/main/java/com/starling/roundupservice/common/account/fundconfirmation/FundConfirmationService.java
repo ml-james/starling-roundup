@@ -1,7 +1,7 @@
 package com.starling.roundupservice.common.account.fundconfirmation;
 
-import com.starling.roundupservice.common.StarlingApiProvider;
-import com.starling.roundupservice.common.UriBuilder;
+import com.starling.roundupservice.common.starlingapi.StarlingApiProvider;
+import com.starling.roundupservice.common.starlingapi.StarlingApiUriBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ public class FundConfirmationService
 
     public boolean sufficientFunds(final String accountUid, final int amount, final String bearerToken)
     {
-        var uri = UriBuilder.buildFundConfirmationUri(accountUid, amount);
+        var uri = StarlingApiUriBuilder.buildFundConfirmationUri(accountUid, amount);
 
         var fundConfirmationResponse = starlingAPIProvider.queryStarlingAPI(uri,
                 bearerToken,

@@ -1,10 +1,10 @@
 package com.starling.roundupservice.common.savingsgoal.deposit;
 
-import com.starling.roundupservice.common.StarlingApiRequestBuilder;
-import com.starling.roundupservice.common.StarlingApiProvider;
-import com.starling.roundupservice.common.UriBuilder;
+import com.starling.roundupservice.common.starlingapi.StarlingApiRequestBuilder;
+import com.starling.roundupservice.common.starlingapi.StarlingApiProvider;
+import com.starling.roundupservice.common.starlingapi.StarlingApiUriBuilder;
 import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
-import com.starling.roundupservice.common.ServerException;
+import com.starling.roundupservice.common.exception.ServerException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
@@ -17,7 +17,7 @@ public class DepositSavingsGoalService
 
     public String deposit(final RoundupAccountMapping roundupAccount, final int roundupAmount, final String bearerToken)
     {
-        var uri = UriBuilder.buildSavingsDepositUri(roundupAccount.getAccountUid(), roundupAccount.getSavingsGoalUid());
+        var uri = StarlingApiUriBuilder.buildSavingsDepositUri(roundupAccount.getAccountUid(), roundupAccount.getSavingsGoalUid());
         var savingsGoalDepositRequest = StarlingApiRequestBuilder.saveRequest(roundupAccount.getAccountUidCurrency(), roundupAmount);
 
         var depositResponse = starlingAPIProvider.queryStarlingAPI(uri,

@@ -1,8 +1,8 @@
-package com.starling.roundupservice.common;
+package com.starling.roundupservice.common.starlingapi;
 
 import java.util.UUID;
 
-public class UriBuilder
+public class StarlingApiUriBuilder
 {
     public static String buildAccountRetrievalUri()
     {

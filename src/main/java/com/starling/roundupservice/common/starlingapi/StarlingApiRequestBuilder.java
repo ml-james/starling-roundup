@@ -1,5 +1,6 @@
-package com.starling.roundupservice.common;
+package com.starling.roundupservice.common.starlingapi;
 
+import com.starling.roundupservice.common.Money;
 import com.starling.roundupservice.common.savingsgoal.deposit.DepositSavingsGoalRequest;
 import com.starling.roundupservice.common.savingsgoal.save.SaveSavingsGoalRequest;
 import com.starling.roundupservice.save.SaveRoundupRequest;

@@ -1,10 +1,10 @@
 package com.starling.roundupservice.common.transaction;
 
-import com.starling.roundupservice.common.StarlingApiProvider;
-import com.starling.roundupservice.common.UriBuilder;
+import com.starling.roundupservice.common.starlingapi.StarlingApiProvider;
+import com.starling.roundupservice.common.starlingapi.StarlingApiUriBuilder;
 import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
 import com.starling.roundupservice.common.account.roundup.RoundupStateService;
-import com.starling.roundupservice.common.ClientException;
+import com.starling.roundupservice.common.exception.ClientException;
 import lombok.RequiredArgsConstructor;
 import org.joda.time.DateTime;
 import org.springframework.http.HttpMethod;
@@ -25,7 +25,7 @@ public class TransactionService
         var transactionWindow = TransactionTimestamps.builder()
                 .minTransactionTimestamp(new DateTime().minusWeeks(1).withDayOfWeek(1).withTimeAtStartOfDay().toString())
                 .maxTransactionTimestamp(new DateTime().withDayOfWeek(1).withTimeAtStartOfDay().toString())
-                .build();;
+                .build();
 
         if (!roundupStateService.isRoundupDue(roundUpAccount.getRoundupUid(), transactionWindow.maxTransactionTimestamp))
         {
@@ -34,7 +34,7 @@ public class TransactionService
                             transactionWindow.maxTransactionTimestamp));
         }
 
-        var uri = UriBuilder.buildTransactionFeedUri(roundUpAccount.getAccountUid(), roundUpAccount.getCategoryUid(), transactionWindow.minTransactionTimestamp, transactionWindow.maxTransactionTimestamp);
+        var uri = StarlingApiUriBuilder.buildTransactionFeedUri(roundUpAccount.getAccountUid(), roundUpAccount.getCategoryUid(), transactionWindow.minTransactionTimestamp, transactionWindow.maxTransactionTimestamp);
         var transactions = starlingAPIProvider.queryStarlingAPI(uri, bearerToken, HttpMethod.POST, null, FeedItems.class);
 
         return Roundup.builder()

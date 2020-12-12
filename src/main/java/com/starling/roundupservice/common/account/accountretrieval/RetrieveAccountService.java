@@ -1,7 +1,7 @@
 package com.starling.roundupservice.common.account.accountretrieval;
 
-import com.starling.roundupservice.common.StarlingApiProvider;
-import com.starling.roundupservice.common.UriBuilder;
+import com.starling.roundupservice.common.starlingapi.StarlingApiProvider;
+import com.starling.roundupservice.common.starlingapi.StarlingApiUriBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ public class RetrieveAccountService
 
     public Account retrieveAccountDetails(final String accountUid, final String bearerToken)
     {
-        var uri = UriBuilder.buildAccountRetrievalUri();
+        var uri = StarlingApiUriBuilder.buildAccountRetrievalUri();
 
         var accounts = starlingAPIProvider.queryStarlingAPI(
                 uri,

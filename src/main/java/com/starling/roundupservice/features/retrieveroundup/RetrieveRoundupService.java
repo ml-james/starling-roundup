@@ -1,7 +1,7 @@
 package com.starling.roundupservice.features.retrieveroundup;
 
 import com.starling.roundupservice.common.account.roundup.RoundupAccountService;
-import com.starling.roundupservice.common.ClientException;
+import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.savingsgoal.retrieve.RetrieveSavingsGoalService;
 import com.starling.roundupservice.retrieve.RetrieveRoundupResponse;
 import lombok.RequiredArgsConstructor;

@@ -1,5 +1,8 @@
-package com.starling.roundupservice.common;
+package com.starling.roundupservice.common.starlingapi;
 
+import com.starling.roundupservice.common.exception.ClientException;
+import com.starling.roundupservice.common.exception.GeneralException;
+import com.starling.roundupservice.common.exception.ServerException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
