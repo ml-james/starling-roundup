@@ -1,9 +1,8 @@
 package com.starling.roundupservice;
 
-import com.starling.roundupservice.common.account.roundup.repository.RoundupAccountRepository;
-import com.starling.roundupservice.common.account.roundup.repository.RoundupStateRepository;
+import com.starling.roundupservice.common.account.roundup.RoundupAccountRepository;
+import com.starling.roundupservice.common.account.roundup.RoundupStateRepository;
 import okhttp3.mockwebserver.MockWebServer;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ import java.io.IOException;
 @Transactional
 public class BaseTestIT extends BaseTest
 {
-    protected static final String PATH_ROUNDUP_CREATION = "/createRoundupGoal/accountUid/%s/";
+    protected static final String PATH_SAVE_ROUNDUP = "/saveRoundupGoal/accountUid/%s/";
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired

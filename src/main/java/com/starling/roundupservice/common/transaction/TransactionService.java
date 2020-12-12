@@ -1,14 +1,10 @@
 package com.starling.roundupservice.common.transaction;
 
-import com.starling.roundupservice.common.StarlingAPIProvider;
+import com.starling.roundupservice.common.StarlingApiProvider;
 import com.starling.roundupservice.common.UriBuilder;
-import com.starling.roundupservice.common.account.roundup.domain.RoundupAccountMapping;
-import com.starling.roundupservice.common.account.roundup.service.RoundupStateService;
+import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
+import com.starling.roundupservice.common.account.roundup.RoundupStateService;
 import com.starling.roundupservice.common.exception.ClientException;
-import com.starling.roundupservice.common.transaction.domain.FeedItem;
-import com.starling.roundupservice.common.transaction.domain.FeedItems;
-import com.starling.roundupservice.common.transaction.domain.Roundup;
-import com.starling.roundupservice.common.transaction.domain.TransactionTimestamps;
 import lombok.RequiredArgsConstructor;
 import org.joda.time.DateTime;
 import org.springframework.http.HttpMethod;
@@ -22,7 +18,7 @@ public class TransactionService
     private static final String STATUS_SETTLED = "SETTLED";
 
     private final RoundupStateService roundupStateService;
-    private final StarlingAPIProvider starlingAPIProvider;
+    private final StarlingApiProvider starlingAPIProvider;
 
     public Roundup getLatestRoundup(final RoundupAccountMapping roundUpAccount, final String bearerToken)
     {

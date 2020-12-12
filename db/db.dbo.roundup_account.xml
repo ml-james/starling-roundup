@@ -8,7 +8,7 @@
   <changeSet id="1" author="m.james">
     <createTable tableName="roundup_account" schemaName="dbo">
       <column name="roundup_uid" type="varchar(128)">
-        <constraints nullable="false"/>
+        <constraints nullable="false" unique="true"/>
       </column>
       <column name="account_uid" type="varchar(128)">
         <constraints nullable="false" primaryKey="true"/>
@@ -20,6 +20,9 @@
         <constraints nullable="false"/>
       </column>
       <column name="savings_goal_uid" type="varchar(128)">
+        <constraints nullable="false" />
+      </column>
+      <column name="roundup_goal" type="int">
         <constraints nullable="false" />
       </column>
       <column name="maximum_roundup" type="int">

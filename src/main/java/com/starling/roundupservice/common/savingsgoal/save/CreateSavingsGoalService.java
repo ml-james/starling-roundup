@@ -1,10 +1,9 @@
 package com.starling.roundupservice.common.savingsgoal.save;
 
-import com.starling.roundupservice.common.RequestBuilder;
-import com.starling.roundupservice.common.StarlingAPIProvider;
+import com.starling.roundupservice.common.StarlingApiRequestBuilder;
+import com.starling.roundupservice.common.StarlingApiProvider;
 import com.starling.roundupservice.common.UriBuilder;
 import com.starling.roundupservice.common.account.accountretrieval.Account;
-import com.starling.roundupservice.common.savingsgoal.save.domain.SavingsGoalSaveResponse;
 import com.starling.roundupservice.save.SaveRoundupRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpMethod;
@@ -14,11 +13,11 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class CreateSavingsGoalService
 {
-    private final StarlingAPIProvider starlingAPIProvider;
+    private final StarlingApiProvider starlingAPIProvider;
 
     public SavingsGoalSaveResponse createSavingsGoal(final SaveRoundupRequest creationRequest, final Account account, final String bearerToken)
     {
-        final var savingsGoalCreationRequest = RequestBuilder.saveRequest(creationRequest, account.getCurrency());
+        final var savingsGoalCreationRequest = StarlingApiRequestBuilder.saveRequest(creationRequest, account.getCurrency());
         final var uri = UriBuilder.buildSavingsGoalCreationUri(account.getAccountUid());
 
         return starlingAPIProvider.queryStarlingAPI(

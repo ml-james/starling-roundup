@@ -19,15 +19,15 @@ public class SaveRoundupResource
 {
     private final SaveRoundupService saveRoundupService;
 
-    @PutMapping(path = "/createRoundupGoal/accountUid/{accountUid}/", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<SaveRoundupResponse> createRoundupGoal(@PathVariable("accountUid") final String accountUid,
+    @PutMapping(path = "/saveRoundupGoal/accountUid/{accountUid}/", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<SaveRoundupResponse> saveRoundupGoal(@PathVariable("accountUid") final String accountUid,
                                                                  @RequestBody final SaveRoundupRequest creationRequest,
                                                                  @RequestHeader("Authorization") String bearerToken)
     {
         try
         {
-            var savingsGoalUid = saveRoundupService.createRoundupGoal(creationRequest, accountUid, bearerToken);
-            return ResponseEntity.ok(SaveRoundupResponse.builder().roundupSavingsGoalUid(savingsGoalUid).build());
+            var saveRoundupResponse = saveRoundupService.saveRoundupGoal(creationRequest, accountUid, bearerToken);
+            return ResponseEntity.ok(saveRoundupResponse);
         }
         catch (ClientException e)
         {

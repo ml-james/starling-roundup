@@ -10,7 +10,6 @@ import okhttp3.mockwebserver.MockResponse;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.web.reactive.function.BodyInserters;
 
 import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
@@ -20,46 +19,45 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class SaveRoundupIT extends BaseTestIT
 {
     private boolean requestsAccountRetrieval;
-    private boolean requestsSavingsGoalCreation;
+    private boolean requestsSavingsGoalSave;
     private String accountUid;
 
     @ParameterizedTest(name = "{index}: {0}")
     @ArgumentsSource(SaveRoundupProvider.class)
-    @Rollback
-    void createRoundupGoal(final String testName, final MockedParameters mockedParameters)
+    void saveRoundupGoal(final String testName, final MockedParameters mockedParameters)
     {
         this.mockedParameters = mockedParameters;
         switch (testName)
         {
-            case "duplicate_roundup":
+            case "update_roundup":
                 requestsAccountRetrieval = false;
-                requestsSavingsGoalCreation = false;
+                requestsSavingsGoalSave = true;
                 accountUid = "b2191626-c67c-4a4b-aef9-3b1b80b65fdc";
                 break;
             case "unauthorised":
-                requestsSavingsGoalCreation = false;
+                requestsSavingsGoalSave = false;
                 requestsAccountRetrieval = true;
                 accountUid = "55198b91-fd4c-45d4-b509-1d6fbbdaf777";
                 break;
             case "bad_request":
-                requestsSavingsGoalCreation = true;
+                requestsSavingsGoalSave = true;
                 requestsAccountRetrieval = true;
                 accountUid = "11111a11-fd4c-45d4-b509-1d6fbbdaf777";
                 break;
             case "success":
             default:
-                requestsSavingsGoalCreation = true;
+                requestsSavingsGoalSave = true;
                 requestsAccountRetrieval = true;
                 accountUid = "22222b22-fd4c-45d4-b509-1d6fbbdaf777";
                 break;
         }
 
         givenResponseForAccountRetrieval();
-        givenResponseForSavingsGoalDeposit();
+        givenResponseForSavingsGoalSave();
 
         thenSaveRoundupGoalRequestedAndResponseVerified();
         thenVerifyEmptyRequestToAccountRetrieval();
-        thenVerifyRequestToSavingsGoalCreation();
+        thenVerifyRequestToSavingsGoalSave();
     }
 
     @SneakyThrows
@@ -75,20 +73,20 @@ public class SaveRoundupIT extends BaseTestIT
     }
 
     @SneakyThrows
-    private void givenResponseForSavingsGoalDeposit()
+    private void givenResponseForSavingsGoalSave()
     {
-        if (requestsSavingsGoalCreation)
+        if (requestsSavingsGoalSave)
         {
             server.enqueue(new MockResponse()
                     .setHeader(HttpHeaders.CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                    .setResponseCode(mockedParameters.getMockedStatusCodeFromSavingsDepositCreation().value())
-                    .setBody(loadResourceAsString(mockedParameters.getMockedResponseFromSavingsDepositCreation())));
+                    .setResponseCode(mockedParameters.getMockedStatusCodeFromSavingsDepositSave().value())
+                    .setBody(loadResourceAsString(mockedParameters.getMockedResponseFromSavingsDepositSave())));
         }
     }
 
     private void thenSaveRoundupGoalRequestedAndResponseVerified()
     {
-        webTestClient.put().uri(String.format(contextPath + PATH_ROUNDUP_CREATION, accountUid))
+        webTestClient.put().uri(String.format(contextPath + PATH_SAVE_ROUNDUP, accountUid))
                 .contentType(APPLICATION_JSON)
                 .header("Authorization", "Bearer eyJhbGciOiJQUzI1NiIsInpp")
                 .accept(APPLICATION_JSON)
@@ -110,14 +108,14 @@ public class SaveRoundupIT extends BaseTestIT
     }
 
     @SneakyThrows
-    private void thenVerifyRequestToSavingsGoalCreation()
+    private void thenVerifyRequestToSavingsGoalSave()
     {
-        if (requestsSavingsGoalCreation)
+        if (requestsSavingsGoalSave)
         {
             var actualRequest = server.takeRequest();
 
             JsonNode actual = jsonMapper.readTree(actualRequest.getBody().readUtf8());
-            JsonNode expected = jsonMapper.readTree(loadResourceAsString(mockedParameters.getExpectedRequestToSavingsDepositCreation()));
+            JsonNode expected = jsonMapper.readTree(loadResourceAsString(mockedParameters.getExpectedRequestToSavingsDepositSave()));
 
             assertEquals(
                     jsonMapper.writerWithDefaultPrettyPrinter().writeValueAsString(expected),

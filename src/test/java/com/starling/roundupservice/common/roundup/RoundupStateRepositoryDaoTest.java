@@ -1,7 +1,7 @@
 package com.starling.roundupservice.common.roundup;
 
-import com.starling.roundupservice.common.account.roundup.repository.RoundupAccountRepository;
-import com.starling.roundupservice.common.account.roundup.repository.RoundupStateRepository;
+import com.starling.roundupservice.common.account.roundup.RoundupAccountRepository;
+import com.starling.roundupservice.common.account.roundup.RoundupStateRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,6 +39,7 @@ public class RoundupStateRepositoryDaoTest
                 "categoryUid",
                 "gbp",
                 "savingsGoalUid",
+                500,
                 10,
                 2);
 

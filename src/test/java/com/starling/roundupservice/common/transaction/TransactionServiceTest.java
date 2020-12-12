@@ -1,13 +1,10 @@
 package com.starling.roundupservice.common.transaction;
 
-import com.starling.roundupservice.common.StarlingAPIProvider;
-import com.starling.roundupservice.common.account.roundup.domain.RoundupAccountMapping;
-import com.starling.roundupservice.common.account.roundup.service.RoundupStateService;
+import com.starling.roundupservice.common.StarlingApiProvider;
+import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
+import com.starling.roundupservice.common.account.roundup.RoundupStateService;
 import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.Money;
-import com.starling.roundupservice.common.transaction.domain.FeedItem;
-import com.starling.roundupservice.common.transaction.domain.FeedItems;
-import com.starling.roundupservice.common.transaction.domain.Roundup;
 import org.joda.time.DateTimeUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +28,7 @@ public class TransactionServiceTest
     private static final String ROUNDUP_UID = "roundupUid";
 
     @Mock
-    private StarlingAPIProvider transactionProvider;
+    private StarlingApiProvider transactionProvider;
     @Mock
     private RoundupStateService roundupStateService;
 

@@ -20,6 +20,12 @@ public class SaveRoundupResponse
 
   @JsonProperty("roundupSavingsGoalUid")
   String roundupSavingsGoalUid;
+  @JsonProperty("roundupGoal")
+  int goal;
+  @JsonProperty("roundupMaximum")
+  int roundupMaximum;
+  @JsonProperty("roundupFactor")
+  int roundupFactor;
   @JsonProperty("errors")
   Map<String, String> errors;
 

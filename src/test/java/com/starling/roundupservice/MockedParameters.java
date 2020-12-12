@@ -17,9 +17,9 @@ public class MockedParameters
     private HttpStatus mockedStatusCodeAccountRetrieval;
     private Headers responseHeaders;
 
-    private String expectedRequestToSavingsDepositCreation;
-    private String mockedResponseFromSavingsDepositCreation;
-    private HttpStatus mockedStatusCodeFromSavingsDepositCreation;
+    private String expectedRequestToSavingsDepositSave;
+    private String mockedResponseFromSavingsDepositSave;
+    private HttpStatus mockedStatusCodeFromSavingsDepositSave;
     private Headers secondResponseHeaders;
 }
 
