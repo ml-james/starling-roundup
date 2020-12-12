@@ -4,7 +4,7 @@ import com.starling.roundupservice.common.StarlingApiRequestBuilder;
 import com.starling.roundupservice.common.StarlingApiProvider;
 import com.starling.roundupservice.common.UriBuilder;
 import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
-import com.starling.roundupservice.common.exception.ServerException;
+import com.starling.roundupservice.common.ServerException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;

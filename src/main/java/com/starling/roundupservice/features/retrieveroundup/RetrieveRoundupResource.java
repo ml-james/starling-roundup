@@ -1,7 +1,7 @@
 package com.starling.roundupservice.features.retrieveroundup;
 
-import com.starling.roundupservice.common.exception.ClientException;
-import com.starling.roundupservice.common.exception.ServerException;
+import com.starling.roundupservice.common.ClientException;
+import com.starling.roundupservice.common.ServerException;
 import com.starling.roundupservice.retrieve.RetrieveRoundupResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

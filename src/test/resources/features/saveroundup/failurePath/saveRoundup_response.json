@@ -1,5 +1,5 @@
 {
   "errors": {
-    "Client error: ": " there was a problem returning com.starling.roundupservice.common.savingsgoal.save.SavingsGoalSaveResponse due to the following errors [{message=There was an error in the request for savings goal creation.}]"
+    "Client error: ": " there was a problem returning com.starling.roundupservice.common.savingsgoal.save.SaveSavingsGoalResponse due to the following errors [{message=There was an error in the request for savings goal creation.}]"
   }
 }

@@ -15,7 +15,7 @@ public class CreateSavingsGoalService
 {
     private final StarlingApiProvider starlingAPIProvider;
 
-    public SavingsGoalSaveResponse createSavingsGoal(final SaveRoundupRequest creationRequest, final Account account, final String bearerToken)
+    public SaveSavingsGoalResponse createSavingsGoal(final SaveRoundupRequest creationRequest, final Account account, final String bearerToken)
     {
         final var savingsGoalCreationRequest = StarlingApiRequestBuilder.saveRequest(creationRequest, account.getCurrency());
         final var uri = UriBuilder.buildSavingsGoalCreationUri(account.getAccountUid());
@@ -25,6 +25,6 @@ public class CreateSavingsGoalService
                 bearerToken,
                 HttpMethod.PUT,
                 savingsGoalCreationRequest,
-                SavingsGoalSaveResponse.class);
+                SaveSavingsGoalResponse.class);
     }
 }

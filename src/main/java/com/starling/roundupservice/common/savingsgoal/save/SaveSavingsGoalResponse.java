@@ -8,7 +8,7 @@ import lombok.Getter;
 
 @Builder(toBuilder = true)
 @Getter
-public class SavingsGoalSaveResponse
+public class SaveSavingsGoalResponse
 {
     String savingsGoalUid;
     public boolean success;

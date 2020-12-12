@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Builder(toBuilder = true)
 @Getter
-public class SavingsGoalSaveRequest
+public class SaveSavingsGoalRequest
 {
     String name;
     String currency;

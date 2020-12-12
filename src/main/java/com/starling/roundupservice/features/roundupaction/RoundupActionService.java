@@ -6,7 +6,7 @@ import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
 import com.starling.roundupservice.common.account.roundup.RoundupAccountService;
 import com.starling.roundupservice.common.account.roundup.RoundupStateService;
 import com.starling.roundupservice.action.State;
-import com.starling.roundupservice.common.exception.ClientException;
+import com.starling.roundupservice.common.ClientException;
 import com.starling.roundupservice.common.savingsgoal.deposit.DepositSavingsGoalService;
 import com.starling.roundupservice.common.transaction.TransactionService;
 import lombok.RequiredArgsConstructor;

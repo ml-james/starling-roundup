@@ -3,7 +3,7 @@ package com.starling.roundupservice.common.transaction;
 import com.starling.roundupservice.common.StarlingApiProvider;
 import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
 import com.starling.roundupservice.common.account.roundup.RoundupStateService;
-import com.starling.roundupservice.common.exception.ClientException;
+import com.starling.roundupservice.common.ClientException;
 import com.starling.roundupservice.common.Money;
 import org.joda.time.DateTimeUtils;
 import org.junit.Before;

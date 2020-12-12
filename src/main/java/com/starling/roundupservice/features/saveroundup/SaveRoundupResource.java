@@ -2,8 +2,8 @@ package com.starling.roundupservice.features.saveroundup;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-import com.starling.roundupservice.common.exception.ClientException;
-import com.starling.roundupservice.common.exception.ServerException;
+import com.starling.roundupservice.common.ClientException;
+import com.starling.roundupservice.common.ServerException;
 import com.starling.roundupservice.save.SaveRoundupRequest;
 import com.starling.roundupservice.save.SaveRoundupResponse;
 import lombok.AllArgsConstructor;

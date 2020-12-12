@@ -4,7 +4,7 @@ import com.starling.roundupservice.common.StarlingApiProvider;
 import com.starling.roundupservice.common.UriBuilder;
 import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
 import com.starling.roundupservice.common.account.roundup.RoundupStateService;
-import com.starling.roundupservice.common.exception.ClientException;
+import com.starling.roundupservice.common.ClientException;
 import lombok.RequiredArgsConstructor;
 import org.joda.time.DateTime;
 import org.springframework.http.HttpMethod;

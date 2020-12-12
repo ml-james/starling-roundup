@@ -28,7 +28,7 @@ public class UpdateSavingsGoalService
                 bearerToken,
                 HttpMethod.PUT,
                 savingsGoalCreationRequest,
-                SavingsGoalSaveResponse.class);
+                SaveSavingsGoalResponse.class);
 
         roundupAccountService.updateRoundupAccount(account.getAccountUid(),
                 saveRequest.getGoal(),
