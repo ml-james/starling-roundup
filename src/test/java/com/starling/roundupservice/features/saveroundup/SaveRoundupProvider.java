@@ -18,14 +18,14 @@ public class SaveRoundupProvider implements ArgumentsProvider
 
     public Stream<? extends Arguments> provideArguments(ExtensionContext extensioncontext) {
         return Stream.of(
-                Arguments.of("success", getMockedParameters("features/saveroundup/createRoundup", HttpStatus.OK, HttpStatus.OK, HttpStatus.OK)),
+                Arguments.of("create_roundup", getMockedParameters("features/saveroundup/createRoundupPath", HttpStatus.OK, HttpStatus.OK, HttpStatus.OK)),
                 Arguments.of("bad_request", getMockedParameters("features/saveroundup/failurePath", HttpStatus.BAD_REQUEST, HttpStatus.OK, HttpStatus.BAD_REQUEST)),
                 Arguments.of("unauthorised", getMockedParameters("features/saveroundup/unauthorisedPath", HttpStatus.BAD_REQUEST, HttpStatus.FORBIDDEN, null)),
-                Arguments.of("update_roundup", getMockedParameters("features/saveroundup/updateRoundup", HttpStatus.OK, null, HttpStatus.OK))
+                Arguments.of("update_roundup", getMockedParameters("features/saveroundup/updateRoundupPath", HttpStatus.OK, null, HttpStatus.OK))
                 );
     }
 
-    private MockedParameters getMockedParameters(final String path, final HttpStatus starlingRoundupStatus, final HttpStatus accountRetrievalStatus, final HttpStatus savingsGoalCreationStatus)
+    private MockedParameters getMockedParameters(final String path, final HttpStatus starlingRoundupStatus, final HttpStatus accountRetrievalStatus, final HttpStatus savingsGoalSaveStatus)
     {
         return MockedParameters.builder()
                 .expectedStatusCodeFromStarlingRoundup(starlingRoundupStatus)
@@ -33,13 +33,13 @@ public class SaveRoundupProvider implements ArgumentsProvider
                 .expectedResponseFromStarlingRoundup(String.join(delimeter, path, "saveRoundup_response.json"))
 
                 .mockedResponseFromAccountRetrieval(String.join(delimeter, path, "accountRetrieval_response.json"))
-                .responseHeaders(Headers.of(HttpHeaders.CONTENT_TYPE, APPLICATION_JSON_VALUE))
+                .accountRetrievalResponseHeaders(Headers.of(HttpHeaders.CONTENT_TYPE, APPLICATION_JSON_VALUE))
                 .mockedStatusCodeAccountRetrieval(accountRetrievalStatus)
 
                 .expectedRequestToSavingsDepositSave(String.join(delimeter, path, "saveSavingsGoal_request.json"))
                 .mockedResponseFromSavingsDepositSave(String.join(delimeter, path, "saveSavingsGoal_response.json"))
-                .secondResponseHeaders(Headers.of(HttpHeaders.CONTENT_TYPE, APPLICATION_JSON_VALUE))
-                .mockedStatusCodeFromSavingsDepositSave(savingsGoalCreationStatus)
+                .savingsDepositSaveResponseHeaders(Headers.of(HttpHeaders.CONTENT_TYPE, APPLICATION_JSON_VALUE))
+                .mockedStatusCodeFromSavingsDepositSave(savingsGoalSaveStatus)
                 .build();
     }
 }

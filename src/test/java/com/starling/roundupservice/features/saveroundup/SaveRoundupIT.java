@@ -44,7 +44,7 @@ public class SaveRoundupIT extends BaseTestIT
                 requestsAccountRetrieval = true;
                 accountUid = "11111a11-fd4c-45d4-b509-1d6fbbdaf777";
                 break;
-            case "success":
+            case "create_roundup":
             default:
                 requestsSavingsGoalSave = true;
                 requestsAccountRetrieval = true;

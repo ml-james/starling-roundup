@@ -21,7 +21,7 @@ public class RetrieveRoundupResource
 {
     private final RetrieveRoundupService retrieveRoundupService;
 
-    @GetMapping(path = "/retrieveRoundupGoal/accountUid/{accountUid}", consumes = APPLICATION_JSON_VALUE,  produces = APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/retrieveRoundupGoal/accountUid/{accountUid}", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<RetrieveRoundupResponse> retrieveRoundupGoal(@PathVariable("accountUid") final String accountUid,
                                                                        @RequestHeader("Authorization") String bearerToken)
     {

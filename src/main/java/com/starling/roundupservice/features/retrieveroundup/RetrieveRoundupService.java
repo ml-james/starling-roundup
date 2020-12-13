@@ -25,6 +25,7 @@ public class RetrieveRoundupService
         {
             var savingsGoalUid = roundupAccount.get().getSavingsGoalUid();
             var savingsGoalAccount = retrieveSavingsGoalService.retrieveSavingsGoal(accountUid, savingsGoalUid, bearerToken);
+
             return RetrieveRoundupResponse.builder()
                     .roundupSavingsGoalUid(savingsGoalUid)
                     .roundupValue(savingsGoalAccount.getTotalSaved().getMinorUnits())
@@ -36,5 +37,4 @@ public class RetrieveRoundupService
                     .build();
         }
     }
-
 }
