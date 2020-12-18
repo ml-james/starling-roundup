@@ -1,5 +1,5 @@
-###TODO:
+-- / todo / --
 
-* Add IT for roundup action
-* Add some more unit tests (yawn)
-* Documentation ... e.g. postman collections and setting up with Starling API ...
+i. it for roundup action
+
+ii. Documentation ...

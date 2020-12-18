@@ -47,52 +47,11 @@ public class TransactionServiceTest
     @Test
     public void roundupDueTakeMaximum()
     {
-        givenRoundupAccountMapping(ROUND_UP_FACTOR_2, ROUND_UP_MAXIMUM_100);
-        givenRoundupDue();
-        givenTransactionProviderReturnsTransactions();
-        whenGetLatestRoundupCalled();
-        thenRoundupCorrect(ROUND_UP_MAXIMUM_100);
-    }
-
-    @Test
-    public void roundupDueTakeRoundup()
-    {
-        givenRoundupAccountMapping(ROUND_UP_FACTOR_1, ROUND_UP_MAXIMUM_100);
-        givenRoundupDue();
-        givenTransactionProviderReturnsTransactions();
-        whenGetLatestRoundupCalled();
-        thenRoundupCorrect(TRANSACTION_ROUND_UP);
-    }
-
-    @Test(expected = ClientException.class)
-    public void roundupNotDue()
-    {
-        givenRoundupAccountMapping(ROUND_UP_FACTOR_1, ROUND_UP_MAXIMUM_100);
-        givenRoundupNotDue();
-        whenGetLatestRoundupCalled();
-    }
-
-    private void givenRoundupAccountMapping(int roundupFactor, int roundupMaximum)
-    {
         account = RoundupAccountMapping.builder()
                 .roundupUid(ROUNDUP_UID)
-                .roundupFactor(roundupFactor)
-                .maximumRoundup(roundupMaximum)
+                .roundupFactor(ROUND_UP_FACTOR_2)
+                .maximumRoundup(ROUND_UP_MAXIMUM_100)
                 .build();
-    }
-
-    private void givenRoundupDue()
-    {
-        when(roundupStateService.isRoundupDue(anyString(), anyString())).thenReturn(true);
-    }
-
-    private void givenRoundupNotDue()
-    {
-        when(roundupStateService.isRoundupDue(anyString(), anyString())).thenReturn(false);
-    }
-
-    private void givenTransactionProviderReturnsTransactions()
-    {
         var transactionOne = FeedItem.builder()
                 .direction("OUT")
                 .status("SETTLED")
@@ -114,17 +73,65 @@ public class TransactionServiceTest
                 .amount(Money.builder().minorUnits(10043).build())
                 .build();
         var transactions = Arrays.asList(transactionOne, transactionTwo, transactionThree, transactionFour);
+
+        when(roundupStateService.isRoundupDue(anyString(), anyString())).thenReturn(true);
         when(transactionProvider.queryStarlingAPI(any(), any(), any(), any(), any())).thenReturn(new FeedItems(transactions));
+        result = transactionService.getLatestRoundup(account, "");
+
+        assertEquals(ROUND_UP_MAXIMUM_100, result.roundupAmount);
+        assertEquals(DEFAULT_WEEK_END, result.weekEnd);
     }
 
-    private void whenGetLatestRoundupCalled()
+    @Test
+    public void roundupDueTakeRoundup()
     {
+        account = RoundupAccountMapping.builder()
+                .roundupUid(ROUNDUP_UID)
+                .roundupFactor(ROUND_UP_FACTOR_1)
+                .maximumRoundup(ROUND_UP_MAXIMUM_100)
+                .build();
+        var transactionOne = FeedItem.builder()
+                .direction("OUT")
+                .status("SETTLED")
+                .amount(Money.builder().minorUnits(976).build())
+                .build();
+        var transactionTwo = FeedItem.builder()
+                .direction("IN")
+                .status("SETTLED")
+                .amount(Money.builder().minorUnits(590).build())
+                .build();
+        var transactionThree = FeedItem.builder()
+                .direction("IN")
+                .status("PENDING")
+                .amount(Money.builder().minorUnits(9345).build())
+                .build();
+        var transactionFour = FeedItem.builder()
+                .direction("OUT")
+                .status("SETTLED")
+                .amount(Money.builder().minorUnits(10043).build())
+                .build();
+        var transactions = Arrays.asList(transactionOne, transactionTwo, transactionThree, transactionFour);
+
+        when(roundupStateService.isRoundupDue(anyString(), anyString())).thenReturn(true);
+        when(transactionProvider.queryStarlingAPI(any(), any(), any(), any(), any())).thenReturn(new FeedItems(transactions));
+        result = transactionService.getLatestRoundup(account, "");
+
+        assertEquals(TRANSACTION_ROUND_UP, result.roundupAmount);
+        assertEquals(DEFAULT_WEEK_END, result.weekEnd);
+    }
+
+    @Test(expected = ClientException.class)
+    public void roundupNotDue()
+    {
+        account = RoundupAccountMapping.builder()
+                .roundupUid(ROUNDUP_UID)
+                .roundupFactor(ROUND_UP_FACTOR_1)
+                .maximumRoundup(ROUND_UP_MAXIMUM_100)
+                .build();
+
+        when(roundupStateService.isRoundupDue(anyString(), anyString())).thenReturn(false);
+
         result = transactionService.getLatestRoundup(account, "");
     }
 
-    private void thenRoundupCorrect(int amount)
-    {
-        assertEquals(amount, result.roundupAmount);
-        assertEquals(DEFAULT_WEEK_END, result.weekEnd);
-    }
 }
