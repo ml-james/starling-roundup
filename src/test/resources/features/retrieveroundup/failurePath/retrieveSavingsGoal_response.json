@@ -1,13 +1,8 @@
 {
-  "savingsGoalUid": "50c71ed0-e776-4966-9a92-b00fd2f43ae3",
-  "name": "My-Roundup-Goal!",
-  "target": {
-    "currency": "GBP",
-    "minorUnits": 500
-  },
-  "total" : {
-    "currency": "GBP",
-    "minorUnits": 150
-  },
-  "percentageSaved": 30
+  "success": false,
+  "errors": [
+    {
+      "message": "There was an error in the request for savings goal retrieval."
+    }
+  ]
 }

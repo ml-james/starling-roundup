@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public class FeedItem
 {
-
     private final String feedItemUid;
     private final String categoryUid;
     private final Money amount;
@@ -31,5 +30,4 @@ public class FeedItem
     private final String reference;
     private final String country;
     private final String spendingCategory;
-
 }

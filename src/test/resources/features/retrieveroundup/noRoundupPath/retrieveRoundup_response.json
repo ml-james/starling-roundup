@@ -1,6 +1,5 @@
 {
-  "roundupSavingsGoalUid" : "db7c4049-6ff8-4bf7-aee1-cf441a34f9bd",
-  "roundupGoal": 1000,
-  "roundupMaximum": 50,
-  "roundupFactor": 2
+  "errors": {
+    "Roundup retrieval exception: ": " there is no associated roundup retrieval for the requested account 11111a11-fd4c-45d4-b509-1d6fbbdaf777."
+  }
 }

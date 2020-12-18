@@ -18,10 +18,10 @@ public class RetrieveRoundupProvider implements ArgumentsProvider
 
     public Stream<? extends Arguments> provideArguments(ExtensionContext extensioncontext) {
         return Stream.of(
-                Arguments.of("retrieve_roundup", getMockedParameters("features/retrieveroundup/retrieveRoundupPath", HttpStatus.OK, HttpStatus.OK))//,
-//                Arguments.of("no_roundup", getMockedParameters("features/retrieveroundup/noRoundupPath", HttpStatus.BAD_REQUEST, null)),
-//                Arguments.of("unauthorised", getMockedParameters("features/retrieveroundup/unauthorisedPath", HttpStatus.BAD_REQUEST, HttpStatus.FORBIDDEN)),
-//                Arguments.of("bad_request", getMockedParameters("features/retrieveroundup/failurePath", HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST))
+                Arguments.of("retrieve_roundup", getMockedParameters("features/retrieveroundup/retrieveRoundupPath", HttpStatus.OK, HttpStatus.OK)),
+                Arguments.of("no_roundup", getMockedParameters("features/retrieveroundup/noRoundupPath", HttpStatus.BAD_REQUEST, null)),
+                Arguments.of("unauthorised", getMockedParameters("features/retrieveroundup/unauthorisedPath", HttpStatus.BAD_REQUEST, HttpStatus.FORBIDDEN)),
+                Arguments.of("bad_request", getMockedParameters("features/retrieveroundup/failurePath", HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST))
                 );
     }
 
