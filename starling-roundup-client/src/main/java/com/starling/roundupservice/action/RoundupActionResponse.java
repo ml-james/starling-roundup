@@ -14,14 +14,12 @@ import lombok.Value;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RoundupActionResponse
 {
-
-  @JsonProperty("roundUpStatus")
-  State roundUpState;
+  @JsonProperty("roundupState")
+  State roundupState;
   @JsonProperty("transferUid")
   String transferUid;
   @JsonProperty("amount")
   int amount;
   @JsonProperty("error")
   Map<String, String> error;
-
 }

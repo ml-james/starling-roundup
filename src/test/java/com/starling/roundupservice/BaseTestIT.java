@@ -23,6 +23,7 @@ public class BaseTestIT extends BaseTest
 {
     protected static final String PATH_SAVE_ROUNDUP = "/saveRoundupGoal/accountUid/%s/";
     protected static final String PATH_RETRIEVE_ROUNDUP = "/retrieveRoundupGoal/accountUid/%s/";
+    protected static final String PATH_ROUNDUP_ACTION = "/roundupAction/accountUid/%s/";
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired

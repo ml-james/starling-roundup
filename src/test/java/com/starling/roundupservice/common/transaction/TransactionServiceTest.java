@@ -6,14 +6,15 @@ import com.starling.roundupservice.common.account.roundup.RoundupStateService;
 import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.Money;
 import org.joda.time.DateTimeUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-
 import java.util.Arrays;
 
 import static com.starling.roundupservice.TestConstants.DEFAULT_WEEK_END;
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
@@ -36,7 +37,7 @@ public class TransactionServiceTest
     private RoundupAccountMapping account;
     private Roundup result;
 
-    @Before
+    @BeforeEach
     public void setup()
     {
         initMocks(this);
@@ -44,8 +45,14 @@ public class TransactionServiceTest
         DateTimeUtils.setCurrentMillisFixed(1592731346192L);
     }
 
+    @AfterEach
+    void tearDown()
+    {
+        DateTimeUtils.setCurrentMillisSystem();
+    }
+
     @Test
-    public void roundupDueTakeMaximum()
+    void roundupDueTakeMaximum()
     {
         account = RoundupAccountMapping.builder()
                 .roundupUid(ROUNDUP_UID)
@@ -83,7 +90,7 @@ public class TransactionServiceTest
     }
 
     @Test
-    public void roundupDueTakeRoundup()
+    void roundupDueTakeRoundup()
     {
         account = RoundupAccountMapping.builder()
                 .roundupUid(ROUNDUP_UID)
@@ -120,8 +127,8 @@ public class TransactionServiceTest
         assertEquals(DEFAULT_WEEK_END, result.weekEnd);
     }
 
-    @Test(expected = ClientException.class)
-    public void roundupNotDue()
+    @Test
+    void roundupNotDue()
     {
         account = RoundupAccountMapping.builder()
                 .roundupUid(ROUNDUP_UID)
@@ -131,7 +138,6 @@ public class TransactionServiceTest
 
         when(roundupStateService.isRoundupDue(anyString(), anyString())).thenReturn(false);
 
-        result = transactionService.getLatestRoundup(account, "");
+        assertThrows(ClientException.class, () -> transactionService.getLatestRoundup(account, ""));
     }
-
 }

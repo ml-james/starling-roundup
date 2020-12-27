@@ -9,14 +9,14 @@ public class RoundupActionResponseTransformer
     public static RoundupActionResponse transform(final State state)
     {
         return RoundupActionResponse.builder()
-                .roundUpState(state)
+                .roundupState(state)
                 .build();
     }
 
     public static RoundupActionResponse transform(final State state, final String transferUid, final int amount)
     {
         return RoundupActionResponse.builder()
-                .roundUpState(state)
+                .roundupState(state)
                 .transferUid(transferUid)
                 .amount(amount)
                 .build();

@@ -17,8 +17,8 @@ public class RoundupStateService
         return roundupStateMapping.isEmpty();
     }
 
-    public void insertState(final String roundupUid, final State state, final String transactionId, final String weekEnd)
+    public void insertState(final String roundupUid, final String transactionId, final State state, final String weekEnd)
     {
-        roundupStateRepository.save(roundupUid, state.toString(), transactionId, weekEnd);
+        roundupStateRepository.save(roundupUid, transactionId, state.toString(), weekEnd);
     }
 }

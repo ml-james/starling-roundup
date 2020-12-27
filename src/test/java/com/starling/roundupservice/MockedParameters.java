@@ -22,10 +22,22 @@ public class MockedParameters
     private HttpStatus mockedStatusCodeFromSavingsDepositSave;
     private Headers savingsDepositSaveResponseHeaders;
 
-    private String expectedRequestToSavingsGoalRetrieval;
     private String mockedResponseFromSavingsGoalRetrieval;
     private HttpStatus mockedStatusCodeFromSavingsGoalRetrieval;
     private Headers savingsGoalRetrievalResponseHeaders;
+
+    private String mockedResponseFromTransactionsProvider;
+    private HttpStatus mockedStatusCodeFromTransactionsProvider;
+    private Headers transactionsProviderResponseHeaders;
+
+    private String mockedResponseFromFundConfirmation;
+    private HttpStatus mockedStatusCodeFromFundConfirmation;
+    private Headers fundConfirmationResponseHeaders;
+
+    private String expectedRequestToDepositSavingsGoal;
+    private String mockedResponseFromDepositSavingsGoal;
+    private HttpStatus mockedStatusCodeFromDepositSavingsGoal;
+    private Headers depositSavingsGoalResponseHeaders;
 
 }
 

@@ -21,7 +21,7 @@ public class RoundupActionResource
 {
     private final RoundupActionService roundupActionService;
 
-    @PostMapping(path = "/action/accountUid/{accountUid}", produces = APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/roundupAction/accountUid/{accountUid}", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<RoundupActionResponse> roundupAccount(@PathVariable("accountUid") String accountUid,
                                                                 @RequestHeader("Authorization") String bearerToken)
     {

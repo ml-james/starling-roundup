@@ -27,6 +27,8 @@ public class TransactionService
                 .maxTransactionTimestamp(new DateTime().withDayOfWeek(1).withTimeAtStartOfDay().toString())
                 .build();
 
+        System.out.println("HELLO THE TIME IS " + new DateTime().toString());
+
         if (!roundupStateService.isRoundupDue(roundUpAccount.getRoundupUid(), transactionWindow.maxTransactionTimestamp))
         {
             throw new ClientException("Roundup requirability: ", String

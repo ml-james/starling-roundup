@@ -13,7 +13,7 @@
       <column name="transfer_uid" type="varchar(128)">
         <constraints nullable="true"/>
       </column>
-      <column name="state" type="varchar(16)">
+      <column name="state" type="varchar(18)">
         <constraints nullable="false"/>
       </column>
       <column name="week_end" type="varchar(32)">

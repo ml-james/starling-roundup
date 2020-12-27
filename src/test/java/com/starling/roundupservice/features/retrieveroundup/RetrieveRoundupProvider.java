@@ -29,10 +29,8 @@ public class RetrieveRoundupProvider implements ArgumentsProvider
     {
         return MockedParameters.builder()
                 .expectedStatusCodeFromStarlingRoundup(starlingRoundupStatus)
-                .requestToStarlingRoundup(String.join(delimeter, path, "retrieveRoundup_request.json"))
                 .expectedResponseFromStarlingRoundup(String.join(delimeter, path, "retrieveRoundup_response.json"))
 
-                .expectedRequestToSavingsGoalRetrieval(String.join(delimeter, path, "retrieveSavingsGoal_request.json"))
                 .mockedResponseFromSavingsGoalRetrieval(String.join(delimeter, path, "retrieveSavingsGoal_response.json"))
                 .savingsGoalRetrievalResponseHeaders(Headers.of(HttpHeaders.CONTENT_TYPE, APPLICATION_JSON_VALUE))
                 .mockedStatusCodeFromSavingsGoalRetrieval(savingsGoalRetrievalStatus)
