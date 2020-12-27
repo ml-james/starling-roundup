@@ -33,7 +33,7 @@ public class RoundupActionResource
         catch (ClientException e)
         {
             log.error("There was an error in your request for {}", accountUid, e);
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(RoundupActionResponse.builder().error(e.getError()).build());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(RoundupActionResponse.builder().errors(e.getError()).build());
         }
         catch (ServerException e)
         {

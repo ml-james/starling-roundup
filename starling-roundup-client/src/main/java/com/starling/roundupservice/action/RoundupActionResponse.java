@@ -20,6 +20,6 @@ public class RoundupActionResponse
   String transferUid;
   @JsonProperty("amount")
   int amount;
-  @JsonProperty("error")
-  Map<String, String> error;
+  @JsonProperty("errors")
+  Map<String, String> errors;
 }

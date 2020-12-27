@@ -3,6 +3,7 @@ package com.starling.roundupservice;
 import com.starling.roundupservice.common.account.roundup.RoundupAccountRepository;
 import com.starling.roundupservice.common.account.roundup.RoundupStateRepository;
 import okhttp3.mockwebserver.MockWebServer;
+import org.joda.time.DateTimeUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,11 +45,13 @@ public class BaseTestIT extends BaseTest
     @BeforeEach
     void setUp() throws IOException {
         server.start(mockServerPort);
+        DateTimeUtils.setCurrentMillisFixed(1609087099698L);
     }
 
     @AfterEach
     void tearDown() throws IOException
     {
         server.shutdown();
+        DateTimeUtils.setCurrentMillisSystem();
     }
 }

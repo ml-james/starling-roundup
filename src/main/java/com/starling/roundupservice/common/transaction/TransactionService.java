@@ -27,12 +27,10 @@ public class TransactionService
                 .maxTransactionTimestamp(new DateTime().withDayOfWeek(1).withTimeAtStartOfDay().toString())
                 .build();
 
-        System.out.println("HELLO THE TIME IS " + new DateTime().toString());
-
         if (!roundupStateService.isRoundupDue(roundUpAccount.getRoundupUid(), transactionWindow.maxTransactionTimestamp))
         {
             throw new ClientException("Roundup requirability: ", String
-                    .format("a roundup is not required at this time, we have already rounded up the transactions for the account %s, week end %s", roundUpAccount.getAccountUid(),
+                    .format("a roundup is not required at this time, we have already rounded up the transactions for the account %s, week end %s.", roundUpAccount.getAccountUid(),
                             transactionWindow.maxTransactionTimestamp));
         }
 
