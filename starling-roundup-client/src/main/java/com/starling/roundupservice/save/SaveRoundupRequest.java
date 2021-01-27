@@ -15,10 +15,7 @@ import lombok.Value;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SaveRoundupRequest
 {
-  @JsonProperty("goal")
   int goal;
-  @JsonProperty("roundupMaximum")
   int roundupMaximum;
-  @JsonProperty("roundupFactor")
   int roundupFactor;
 }

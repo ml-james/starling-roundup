@@ -17,16 +17,10 @@ import lombok.Value;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SaveRoundupResponse
 {
-
-  @JsonProperty("roundupSavingsGoalUid")
   String roundupSavingsGoalUid;
-  @JsonProperty("roundupGoal")
-  int goal;
-  @JsonProperty("roundupMaximum")
+  int roundupGoal;
   int roundupMaximum;
-  @JsonProperty("roundupFactor")
   int roundupFactor;
-  @JsonProperty("errors")
   Map<String, String> errors;
 
 }

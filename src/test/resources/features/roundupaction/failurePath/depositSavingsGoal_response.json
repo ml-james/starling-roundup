@@ -1,0 +1,8 @@
+{
+  "success": false,
+  "errors": [
+    {
+      "message": "There was an error in the request for savings goal deposit."
+    }
+  ]
+}

@@ -37,7 +37,7 @@ public class UpdateSavingsGoalService
 
         return SaveRoundupResponse.builder()
                 .roundupSavingsGoalUid(account.getSavingsGoalUid())
-                .goal(saveRequest.getGoal())
+                .roundupGoal(saveRequest.getGoal())
                 .roundupFactor(saveRequest.getRoundupFactor())
                 .roundupMaximum(saveRequest.getRoundupMaximum())
                 .build();

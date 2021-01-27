@@ -16,20 +16,12 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RetrieveRoundupResponse
 {
-    @JsonProperty("roundupSavingsGoalUid")
     String roundupSavingsGoalUid;
-    @JsonProperty("roundupValue")
     int roundupValue;
-    @JsonProperty("roundupGoal")
     int roundupGoal;
-    @JsonProperty("currency")
     String currency;
-    @JsonProperty("roundupMaximum")
     int roundupMaximum;
-    @JsonProperty("roundupFactor")
     int roundupFactor;
-    @JsonProperty("completionPercentage")
     int completionPercentage;
-    @JsonProperty("errors")
     Map<String, String> errors;
 }

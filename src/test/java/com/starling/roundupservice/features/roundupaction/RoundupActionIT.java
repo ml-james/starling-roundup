@@ -46,13 +46,13 @@ public class RoundupActionIT extends BaseTestIT
                 requestsDepositSavingsGoal = false;
                 accountUid = "a2191626-c67c-4a4b-aef9-3b1b80b65fdc";
                 break;
-            case "roundup_action":
             case "bad_request":
+            case "roundup_action":
             default:
-                requestsFundConfirmationProvider = false;
-                requestsTransactionsProvider = false;
-                requestsDepositSavingsGoal = false;
-                accountUid = "22222b22-fd4c-45d4-b509-1d6fbbdaf777";
+                requestsTransactionsProvider = true;
+                requestsFundConfirmationProvider = true;
+                requestsDepositSavingsGoal = true;
+                accountUid = "a2191626-c67c-4a4b-aef9-3b1b80b65fdc";
                 break;
         }
 

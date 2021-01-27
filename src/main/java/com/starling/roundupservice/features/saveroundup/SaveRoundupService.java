@@ -42,7 +42,7 @@ public class SaveRoundupService
 
         return SaveRoundupResponse.builder()
                 .roundupSavingsGoalUid(savingsGoal.getSavingsGoalUid())
-                .goal(saveRequest.getGoal())
+                .roundupGoal(saveRequest.getGoal())
                 .roundupMaximum(saveRequest.getRoundupMaximum())
                 .roundupFactor(saveRequest.getRoundupFactor())
                 .build();
