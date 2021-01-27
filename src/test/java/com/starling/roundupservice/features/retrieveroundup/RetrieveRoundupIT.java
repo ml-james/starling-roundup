@@ -29,9 +29,9 @@ public class RetrieveRoundupIT extends BaseTestIT
                 requestsSavingsGoalRetrieval = false;
                 accountUid = "11111a11-fd4c-45d4-b509-1d6fbbdaf777";
                 break;
-            case "bad_request":
             case "retrieve_roundup":
             case "unauthorised":
+            case "bad_request":
             default:
                 requestsSavingsGoalRetrieval = true;
                 accountUid = "b2191626-c67c-4a4b-aef9-3b1b80b65fdc";

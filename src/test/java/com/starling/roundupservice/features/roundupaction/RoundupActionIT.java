@@ -28,11 +28,23 @@ public class RoundupActionIT extends BaseTestIT
         this.mockedParameters = mockedParameters;
         switch (testName)
         {
+            case "roundup_action":
+                requestsTransactionsProvider = true;
+                requestsFundConfirmationProvider = true;
+                requestsDepositSavingsGoal = true;
+                accountUid = "d2191626-c67c-4a4b-aef9-3b1b80b65fdc";
+                break;
             case "insufficient_funds":
                 requestsTransactionsProvider = true;
                 requestsFundConfirmationProvider = true;
                 requestsDepositSavingsGoal = false;
                 accountUid = "b2191626-c67c-4a4b-aef9-3b1b80b65fdc";
+                break;
+            case "zero_roundup":
+                requestsTransactionsProvider = true;
+                requestsFundConfirmationProvider = false;
+                requestsDepositSavingsGoal = false;
+                accountUid = "c2191626-c67c-4a4b-aef9-3b1b80b65fdc";
                 break;
             case "not_due":
                 requestsTransactionsProvider = false;
@@ -47,7 +59,6 @@ public class RoundupActionIT extends BaseTestIT
                 accountUid = "a2191626-c67c-4a4b-aef9-3b1b80b65fdc";
                 break;
             case "bad_request":
-            case "roundup_action":
             default:
                 requestsTransactionsProvider = true;
                 requestsFundConfirmationProvider = true;

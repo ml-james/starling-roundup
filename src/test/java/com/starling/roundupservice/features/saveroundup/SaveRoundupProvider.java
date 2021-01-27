@@ -19,9 +19,9 @@ public class SaveRoundupProvider implements ArgumentsProvider
     public Stream<? extends Arguments> provideArguments(ExtensionContext extensioncontext) {
         return Stream.of(
                 Arguments.of("create_roundup", getMockedParameters("features/saveroundup/createRoundupPath", HttpStatus.OK, HttpStatus.OK, HttpStatus.OK)),
-                Arguments.of("bad_request", getMockedParameters("features/saveroundup/failurePath", HttpStatus.BAD_REQUEST, HttpStatus.OK, HttpStatus.BAD_REQUEST)),
+                Arguments.of("update_roundup", getMockedParameters("features/saveroundup/updateRoundupPath", HttpStatus.OK, null, HttpStatus.OK)),
                 Arguments.of("unauthorised", getMockedParameters("features/saveroundup/unauthorisedPath", HttpStatus.BAD_REQUEST, HttpStatus.FORBIDDEN, null)),
-                Arguments.of("update_roundup", getMockedParameters("features/saveroundup/updateRoundupPath", HttpStatus.OK, null, HttpStatus.OK))
+                Arguments.of("bad_request", getMockedParameters("features/saveroundup/failurePath", HttpStatus.BAD_REQUEST, HttpStatus.OK, HttpStatus.BAD_REQUEST))
                 );
     }
 

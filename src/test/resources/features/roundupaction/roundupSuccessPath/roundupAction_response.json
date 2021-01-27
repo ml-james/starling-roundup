@@ -1,3 +1,5 @@
 {
-  "roundupState": "INSUFFICIENT_FUNDS"
+  "roundupState": "TRANSFERRED",
+  "transferUid": "d2191626-c67c-4a4b-aef9-3b1b80b65fdc",
+  "amount": 50
 }

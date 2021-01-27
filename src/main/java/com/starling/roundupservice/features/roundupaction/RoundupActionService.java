@@ -25,20 +25,9 @@ public class RoundupActionService
     public RoundupActionResponse performRoundup(final String accountUid, final String bearerToken)
     {
         var roundupAccount = getRoundupAccount(accountUid);
-        var roundUp = transactionService.getLatestRoundup(roundupAccount, bearerToken);
+        var roundup = transactionService.getLatestRoundup(roundupAccount, bearerToken);
 
-        // TODO: let's deal with roundup 0 edge case
-        if (fundConfirmationService.sufficientFunds(accountUid, roundUp.getRoundupAmount(), bearerToken))
-        {
-            var transferUid = depositSavingsGoalService.deposit(roundupAccount, roundUp.getRoundupAmount(), bearerToken);
-            roundupStateService.insertState(roundupAccount.getRoundupUid(), transferUid, State.TRANSFERRED, roundUp.getWeekEnd());
-            return RoundupActionResponseTransformer.transform(State.TRANSFERRED, transferUid, roundUp.getRoundupAmount());
-        }
-        else
-        {
-            roundupStateService.insertState(roundupAccount.getRoundupUid(), null, State.INSUFFICIENT_FUNDS, roundUp.getWeekEnd());
-            return RoundupActionResponseTransformer.transform(State.INSUFFICIENT_FUNDS);
-        }
+        return persistRoundup(accountUid, bearerToken, roundupAccount, roundup);
     }
 
     private RoundupAccountMapping getRoundupAccount(final String accountUid)
@@ -49,5 +38,25 @@ public class RoundupActionService
             throw new ClientException("Retrieve roundup account error: ", String.format("no roundup account exists for account %s", accountUid));
         }
         return roundupAccount.get();
+    }
+
+    private RoundupActionResponse persistRoundup(String accountUid, String bearerToken, RoundupAccountMapping roundupAccount, com.starling.roundupservice.common.transaction.Roundup roundup)
+    {
+        if (roundup.roundupAmount == 0)
+        {
+            roundupStateService.insertState(roundupAccount.getRoundupUid(), null, State.ZERO_ROUNDUP, roundup.getWeekEnd());
+            return RoundupActionResponseTransformer.transform(State.ZERO_ROUNDUP);
+        }
+        else if (fundConfirmationService.sufficientFunds(accountUid, roundup.getRoundupAmount(), bearerToken))
+        {
+            var transferUid = depositSavingsGoalService.deposit(roundupAccount, roundup.getRoundupAmount(), bearerToken);
+            roundupStateService.insertState(roundupAccount.getRoundupUid(), transferUid, State.TRANSFERRED, roundup.getWeekEnd());
+            return RoundupActionResponseTransformer.transform(State.TRANSFERRED, transferUid, roundup.getRoundupAmount());
+        }
+        else
+        {
+            roundupStateService.insertState(roundupAccount.getRoundupUid(), null, State.INSUFFICIENT_FUNDS, roundup.getWeekEnd());
+            return RoundupActionResponseTransformer.transform(State.INSUFFICIENT_FUNDS);
+        }
     }
 }

@@ -18,8 +18,9 @@ public class RoundupActionProvider implements ArgumentsProvider
 
     public Stream<? extends Arguments> provideArguments(ExtensionContext extensioncontext) {
         return Stream.of(
-//                Arguments.of("roundup_action", getMockedParameters("features/roundupaction/roundupSuccessPath", HttpStatus.OK, HttpStatus.OK, HttpStatus.OK, HttpStatus.OK)),
+                Arguments.of("roundup_action", getMockedParameters("features/roundupaction/roundupSuccessPath", HttpStatus.OK, HttpStatus.OK, HttpStatus.OK, HttpStatus.OK)),
                 Arguments.of("insufficient_funds", getMockedParameters("features/roundupaction/insufficientFundsPath", HttpStatus.OK, HttpStatus.OK, HttpStatus.OK, null)),
+                Arguments.of("zero_roundup", getMockedParameters("features/roundupaction/zeroRoundupPath", HttpStatus.OK, HttpStatus.OK, null, null)),
                 Arguments.of("not_due", getMockedParameters("features/roundupaction/roundupNotDuePath", HttpStatus.BAD_REQUEST, null, null, null)),
                 Arguments.of("unauthorised", getMockedParameters("features/roundupaction/unauthorisedPath", HttpStatus.BAD_REQUEST, HttpStatus.FORBIDDEN, null, null)),
                 Arguments.of("bad_request", getMockedParameters("features/roundupaction/failurePath", HttpStatus.BAD_REQUEST, HttpStatus.OK, HttpStatus.OK, HttpStatus.BAD_REQUEST))

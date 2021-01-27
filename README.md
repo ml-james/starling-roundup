@@ -1,5 +1,3 @@
 -- / todo / --
 
-i. it for roundup action
-
-ii. Documentation ...
+i. Documentation ...
