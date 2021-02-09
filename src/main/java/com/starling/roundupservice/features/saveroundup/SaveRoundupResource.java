@@ -19,7 +19,7 @@ public class SaveRoundupResource
 {
     private final SaveRoundupService saveRoundupService;
 
-    @PutMapping(path = "/saveRoundupGoal/accountUid/{accountUid}/", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PutMapping(path = "/saveRoundupGoal/accountUid/{accountUid}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<SaveRoundupResponse> saveRoundupGoal(@PathVariable("accountUid") final String accountUid,
                                                                  @RequestBody final SaveRoundupRequest creationRequest,
                                                                  @RequestHeader("Authorization") String bearerToken)

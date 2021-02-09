@@ -35,8 +35,7 @@ public class RetrieveRoundupResource
             log.error("There was an error in your request for roundup retrieval for account {}", accountUid, e);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(RetrieveRoundupResponse.builder().errors(e.getError()).build());
         }
-        catch (
-                ServerException e)
+        catch (ServerException e)
         {
             log.error("There was an error on our side processing your request for roundup retrieval for account {}", accountUid, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(RetrieveRoundupResponse.builder().errors(e.getError()).build());

@@ -1,0 +1,404 @@
+{
+	"info": {
+		"_postman_id": "cdbbdabd-4e84-4a1e-a4d0-51247aa7d196",
+		"name": "starling-roundup",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "starling-api",
+			"item": [
+				{
+					"name": "getAccounts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJQUzI1NiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAH1Ty47cIBD8lZXP2yu_X7fc8gP5gAbaM2hssABPsory78EGj8eTVW6uqqa7isa_E2lt0ic4SxA06Q_r0IxSXRiq2wfXU_Ke2IX5Cj4UXUsDAg7YQVm3OXSsHoBYSk1TNWnGSl9Mv-akz-osr7uu6bL3RKKLRFYUK4Gc60W573oUZH5IsU6nssUUCWrWMSjTLoe2LisoyrJoSPAqbZjv7fSNVDiRMdFVaZ5BnjYVlLn3xSpRQpaJGlNGTZUP_oSP9Y1zsjacahnL84Jl0FaNzyD80TbLO6hrzopuYG3aFWtgrmdabQWncN2sgsKJekMo3l4E9zm_CFKQcnKQZM78KK07MREIYbzJnoR0DxAU55BfJ3pUHvinkY7ecHFXbaT1KwOphLxLseAYihmOqHi0xtEI4Fo5o8cwaGWiptUgzYROagV6gGFRwj4k-5i-gzCaL9bpaY9IE8rYeCRvRF16nOfx84G2qgmVQEe9oJF8ix1GzdzIrUFmQwMZ8t7t_6RgI2jziJz8DTi6mC3H88F_xXiUDL_inm4ih94N9tzDTY14CzXjJ9EuBRBDBHAUgZzwEjMF7fgEZ1BZ5IdDTwNbxlu_b5IO6pgW8DEw4EeDUXO_9KfyjQC9bv-VjaeMHuS4ew3mT9RWZYiTnN0J2LMUbtLi3W_HwkUfPk5ctH7itj7PTLgdv9-vWhziF70OMTTlVxLLSAJ87OPvseScD7jMEc64_x3hM2ZxuL1Y0EY8WTmzu4czG3o5X78OBW7vr9QshkgtzHLjb3B9CXu3Z26ren4u25Je30_y5y8mNPd3wwUAAA.lhvaaiEf-veo-akU5HKeshgfhjNqWi4HS5_IjF75OLzswxea9OMNkvmvnI6sS6OtOCJTB0ANAhmGqR2X-mS4fQg2N-okoor8IGLX0IkNYzqron6r1sirHijvdBP36RJMZAH_qxrSLCFIZsXNH0Q8E7Twl1ybg27oWcxBUHugjoFfZyZccMXpmbx3YcR6hOMs9m4ALzIf8Ttd3zcDxJuofeygEcuQ7Zt5LbtLff1oDA9nPhes3mT4E-Ey_2Bj0RsElwIxIFkHVMWkwr7ZyExomdZPwqNMNo13YSwlm3PieIyX1EPkH6YAGRpkdC_SUJGbyEFqDvvmS_NI4rbeZftJuL6okyPbKTQvQxNgJZKmVe4Y1NH4SvYUAlZnNzOFCPhbpSOeECzqZ6z6Km5N7HWP0eK9-T0mI2axbpQe6-VwKFICtTm7OArddF6gnCN52q55GyeuGSTc3NGExQtqRBuZFd9E7OoB6TCOJrB2RqXS7Xsz3Ynip9dYAryAwpOZGLKZZzEO288e0EyjI5ljFa2dL-feypbrxq3upETkODytqiRG8-Sgul8R7ouNp1cqDkvUzdo6oP6Xk6PMlKujD3YBrmI4HUUiQaCASpqK8VF1MKmZDu91RLd3JduLrGB98dVyj0PnQSRCYirFX8fmdj9NHEUSpksqA95qQdctW33Po44",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api-sandbox.starlingbank.com/api/v2/accounts",
+							"protocol": "https",
+							"host": [
+								"api-sandbox",
+								"starlingbank",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createSavingsGoal",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Trip to Paris\",\n  \"currency\": \"GBP\",\n  \"target\": {\n    \"currency\": \"GBP\",\n    \"minorUnits\": 123456\n  },\n  \"base64EncodedPhoto\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-sandbox.starlingbank.com/api/v2/account/55198b91-fd4c-45d4-b509-1d6fbbdaf777/savings-goals",
+							"protocol": "https",
+							"host": [
+								"api-sandbox",
+								"starlingbank",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"account",
+								"55198b91-fd4c-45d4-b509-1d6fbbdaf777",
+								"savings-goals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateSavingsGoal",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Trip to Paris\",\n  \"currency\": \"GBP\",\n  \"target\": {\n    \"currency\": \"GBP\",\n    \"minorUnits\": 123456\n  },\n  \"base64EncodedPhoto\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-sandbox.starlingbank.com/api/v2/account/55198b91-fd4c-45d4-b509-1d6fbbdaf777/savings-goals/0942c644-e253-4918-a369-9ff1a596e501",
+							"protocol": "https",
+							"host": [
+								"api-sandbox",
+								"starlingbank",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"account",
+								"55198b91-fd4c-45d4-b509-1d6fbbdaf777",
+								"savings-goals",
+								"0942c644-e253-4918-a369-9ff1a596e501"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTransactionFeed",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-sandbox.starlingbank.com/api/v2/account/55198b91-fd4c-45d4-b509-1d6fbbdaf777/category/717ad742-6545-415f-be3c-30a0cbfe9f4d/transactions-between?minTransactionTimestamp=2021-01-25T00:00:00.000Z&?maxTransactionTimestamp=2021-02-01T00:00:00.000Z",
+							"protocol": "https",
+							"host": [
+								"api-sandbox",
+								"starlingbank",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"account",
+								"55198b91-fd4c-45d4-b509-1d6fbbdaf777",
+								"category",
+								"717ad742-6545-415f-be3c-30a0cbfe9f4d",
+								"transactions-between"
+							],
+							"query": [
+								{
+									"key": "minTransactionTimestamp",
+									"value": "2021-01-25T00:00:00.000Z"
+								},
+								{
+									"key": "?maxTransactionTimestamp",
+									"value": "2021-02-01T00:00:00.000Z"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fundConfirmation",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-sandbox.starlingbank.com/api/v2/accounst/55198b91-fd4c-45d4-b509-1d6fbbdaf777/confirmation-of-fundsnsactions-between?targetAmountInMinorUnits=100",
+							"protocol": "https",
+							"host": [
+								"api-sandbox",
+								"starlingbank",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"accounst",
+								"55198b91-fd4c-45d4-b509-1d6fbbdaf777",
+								"confirmation-of-fundsnsactions-between"
+							],
+							"query": [
+								{
+									"key": "targetAmountInMinorUnits",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "depositToSavingsGoal",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-sandbox.starlingbank.com/api/v2/account/55198b91-fd4c-45d4-b509-1d6fbbdaf777/savings-goals/0942c644-e253-4918-a369-9ff1a596e501/add-money/0942c644-e253-4918-a369-9ff1a0000000",
+							"protocol": "https",
+							"host": [
+								"api-sandbox",
+								"starlingbank",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"account",
+								"55198b91-fd4c-45d4-b509-1d6fbbdaf777",
+								"savings-goals",
+								"0942c644-e253-4918-a369-9ff1a596e501",
+								"add-money",
+								"0942c644-e253-4918-a369-9ff1a0000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieveSavingsGoal",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-sandbox.starlingbank.com/api/v2/account/55198b91-fd4c-45d4-b509-1d6fbbdaf777/savings-goals/0942c644-e253-4918-a369-9ff1a596e501",
+							"protocol": "https",
+							"host": [
+								"api-sandbox",
+								"starlingbank",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"account",
+								"55198b91-fd4c-45d4-b509-1d6fbbdaf777",
+								"savings-goals",
+								"0942c644-e253-4918-a369-9ff1a596e501"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "roundup-api",
+			"item": [
+				{
+					"name": "saveRoundup",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJQUzI1NiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAH1Ty47cIBD8lZXP2yu_X7fc8gP5gAbaM2hssABPsory78EGj8eTVW6uqqa7isa_E2lt0ic4SxA06Q_r0IxSXRiq2wfXU_Ke2IX5Cj4UXUsDAg7YQVm3OXSsHoBYSk1TNWnGSl9Mv-akz-osr7uu6bL3RKKLRFYUK4Gc60W573oUZH5IsU6nssUUCWrWMSjTLoe2LisoyrJoSPAqbZjv7fSNVDiRMdFVaZ5BnjYVlLn3xSpRQpaJGlNGTZUP_oSP9Y1zsjacahnL84Jl0FaNzyD80TbLO6hrzopuYG3aFWtgrmdabQWncN2sgsKJekMo3l4E9zm_CFKQcnKQZM78KK07MREIYbzJnoR0DxAU55BfJ3pUHvinkY7ecHFXbaT1KwOphLxLseAYihmOqHi0xtEI4Fo5o8cwaGWiptUgzYROagV6gGFRwj4k-5i-gzCaL9bpaY9IE8rYeCRvRF16nOfx84G2qgmVQEe9oJF8ix1GzdzIrUFmQwMZ8t7t_6RgI2jziJz8DTi6mC3H88F_xXiUDL_inm4ih94N9tzDTY14CzXjJ9EuBRBDBHAUgZzwEjMF7fgEZ1BZ5IdDTwNbxlu_b5IO6pgW8DEw4EeDUXO_9KfyjQC9bv-VjaeMHuS4ew3mT9RWZYiTnN0J2LMUbtLi3W_HwkUfPk5ctH7itj7PTLgdv9-vWhziF70OMTTlVxLLSAJ87OPvseScD7jMEc64_x3hM2ZxuL1Y0EY8WTmzu4czG3o5X78OBW7vr9QshkgtzHLjb3B9CXu3Z26ren4u25Je30_y5y8mNPd3wwUAAA.lhvaaiEf-veo-akU5HKeshgfhjNqWi4HS5_IjF75OLzswxea9OMNkvmvnI6sS6OtOCJTB0ANAhmGqR2X-mS4fQg2N-okoor8IGLX0IkNYzqron6r1sirHijvdBP36RJMZAH_qxrSLCFIZsXNH0Q8E7Twl1ybg27oWcxBUHugjoFfZyZccMXpmbx3YcR6hOMs9m4ALzIf8Ttd3zcDxJuofeygEcuQ7Zt5LbtLff1oDA9nPhes3mT4E-Ey_2Bj0RsElwIxIFkHVMWkwr7ZyExomdZPwqNMNo13YSwlm3PieIyX1EPkH6YAGRpkdC_SUJGbyEFqDvvmS_NI4rbeZftJuL6okyPbKTQvQxNgJZKmVe4Y1NH4SvYUAlZnNzOFCPhbpSOeECzqZ6z6Km5N7HWP0eK9-T0mI2axbpQe6-VwKFICtTm7OArddF6gnCN52q55GyeuGSTc3NGExQtqRBuZFd9E7OoB6TCOJrB2RqXS7Xsz3Ynip9dYAryAwpOZGLKZZzEO288e0EyjI5ljFa2dL-feypbrxq3upETkODytqiRG8-Sgul8R7ouNp1cqDkvUzdo6oP6Xk6PMlKujD3YBrmI4HUUiQaCASpqK8VF1MKmZDu91RLd3JduLrGB98dVyj0PnQSRCYirFX8fmdj9NHEUSpksqA95qQdctW33Po44",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"goal\":1000,\n    \"roundupMaximum\":1000,\n    \"roundupFactor\":2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/StarlingRoundup/saveRoundupGoal/accountUid/55198b91-fd4c-45d4-b509-1d6fbbdaf777",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"StarlingRoundup",
+								"saveRoundupGoal",
+								"accountUid",
+								"55198b91-fd4c-45d4-b509-1d6fbbdaf777"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "roundupAction",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJQUzI1NiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAH1Ty47cIBD8lZXP2yu_X7fc8gP5gAbaM2hssABPsory78EGj8eTVW6uqqa7isa_E2lt0ic4SxA06Q_r0IxSXRiq2wfXU_Ke2IX5Cj4UXUsDAg7YQVm3OXSsHoBYSk1TNWnGSl9Mv-akz-osr7uu6bL3RKKLRFYUK4Gc60W573oUZH5IsU6nssUUCWrWMSjTLoe2LisoyrJoSPAqbZjv7fSNVDiRMdFVaZ5BnjYVlLn3xSpRQpaJGlNGTZUP_oSP9Y1zsjacahnL84Jl0FaNzyD80TbLO6hrzopuYG3aFWtgrmdabQWncN2sgsKJekMo3l4E9zm_CFKQcnKQZM78KK07MREIYbzJnoR0DxAU55BfJ3pUHvinkY7ecHFXbaT1KwOphLxLseAYihmOqHi0xtEI4Fo5o8cwaGWiptUgzYROagV6gGFRwj4k-5i-gzCaL9bpaY9IE8rYeCRvRF16nOfx84G2qgmVQEe9oJF8ix1GzdzIrUFmQwMZ8t7t_6RgI2jziJz8DTi6mC3H88F_xXiUDL_inm4ih94N9tzDTY14CzXjJ9EuBRBDBHAUgZzwEjMF7fgEZ1BZ5IdDTwNbxlu_b5IO6pgW8DEw4EeDUXO_9KfyjQC9bv-VjaeMHuS4ew3mT9RWZYiTnN0J2LMUbtLi3W_HwkUfPk5ctH7itj7PTLgdv9-vWhziF70OMTTlVxLLSAJ87OPvseScD7jMEc64_x3hM2ZxuL1Y0EY8WTmzu4czG3o5X78OBW7vr9QshkgtzHLjb3B9CXu3Z26ren4u25Je30_y5y8mNPd3wwUAAA.lhvaaiEf-veo-akU5HKeshgfhjNqWi4HS5_IjF75OLzswxea9OMNkvmvnI6sS6OtOCJTB0ANAhmGqR2X-mS4fQg2N-okoor8IGLX0IkNYzqron6r1sirHijvdBP36RJMZAH_qxrSLCFIZsXNH0Q8E7Twl1ybg27oWcxBUHugjoFfZyZccMXpmbx3YcR6hOMs9m4ALzIf8Ttd3zcDxJuofeygEcuQ7Zt5LbtLff1oDA9nPhes3mT4E-Ey_2Bj0RsElwIxIFkHVMWkwr7ZyExomdZPwqNMNo13YSwlm3PieIyX1EPkH6YAGRpkdC_SUJGbyEFqDvvmS_NI4rbeZftJuL6okyPbKTQvQxNgJZKmVe4Y1NH4SvYUAlZnNzOFCPhbpSOeECzqZ6z6Km5N7HWP0eK9-T0mI2axbpQe6-VwKFICtTm7OArddF6gnCN52q55GyeuGSTc3NGExQtqRBuZFd9E7OoB6TCOJrB2RqXS7Xsz3Ynip9dYAryAwpOZGLKZZzEO288e0EyjI5ljFa2dL-feypbrxq3upETkODytqiRG8-Sgul8R7ouNp1cqDkvUzdo6oP6Xk6PMlKujD3YBrmI4HUUiQaCASpqK8VF1MKmZDu91RLd3JduLrGB98dVyj0PnQSRCYirFX8fmdj9NHEUSpksqA95qQdctW33Po44",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"goalName\":\"myroundup\",\n    \"currency\":\"gbp\",\n    \"goal\":1000,\n    \"roundupMaximum\":50,\n    \"roundupFactor\":1,\n    \"base64EncodedPhoto\":\"dffewf\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/StarlingRoundup/roundupAction/accountUid/55198b91-fd4c-45d4-b509-1d6fbbdaf777",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"StarlingRoundup",
+								"roundupAction",
+								"accountUid",
+								"55198b91-fd4c-45d4-b509-1d6fbbdaf777"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieveRoundup",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJQUzI1NiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAH1Ty47cIBD8lZXP2yu_X7fc8gP5gAbaM2hssABPsory78EGj8eTVW6uqqa7isa_E2lt0ic4SxA06Q_r0IxSXRiq2wfXU_Ke2IX5Cj4UXUsDAg7YQVm3OXSsHoBYSk1TNWnGSl9Mv-akz-osr7uu6bL3RKKLRFYUK4Gc60W573oUZH5IsU6nssUUCWrWMSjTLoe2LisoyrJoSPAqbZjv7fSNVDiRMdFVaZ5BnjYVlLn3xSpRQpaJGlNGTZUP_oSP9Y1zsjacahnL84Jl0FaNzyD80TbLO6hrzopuYG3aFWtgrmdabQWncN2sgsKJekMo3l4E9zm_CFKQcnKQZM78KK07MREIYbzJnoR0DxAU55BfJ3pUHvinkY7ecHFXbaT1KwOphLxLseAYihmOqHi0xtEI4Fo5o8cwaGWiptUgzYROagV6gGFRwj4k-5i-gzCaL9bpaY9IE8rYeCRvRF16nOfx84G2qgmVQEe9oJF8ix1GzdzIrUFmQwMZ8t7t_6RgI2jziJz8DTi6mC3H88F_xXiUDL_inm4ih94N9tzDTY14CzXjJ9EuBRBDBHAUgZzwEjMF7fgEZ1BZ5IdDTwNbxlu_b5IO6pgW8DEw4EeDUXO_9KfyjQC9bv-VjaeMHuS4ew3mT9RWZYiTnN0J2LMUbtLi3W_HwkUfPk5ctH7itj7PTLgdv9-vWhziF70OMTTlVxLLSAJ87OPvseScD7jMEc64_x3hM2ZxuL1Y0EY8WTmzu4czG3o5X78OBW7vr9QshkgtzHLjb3B9CXu3Z26ren4u25Je30_y5y8mNPd3wwUAAA.lhvaaiEf-veo-akU5HKeshgfhjNqWi4HS5_IjF75OLzswxea9OMNkvmvnI6sS6OtOCJTB0ANAhmGqR2X-mS4fQg2N-okoor8IGLX0IkNYzqron6r1sirHijvdBP36RJMZAH_qxrSLCFIZsXNH0Q8E7Twl1ybg27oWcxBUHugjoFfZyZccMXpmbx3YcR6hOMs9m4ALzIf8Ttd3zcDxJuofeygEcuQ7Zt5LbtLff1oDA9nPhes3mT4E-Ey_2Bj0RsElwIxIFkHVMWkwr7ZyExomdZPwqNMNo13YSwlm3PieIyX1EPkH6YAGRpkdC_SUJGbyEFqDvvmS_NI4rbeZftJuL6okyPbKTQvQxNgJZKmVe4Y1NH4SvYUAlZnNzOFCPhbpSOeECzqZ6z6Km5N7HWP0eK9-T0mI2axbpQe6-VwKFICtTm7OArddF6gnCN52q55GyeuGSTc3NGExQtqRBuZFd9E7OoB6TCOJrB2RqXS7Xsz3Ynip9dYAryAwpOZGLKZZzEO288e0EyjI5ljFa2dL-feypbrxq3upETkODytqiRG8-Sgul8R7ouNp1cqDkvUzdo6oP6Xk6PMlKujD3YBrmI4HUUiQaCASpqK8VF1MKmZDu91RLd3JduLrGB98dVyj0PnQSRCYirFX8fmdj9NHEUSpksqA95qQdctW33Po44",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/StarlingRoundup/retrieveRoundupGoal/accountUid/55198b91-fd4c-45d4-b509-1d6fbbdaf777",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"StarlingRoundup",
+								"retrieveRoundupGoal",
+								"accountUid",
+								"55198b91-fd4c-45d4-b509-1d6fbbdaf777"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

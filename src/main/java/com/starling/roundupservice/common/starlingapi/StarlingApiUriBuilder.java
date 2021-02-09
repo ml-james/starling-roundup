@@ -24,13 +24,13 @@ public class StarlingApiUriBuilder
                                                  final String minTransactionTimestamp,
                                                  final String maxTransactionTimestamp)
     {
-        return String.format("/account/%s/category/%s/category/transactions-between?minTransactionTimestamp=%s&?maxTransactionTimestamp=%s",
+        return String.format("/account/%s/category/%s/transactions-between?minTransactionTimestamp=%s&?maxTransactionTimestamp=%s",
                 accountUid, categoryUid, minTransactionTimestamp, maxTransactionTimestamp);
     }
 
     public static String buildFundConfirmationUri(final String accountUid, final int amount)
     {
-        return String.format("/accounts/%s/confirmation-of-funds?=targetAmountInMinorUnits=%s", accountUid, amount);
+        return String.format("/accounts/%s/confirmation-of-funds?targetAmountInMinorUnits=%s", accountUid, amount);
     }
 
     public static String buildSavingsDepositUri(final String accountUid,
