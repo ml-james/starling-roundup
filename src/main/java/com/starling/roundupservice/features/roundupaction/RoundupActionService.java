@@ -27,7 +27,7 @@ public class RoundupActionService
         var roundupAccount = getRoundupAccount(accountUid);
         var roundup = transactionService.getLatestRoundup(roundupAccount, bearerToken);
 
-        return persistRoundup(accountUid, bearerToken, roundupAccount, roundup);
+        return persistRoundupAction(accountUid, bearerToken, roundupAccount, roundup);
     }
 
     private RoundupAccountMapping getRoundupAccount(final String accountUid)
@@ -40,7 +40,7 @@ public class RoundupActionService
         return roundupAccount.get();
     }
 
-    private RoundupActionResponse persistRoundup(String accountUid, String bearerToken, RoundupAccountMapping roundupAccount, com.starling.roundupservice.common.transaction.Roundup roundup)
+    private RoundupActionResponse persistRoundupAction(String accountUid, String bearerToken, RoundupAccountMapping roundupAccount, com.starling.roundupservice.common.transaction.Roundup roundup)
     {
         if (roundup.roundupAmount == 0)
         {

@@ -20,14 +20,14 @@ public class UpdateSavingsGoalService
 
     public SaveRoundupResponse updateSavingsGoal(final SaveRoundupRequest saveRequest, final RoundupAccountMapping account, final String bearerToken)
     {
-        final var savingsGoalCreationRequest = StarlingApiRequestBuilder.saveRequest(saveRequest, account.getAccountUidCurrency());
+        final var savingsGoalUpdateRequest = StarlingApiRequestBuilder.saveRequest(saveRequest, account.getAccountUidCurrency());
         final var uri = StarlingApiUriBuilder.buildSavingsGoalUpdateUri(account.getAccountUid(), account.getSavingsGoalUid());
 
         starlingAPIProvider.queryStarlingAPI(
                 uri,
                 bearerToken,
                 HttpMethod.PUT,
-                savingsGoalCreationRequest,
+                savingsGoalUpdateRequest,
                 SaveSavingsGoalResponse.class);
 
         roundupAccountService.updateRoundupAccount(account.getAccountUid(),
