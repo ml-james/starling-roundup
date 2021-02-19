@@ -18,9 +18,9 @@
       * Retrieve the last week's transactions from Starling's API and work out the total amount that is required to be rounded up.
       * Check there are sufficient funds in the main account in order to transfer over to the roundup goal savings account on week end.
       * Deposit money from the main account to the savings account.
-      * Manage weekly roundup state for a particular account, where the state could be `TRANSFERRED`, `INSUFFICIENT_FUNDS` or `ZERO_REOUNDUP`.
+      * Manage weekly roundup state for a particular account, where the state could be `TRANSFERRED`, `INSUFFICIENT_FUNDS` or `ZERO_ROUNDUP`.
 
-#### Instructions to set up a Starling developer account
+#### Instructions to set up a Starling Developer Account
 
 * Please create a Starling developer account at https://developer.starlingbank.com/. For this you will need to use an Authenticator app to set up 2FA.
  * Register an application with Starling bank.

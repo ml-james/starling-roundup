@@ -9,7 +9,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.springframework.http.HttpHeaders;
 
-import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -30,6 +29,9 @@ public class RetrieveRoundupIT extends BaseTestIT
                 accountUid = "11111a11-fd4c-45d4-b509-1d6fbbdaf777";
                 break;
             case "retrieve_roundup":
+                requestsSavingsGoalRetrieval = true;
+                accountUid = "a2191626-c67c-4a4b-aef9-3b1b80b65fdc";
+                break;
             case "unauthorised":
             case "bad_request":
             default:
