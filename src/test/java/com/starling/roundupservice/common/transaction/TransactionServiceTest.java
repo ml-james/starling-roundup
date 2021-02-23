@@ -7,6 +7,7 @@ import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.Money;
 import org.joda.time.DateTimeUtils;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -85,8 +86,8 @@ public class TransactionServiceTest
         when(transactionProvider.queryStarlingAPI(any(), any(), any(), any(), any())).thenReturn(new FeedItems(transactions));
         result = transactionService.getLatestRoundup(account, "");
 
-        assertEquals(ROUND_UP_MAXIMUM_100, result.roundupAmount);
-        assertEquals(DEFAULT_WEEK_END, result.weekEnd);
+        Assertions.assertEquals(ROUND_UP_MAXIMUM_100, result.roundupAmount);
+        Assertions.assertEquals(DEFAULT_WEEK_END, result.weekEnd);
     }
 
     @Test

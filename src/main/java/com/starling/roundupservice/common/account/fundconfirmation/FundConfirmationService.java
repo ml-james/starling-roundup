@@ -18,7 +18,7 @@ public class FundConfirmationService
 
         var fundConfirmationResponse = starlingAPIProvider.queryStarlingAPI(uri,
                 bearerToken,
-                HttpMethod.POST,
+                HttpMethod.GET,
                 null,
                 FundConfirmationResponse.class);
 

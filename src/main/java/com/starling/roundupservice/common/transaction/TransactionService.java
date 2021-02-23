@@ -24,7 +24,7 @@ public class TransactionService
     {
         var transactionWindow = TransactionTimestamps.builder()
                 .minTransactionTimestamp(new DateTime().minusWeeks(1).withDayOfWeek(1).withTimeAtStartOfDay().toString())
-                .maxTransactionTimestamp(new DateTime().withDayOfWeek(1).withTimeAtStartOfDay().toString())
+                .maxTransactionTimestamp(new DateTime().minusWeeks(1).withDayOfWeek(7).withTimeAtStartOfDay().toString())
                 .build();
 
         if (!roundupStateService.isRoundupDue(roundUpAccount.getRoundupUid(), transactionWindow.maxTransactionTimestamp))
@@ -35,7 +35,7 @@ public class TransactionService
         }
 
         var uri = StarlingApiUriBuilder.buildTransactionFeedUri(roundUpAccount.getAccountUid(), roundUpAccount.getCategoryUid(), transactionWindow.minTransactionTimestamp, transactionWindow.maxTransactionTimestamp);
-        var transactions = starlingAPIProvider.queryStarlingAPI(uri, bearerToken, HttpMethod.POST, null, FeedItems.class);
+        var transactions = starlingAPIProvider.queryStarlingAPI(uri, bearerToken, HttpMethod.GET, null, FeedItems.class);
 
         return Roundup.builder()
                 .roundupAmount(calculateRoundup(transactions, roundUpAccount))

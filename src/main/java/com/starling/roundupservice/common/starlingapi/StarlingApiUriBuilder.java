@@ -24,7 +24,7 @@ public class StarlingApiUriBuilder
                                                  final String minTransactionTimestamp,
                                                  final String maxTransactionTimestamp)
     {
-        return String.format("/account/%s/category/%s/transactions-between?minTransactionTimestamp=%s&?maxTransactionTimestamp=%s",
+        return String.format("/feed/account/%s/category/%s/transactions-between?minTransactionTimestamp=%s&maxTransactionTimestamp=%s",
                 accountUid, categoryUid, minTransactionTimestamp, maxTransactionTimestamp);
     }
 

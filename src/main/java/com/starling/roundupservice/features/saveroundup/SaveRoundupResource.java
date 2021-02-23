@@ -2,6 +2,7 @@ package com.starling.roundupservice.features.saveroundup;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+import com.starling.roundupservice.action.RoundupActionResponse;
 import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.exception.ServerException;
 import com.starling.roundupservice.save.SaveRoundupRequest;
@@ -11,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 @RestController
 @AllArgsConstructor
@@ -42,7 +45,8 @@ public class SaveRoundupResource
         catch (Exception e)
         {
             log.error("There was an unexpected error processing the request for account {}", accountUid, e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(SaveRoundupResponse.builder()
+                    .errors(new HashMap<>() {{ put("Something unexpected went wrong:", e.getMessage()); }}).build());
         }
     }
 }

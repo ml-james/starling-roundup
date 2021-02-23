@@ -21,6 +21,6 @@ public class RetrieveRoundupResponse
     String currency;
     int roundupMaximum;
     int roundupFactor;
-    int completionPercentage;
+    int savedPercentage;
     Map<String, String> errors;
 }

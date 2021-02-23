@@ -23,7 +23,7 @@ public class DepositSavingsGoalService
 
         var depositResponse = starlingAPIProvider.queryStarlingAPI(uri,
                 bearerToken,
-                HttpMethod.POST,
+                HttpMethod.PUT,
                 savingsGoalDepositRequest,
                 DepositSavingsGoalResponse.class);
 

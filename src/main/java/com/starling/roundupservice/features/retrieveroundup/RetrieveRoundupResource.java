@@ -1,5 +1,6 @@
 package com.starling.roundupservice.features.retrieveroundup;
 
+import com.starling.roundupservice.action.RoundupActionResponse;
 import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.exception.ServerException;
 import com.starling.roundupservice.retrieve.RetrieveRoundupResponse;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -43,7 +46,8 @@ public class RetrieveRoundupResource
         catch (Exception e)
         {
             log.error("There was an unexpected error processing the request for roundup account retrieval for account {}", accountUid, e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(RetrieveRoundupResponse.builder()
+                    .errors(new HashMap<>() {{ put("Something unexpected went wrong:", e.getMessage()); }}).build());
         }
     }
 }

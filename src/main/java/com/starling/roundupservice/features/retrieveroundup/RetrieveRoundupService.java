@@ -33,7 +33,7 @@ public class RetrieveRoundupService
                     .currency(savingsGoalAccount.getTotalSaved().getCurrency())
                     .roundupMaximum(roundupAccount.get().getMaximumRoundup())
                     .roundupFactor(roundupAccount.get().getRoundupFactor())
-                    .completionPercentage(savingsGoalAccount.getPercentageSaved())
+                    .savedPercentage(savingsGoalAccount.getSavedPercentage())
                     .build();
         }
     }

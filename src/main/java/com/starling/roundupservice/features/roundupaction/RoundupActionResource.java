@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+
 @RestController
 @AllArgsConstructor
 @Slf4j
@@ -38,12 +40,14 @@ public class RoundupActionResource
         catch (ServerException e)
         {
             log.error("There was an error on our side processing your request for account {}", accountUid, e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(RoundupActionResponse.builder().errors(e.getError()).build());
         }
         catch (Exception e)
         {
             log.error("There was an unexpected error processing the request for account {}", accountUid, e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(RoundupActionResponse.builder()
+                    .errors(new HashMap<>() {{ put("Something unexpected went wrong:", e.getMessage()); }}).build());
+
         }
     }
 }

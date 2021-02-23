@@ -12,5 +12,5 @@ public class RetrieveSavingsGoalResponse
     private final String name;
     private final Money target;
     private final Money totalSaved;
-    private final int percentageSaved;
+    private final int savedPercentage;
 }
