@@ -21,20 +21,12 @@ public class CreateSavingsGoalService
         final var savingsGoalCreationRequest = StarlingApiRequestBuilder.saveRequest(creationRequest, account.getCurrency());
         final var uri = StarlingApiUriBuilder.buildSavingsGoalCreationUri(account.getAccountUid());
 
-        final var savingsGoal = starlingAPIProvider.queryStarlingAPI(
+        return starlingAPIProvider.queryStarlingAPI(
                 uri,
                 bearerToken,
                 HttpMethod.PUT,
                 savingsGoalCreationRequest,
                 SaveSavingsGoalResponse.class);
-
-        if (!savingsGoal.success)
-        {
-            throw new ClientException("Savings goal creation error: ", String.format(
-                    "creating round up savings goal for account %s was unsuccessful, failed with the following errors: %s", account.getAccountUid(), savingsGoal.getErrors()));
-        }
-
-        return savingsGoal;
 
     }
 }

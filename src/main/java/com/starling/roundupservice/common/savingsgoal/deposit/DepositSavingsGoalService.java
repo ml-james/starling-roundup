@@ -1,5 +1,6 @@
 package com.starling.roundupservice.common.savingsgoal.deposit;
 
+import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.starlingapi.StarlingApiRequestBuilder;
 import com.starling.roundupservice.common.starlingapi.StarlingApiProvider;
 import com.starling.roundupservice.common.starlingapi.StarlingApiUriBuilder;
@@ -25,13 +26,6 @@ public class DepositSavingsGoalService
                 HttpMethod.POST,
                 savingsGoalDepositRequest,
                 DepositSavingsGoalResponse.class);
-
-        if (!depositResponse.success)
-        {
-            throw new ServerException("Deposit to savings account: ", String.format(
-                    "depositing to roundup goal %s for account %s was unsuccessful, failed with the following errors: %s", roundupAccount.getSavingsGoalUid(),
-                    roundupAccount.getAccountUid(), depositResponse.getErrors()));
-        }
 
         return depositResponse.transferUid;
     }
