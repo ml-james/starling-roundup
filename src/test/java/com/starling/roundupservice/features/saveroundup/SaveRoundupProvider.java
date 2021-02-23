@@ -20,6 +20,7 @@ public class SaveRoundupProvider implements ArgumentsProvider
         return Stream.of(
                 Arguments.of("create_roundup", getMockedParameters("features/saveroundup/createRoundupPath", HttpStatus.OK, HttpStatus.OK, HttpStatus.OK)),
                 Arguments.of("update_roundup", getMockedParameters("features/saveroundup/updateRoundupPath", HttpStatus.OK, null, HttpStatus.OK)),
+                Arguments.of("no_account", getMockedParameters("features/saveroundup/noAccountFoundPath", HttpStatus.BAD_REQUEST, HttpStatus.OK, null)),
                 Arguments.of("unauthorised", getMockedParameters("features/saveroundup/unauthorisedPath", HttpStatus.BAD_REQUEST, HttpStatus.FORBIDDEN, null)),
                 Arguments.of("bad_request", getMockedParameters("features/saveroundup/failurePath", HttpStatus.BAD_REQUEST, HttpStatus.OK, HttpStatus.BAD_REQUEST))
                 );

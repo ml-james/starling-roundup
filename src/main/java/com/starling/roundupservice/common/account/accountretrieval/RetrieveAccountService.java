@@ -1,5 +1,6 @@
 package com.starling.roundupservice.common.account.accountretrieval;
 
+import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.starlingapi.StarlingApiProvider;
 import com.starling.roundupservice.common.starlingapi.StarlingApiUriBuilder;
 import lombok.RequiredArgsConstructor;
@@ -14,18 +15,24 @@ public class RetrieveAccountService
 
     public Account retrieveAccountDetails(final String accountUid, final String bearerToken)
     {
-        var uri = StarlingApiUriBuilder.buildAccountRetrievalUri();
+        final var uri = StarlingApiUriBuilder.buildAccountRetrievalUri();
 
-        var accounts = starlingAPIProvider.queryStarlingAPI(
+        final var accounts = starlingAPIProvider.queryStarlingAPI(
                 uri,
                 bearerToken,
                 HttpMethod.GET,
                 null,
                 RetrieveAccountResponse.class);
 
-        return accounts.getAccounts().stream()
+        final var accountDetails = accounts.getAccounts().stream()
                 .filter(account -> account.getAccountUid().equals(accountUid))
-                .findAny()
-                .orElseThrow();
+                .findFirst();
+
+        if (accountDetails.isEmpty())
+        {
+            throw new ClientException("Savings goal creation error: ", String.format(" there is no account with the requested accountUid: %s", accountUid));
+        }
+
+        return accountDetails.get();
     }
 }

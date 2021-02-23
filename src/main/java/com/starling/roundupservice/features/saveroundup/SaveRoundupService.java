@@ -32,12 +32,6 @@ public class SaveRoundupService
         var account = retrieveAccountService.retrieveAccountDetails(accountUid, bearerToken);
         var savingsGoal = createSavingsGoalService.createSavingsGoal(saveRequest, account, bearerToken);
 
-        if (!savingsGoal.success)
-        {
-            throw new ClientException("Savings goal creation error: ", String.format(
-                    "creating round up savings goal for account %s was unsuccessful, failed with the following errors: %s", accountUid, savingsGoal.getErrors()));
-        }
-
         roundupAccountService.saveRoundupAccount(saveRequest, accountUid, account.getDefaultCategory(), account.getCurrency(), savingsGoal.getSavingsGoalUid());
 
         return SaveRoundupResponse.builder()

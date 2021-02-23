@@ -1,6 +1,5 @@
 package com.starling.roundupservice.features.roundupaction;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.starling.roundupservice.BaseTestIT;
 import com.starling.roundupservice.MockedParameters;
 import com.starling.roundupservice.action.RoundupActionResponse;
@@ -151,8 +150,8 @@ public class RoundupActionIT extends BaseTestIT
         {
             var actualRequest = server.takeRequest();
 
-            JsonNode actual = jsonMapper.readTree(actualRequest.getBody().readUtf8());
-            JsonNode expected = jsonMapper.readTree(loadResourceAsString(mockedParameters.getExpectedRequestToDepositSavingsGoal()));
+            var actual = jsonMapper.readTree(actualRequest.getBody().readUtf8());
+            var expected = jsonMapper.readTree(loadResourceAsString(mockedParameters.getExpectedRequestToDepositSavingsGoal()));
 
             assertEquals(
                     jsonMapper.writerWithDefaultPrettyPrinter().writeValueAsString(expected),

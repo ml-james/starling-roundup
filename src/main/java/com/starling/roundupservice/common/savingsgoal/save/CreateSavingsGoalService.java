@@ -1,5 +1,6 @@
 package com.starling.roundupservice.common.savingsgoal.save;
 
+import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.starlingapi.StarlingApiRequestBuilder;
 import com.starling.roundupservice.common.starlingapi.StarlingApiProvider;
 import com.starling.roundupservice.common.starlingapi.StarlingApiUriBuilder;
@@ -20,11 +21,20 @@ public class CreateSavingsGoalService
         final var savingsGoalCreationRequest = StarlingApiRequestBuilder.saveRequest(creationRequest, account.getCurrency());
         final var uri = StarlingApiUriBuilder.buildSavingsGoalCreationUri(account.getAccountUid());
 
-        return starlingAPIProvider.queryStarlingAPI(
+        final var savingsGoal = starlingAPIProvider.queryStarlingAPI(
                 uri,
                 bearerToken,
                 HttpMethod.PUT,
                 savingsGoalCreationRequest,
                 SaveSavingsGoalResponse.class);
+
+        if (!savingsGoal.success)
+        {
+            throw new ClientException("Savings goal creation error: ", String.format(
+                    "creating round up savings goal for account %s was unsuccessful, failed with the following errors: %s", account.getAccountUid(), savingsGoal.getErrors()));
+        }
+
+        return savingsGoal;
+
     }
 }

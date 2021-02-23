@@ -1,0 +1,28 @@
+{
+  "accounts": [
+    {
+      "accountUid": "22222a11-fd4c-45d4-b509-1d6fbbdaf777",
+      "accountType": "PRIMARY",
+      "defaultCategory": "717ad742-6545-415f-be3c-30a0cbfe9f4d",
+      "currency": "GBP",
+      "createdAt": "2020-10-30T20:32:32.892Z",
+      "name": "Personal1"
+    },
+    {
+      "accountUid": "33333a11-fd4c-45d4-b509-1d6fbbdaf777",
+      "accountType": "PRIMARY",
+      "defaultCategory": "717ad742-6545-415f-be3c-30a0cbfe9f4d",
+      "currency": "GBP",
+      "createdAt": "2020-10-30T20:32:32.892Z",
+      "name": "Personal2"
+    },
+    {
+      "accountUid": "44444a11-fd4c-45d4-b509-1d6fbbdaf777",
+      "accountType": "PRIMARY",
+      "defaultCategory": "717ad742-6545-415f-be3c-30a0cbfe9f4d",
+      "currency": "GBP",
+      "createdAt": "2020-10-30T20:32:32.892Z",
+      "name": "Personal3"
+    }
+  ]
+}

@@ -1,6 +1,5 @@
 package com.starling.roundupservice.features.saveroundup;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.starling.roundupservice.BaseTestIT;
 import com.starling.roundupservice.MockedParameters;
 import com.starling.roundupservice.save.SaveRoundupRequest;
@@ -30,24 +29,25 @@ public class SaveRoundupIT extends BaseTestIT
         switch (testName)
         {
             case "update_roundup":
-                requestsAccountRetrieval = false;
                 requestsSavingsGoalSave = true;
+                requestsAccountRetrieval = false;
                 accountUid = "b2191626-c67c-4a4b-aef9-3b1b80b65fdc";
                 break;
             case "unauthorised":
-                requestsSavingsGoalSave = false;
+            case "no_account":
                 requestsAccountRetrieval = true;
+                requestsSavingsGoalSave = false;
                 accountUid = "55198b91-fd4c-45d4-b509-1d6fbbdaf777";
                 break;
             case "bad_request":
-                requestsSavingsGoalSave = true;
                 requestsAccountRetrieval = true;
+                requestsSavingsGoalSave = true;
                 accountUid = "11111a11-fd4c-45d4-b509-1d6fbbdaf777";
                 break;
             case "create_roundup":
             default:
-                requestsSavingsGoalSave = true;
                 requestsAccountRetrieval = true;
+                requestsSavingsGoalSave = true;
                 accountUid = "22222b22-fd4c-45d4-b509-1d6fbbdaf777";
                 break;
         }
@@ -114,8 +114,8 @@ public class SaveRoundupIT extends BaseTestIT
         {
             var actualRequest = server.takeRequest();
 
-            JsonNode actual = jsonMapper.readTree(actualRequest.getBody().readUtf8());
-            JsonNode expected = jsonMapper.readTree(loadResourceAsString(mockedParameters.getExpectedRequestToSavingsDepositSave()));
+            var actual = jsonMapper.readTree(actualRequest.getBody().readUtf8());
+            var expected = jsonMapper.readTree(loadResourceAsString(mockedParameters.getExpectedRequestToSavingsDepositSave()));
 
             assertEquals(
                     jsonMapper.writerWithDefaultPrettyPrinter().writeValueAsString(expected),
