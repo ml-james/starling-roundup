@@ -24,7 +24,7 @@ public class TransactionService
     {
         var transactionWindow = TransactionTimestamps.builder()
                 .minTransactionTimestamp(new DateTime().minusWeeks(1).withDayOfWeek(1).withTimeAtStartOfDay().toString())
-                .maxTransactionTimestamp(new DateTime().minusWeeks(1).withDayOfWeek(7).withTimeAtStartOfDay().toString())
+                .maxTransactionTimestamp(new DateTime().withDayOfWeek(1).withTimeAtStartOfDay().toString())
                 .build();
 
         if (!roundupStateService.isRoundupDue(roundUpAccount.getRoundupUid(), transactionWindow.maxTransactionTimestamp))
