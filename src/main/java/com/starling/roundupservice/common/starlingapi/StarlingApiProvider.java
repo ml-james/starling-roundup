@@ -39,7 +39,7 @@ public class StarlingApiProvider extends BaseWebClient
                     }
                     else
                     {
-                        return Mono.error(new ServerException("Server error: ", String.format(" there was an error returning %s", returnType.getName())));
+                        return Mono.error(new ServerException("Starling API error: ", String.format(" there was an error returning %s", returnType.getName())));
                     }
                 })
                 .timeout(DEFAULT_TIMEOUT)
@@ -48,7 +48,7 @@ public class StarlingApiProvider extends BaseWebClient
 
         if (response instanceof ClientErrorResponse)
         {
-            throw new ClientException("Client error: ", String.format(" there was a problem returning %s due to the following errors %s", returnType.getName(), ((ClientErrorResponse) response).errors));
+            throw new ClientException("Starling API error: ", String.format(" there was a problem returning %s due to the following errors %s", returnType.getName(), ((ClientErrorResponse) response).errors));
         }
         else
         {

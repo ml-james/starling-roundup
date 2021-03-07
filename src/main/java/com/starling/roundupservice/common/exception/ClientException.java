@@ -10,7 +10,7 @@ public class ClientException extends RuntimeException
 
     public ClientException(String source, String errorMessage)
     {
-        super();
+        super(errorMessage);
         this.error = new HashMap<>()
         {{
             put(source, errorMessage);

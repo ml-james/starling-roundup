@@ -16,6 +16,10 @@ repositories {
 }
 
 test {
+    testLogging
+            {
+                showStandardStreams=true;
+            }
     useJUnitPlatform()
 }
 

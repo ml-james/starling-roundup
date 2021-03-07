@@ -7,6 +7,8 @@ import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.starlingapi.StarlingApiProvider;
 import com.starling.roundupservice.common.starlingapi.StarlingApiUriBuilder;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class TransactionService
 {
+    private static final Logger LOGGER = LoggerFactory.getLogger(TransactionService.class);
+
     private static final String DIRECTION_OUT = "OUT";
     private static final String STATUS_SETTLED = "SETTLED";
 
@@ -39,8 +43,10 @@ public class TransactionService
         final var uri = StarlingApiUriBuilder.buildTransactionFeedUri(roundUpAccount.getAccountUid(), roundUpAccount.getCategoryUid(), transactionWindow.minTransactionTimestamp, transactionWindow.maxTransactionTimestamp);
         final var transactions = starlingAPIProvider.queryStarlingAPI(uri, bearerToken, HttpMethod.GET, null, FeedItems.class);
 
+        int roundupAmount = calculateRoundup(transactions, roundUpAccount);
+        LOGGER.error("Roundup amount: " + roundupAmount + ". Week end: " + transactionWindow.maxTransactionTimestamp);
         return Roundup.builder()
-                .roundupAmount(calculateRoundup(transactions, roundUpAccount))
+                .roundupAmount(roundupAmount)
                 .weekEnd(transactionWindow.maxTransactionTimestamp)
                 .build();
     }

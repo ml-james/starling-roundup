@@ -10,7 +10,7 @@ public class ServerException extends RuntimeException
 
     public ServerException(String source, String errorMessage)
     {
-        super();
+        super(errorMessage);
         this.error = new HashMap<>()
         {{
             put(source, errorMessage);
