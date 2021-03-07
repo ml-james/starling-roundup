@@ -1,8 +1,5 @@
 package com.starling.roundupservice.features.saveroundup;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-
-import com.starling.roundupservice.action.RoundupActionResponse;
 import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.exception.ServerException;
 import com.starling.roundupservice.save.SaveRoundupRequest;
@@ -14,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @AllArgsConstructor

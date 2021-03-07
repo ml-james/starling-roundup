@@ -5,7 +5,7 @@
 * This application represents a fully fledged roundup microservice that can integrate with Starling bank's API, `https://developer.starlingbank.com/docs`.
 * Please make a developer account with Starling using the instructions below.
 * This application can be run from `StarlingRoundupApplication` main class.
-* The application can be built using `./gradlew clean build`
+* The application can be built using `./gradlew clean build`.
 * Application features include:
     * **Create a roundup goal**
       * Create a saving's account with Starling with a target for the amount specified.

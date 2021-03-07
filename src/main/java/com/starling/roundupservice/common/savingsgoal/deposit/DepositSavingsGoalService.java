@@ -1,11 +1,9 @@
 package com.starling.roundupservice.common.savingsgoal.deposit;
 
-import com.starling.roundupservice.common.exception.ClientException;
-import com.starling.roundupservice.common.starlingapi.StarlingApiRequestBuilder;
-import com.starling.roundupservice.common.starlingapi.StarlingApiProvider;
-import com.starling.roundupservice.common.starlingapi.StarlingApiUriBuilder;
 import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
-import com.starling.roundupservice.common.exception.ServerException;
+import com.starling.roundupservice.common.starlingapi.StarlingApiProvider;
+import com.starling.roundupservice.common.starlingapi.StarlingApiRequestBuilder;
+import com.starling.roundupservice.common.starlingapi.StarlingApiUriBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;

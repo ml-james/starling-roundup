@@ -1,6 +1,5 @@
 package com.starling.roundupservice.features.retrieveroundup;
 
-import com.starling.roundupservice.action.RoundupActionResponse;
 import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.exception.ServerException;
 import com.starling.roundupservice.retrieve.RetrieveRoundupResponse;

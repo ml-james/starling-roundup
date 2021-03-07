@@ -1,12 +1,11 @@
 package com.starling.roundupservice.common.account.roundup;
 
 import com.starling.roundupservice.save.SaveRoundupRequest;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 import java.util.UUID;
-
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
