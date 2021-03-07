@@ -7,6 +7,7 @@ import com.starling.roundupservice.common.account.roundup.RoundupStateService;
 import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.starlingapi.StarlingApiProvider;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,7 +46,7 @@ public class TransactionServiceTest
     {
         initMocks(this);
         transactionService = new TransactionService(roundupStateService, transactionProvider, clockService);
-        when(clockService.getCurrentDateTime()).thenReturn(new DateTime(1592731346192L));
+        when(clockService.getCurrentDateTime()).thenReturn(new DateTime(1592731346192L, DateTimeZone.UTC));
     }
 
     @Test
