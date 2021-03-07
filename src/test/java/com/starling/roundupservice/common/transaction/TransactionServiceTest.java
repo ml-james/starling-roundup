@@ -1,10 +1,11 @@
 package com.starling.roundupservice.common.transaction;
 
-import com.starling.roundupservice.common.starlingapi.StarlingApiProvider;
+import com.starling.roundupservice.common.ClockService;
+import com.starling.roundupservice.common.Money;
 import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
 import com.starling.roundupservice.common.account.roundup.RoundupStateService;
 import com.starling.roundupservice.common.exception.ClientException;
-import com.starling.roundupservice.common.Money;
+import com.starling.roundupservice.common.starlingapi.StarlingApiProvider;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeUtils;
 import org.junit.jupiter.api.AfterEach;
@@ -12,10 +13,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+
 import java.util.Arrays;
 
 import static com.starling.roundupservice.TestConstants.DEFAULT_WEEK_END;
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;

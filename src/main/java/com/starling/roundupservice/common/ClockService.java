@@ -1,4 +1,4 @@
-package com.starling.roundupservice.common.transaction;
+package com.starling.roundupservice.common;
 
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Component;

@@ -1,12 +1,12 @@
 package com.starling.roundupservice.common.transaction;
 
+import com.starling.roundupservice.common.ClockService;
 import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
 import com.starling.roundupservice.common.account.roundup.RoundupStateService;
 import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.starlingapi.StarlingApiProvider;
 import com.starling.roundupservice.common.starlingapi.StarlingApiUriBuilder;
 import lombok.RequiredArgsConstructor;
-import org.joda.time.DateTime;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 
