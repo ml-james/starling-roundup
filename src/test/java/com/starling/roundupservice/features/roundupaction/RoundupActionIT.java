@@ -114,7 +114,7 @@ public class RoundupActionIT extends BaseTestIT
 
     private void thenRoundupActionRequestedAndResponseVerified()
     {
-        webTestClient.post().uri(String.format(contextPath + PATH_ROUNDUP_ACTION, accountUid))
+        webTestClient.post().uri(String.format(PATH_ROUNDUP_ACTION, accountUid))
                 .contentType(APPLICATION_JSON)
                 .header("Authorization", "Bearer eyJhbGciOiJQUzI1NiIsInpp")
                 .exchange()

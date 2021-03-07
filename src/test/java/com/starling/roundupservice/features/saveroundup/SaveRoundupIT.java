@@ -86,7 +86,7 @@ public class SaveRoundupIT extends BaseTestIT
 
     private void thenSaveRoundupGoalRequestedAndResponseVerified()
     {
-        webTestClient.put().uri(String.format(contextPath + PATH_SAVE_ROUNDUP, accountUid))
+        webTestClient.put().uri(String.format(PATH_SAVE_ROUNDUP, accountUid))
                 .contentType(APPLICATION_JSON)
                 .header("Authorization", "Bearer eyJhbGciOiJQUzI1NiIsInpp")
                 .accept(APPLICATION_JSON)

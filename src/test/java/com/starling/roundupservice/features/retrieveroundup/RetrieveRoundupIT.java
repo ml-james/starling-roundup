@@ -60,7 +60,7 @@ public class RetrieveRoundupIT extends BaseTestIT
 
     private void thenRetrieveRoundupGoalRequestedAndResponseVerified()
     {
-        webTestClient.get().uri(String.format(contextPath + PATH_RETRIEVE_ROUNDUP, accountUid))
+        webTestClient.get().uri(String.format(PATH_RETRIEVE_ROUNDUP, accountUid))
                 .header("Authorization", "Bearer eyJhbGciOiJQUzI1NiIsInpp")
                 .accept(APPLICATION_JSON)
                 .exchange()
