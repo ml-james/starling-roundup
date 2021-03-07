@@ -19,12 +19,14 @@ public class TransactionService
 
     private final RoundupStateService roundupStateService;
     private final StarlingApiProvider starlingAPIProvider;
+    private final ClockService clockService;
 
     public Roundup getLatestRoundup(final RoundupAccountMapping roundUpAccount, final String bearerToken)
     {
-        var transactionWindow = TransactionTimestamps.builder()
-                .minTransactionTimestamp(new DateTime().minusWeeks(1).withDayOfWeek(1).withTimeAtStartOfDay().toString())
-                .maxTransactionTimestamp(new DateTime().withDayOfWeek(1).withTimeAtStartOfDay().toString())
+        final var dateTime = clockService.getCurrentDateTime();
+        final var transactionWindow = TransactionTimestamps.builder()
+                .minTransactionTimestamp(dateTime.minusWeeks(1).withDayOfWeek(1).withTimeAtStartOfDay().toString())
+                .maxTransactionTimestamp(dateTime.withDayOfWeek(1).withTimeAtStartOfDay().toString())
                 .build();
 
         if (!roundupStateService.isRoundupDue(roundUpAccount.getRoundupUid(), transactionWindow.maxTransactionTimestamp))
@@ -34,8 +36,8 @@ public class TransactionService
                             transactionWindow.maxTransactionTimestamp));
         }
 
-        var uri = StarlingApiUriBuilder.buildTransactionFeedUri(roundUpAccount.getAccountUid(), roundUpAccount.getCategoryUid(), transactionWindow.minTransactionTimestamp, transactionWindow.maxTransactionTimestamp);
-        var transactions = starlingAPIProvider.queryStarlingAPI(uri, bearerToken, HttpMethod.GET, null, FeedItems.class);
+        final var uri = StarlingApiUriBuilder.buildTransactionFeedUri(roundUpAccount.getAccountUid(), roundUpAccount.getCategoryUid(), transactionWindow.minTransactionTimestamp, transactionWindow.maxTransactionTimestamp);
+        final var transactions = starlingAPIProvider.queryStarlingAPI(uri, bearerToken, HttpMethod.GET, null, FeedItems.class);
 
         return Roundup.builder()
                 .roundupAmount(calculateRoundup(transactions, roundUpAccount))
@@ -45,7 +47,7 @@ public class TransactionService
 
     private int calculateRoundup(final FeedItems feedItems, final RoundupAccountMapping roundupAccountMapping)
     {
-        var feedSum = feedItems.getFeedItems().stream()
+        final var feedSum = feedItems.getFeedItems().stream()
                 .filter(x -> x.getDirection().equals(DIRECTION_OUT))
                 .filter(x -> x.getStatus().equals(STATUS_SETTLED))
                 .map(FeedItem::getAmount)

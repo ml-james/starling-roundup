@@ -5,6 +5,7 @@ import com.starling.roundupservice.common.account.roundup.RoundupAccountMapping;
 import com.starling.roundupservice.common.account.roundup.RoundupStateService;
 import com.starling.roundupservice.common.exception.ClientException;
 import com.starling.roundupservice.common.Money;
+import org.joda.time.DateTime;
 import org.joda.time.DateTimeUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -33,6 +34,8 @@ public class TransactionServiceTest
     private StarlingApiProvider transactionProvider;
     @Mock
     private RoundupStateService roundupStateService;
+    @Mock
+    private ClockService clockService;
 
     private TransactionService transactionService;
     private RoundupAccountMapping account;
@@ -42,8 +45,8 @@ public class TransactionServiceTest
     public void setup()
     {
         initMocks(this);
-        transactionService = new TransactionService(roundupStateService, transactionProvider);
-        DateTimeUtils.setCurrentMillisFixed(1592731346192L);
+        transactionService = new TransactionService(roundupStateService, transactionProvider, clockService);
+        when(clockService.getCurrentDateTime()).thenReturn(new DateTime(1592731346192L));
     }
 
     @AfterEach
@@ -124,8 +127,8 @@ public class TransactionServiceTest
         when(transactionProvider.queryStarlingAPI(any(), any(), any(), any(), any())).thenReturn(new FeedItems(transactions));
         result = transactionService.getLatestRoundup(account, "");
 
-        assertEquals(TRANSACTION_ROUND_UP, result.roundupAmount);
-        assertEquals(DEFAULT_WEEK_END, result.weekEnd);
+        Assertions.assertEquals(TRANSACTION_ROUND_UP, result.roundupAmount);
+        Assertions.assertEquals(DEFAULT_WEEK_END, result.weekEnd);
     }
 
     @Test
