@@ -34,7 +34,7 @@
 #### Tech Stack
 
 * `Gradle`
-* `SpringBoot 2.2.7.RELEASE` 
+* `SpringBoot 2.4.3` 
 * `Lombok 1.18.12`
 * `Liquibase`  
 * `H2 database`
